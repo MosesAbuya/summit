@@ -1,0 +1,21 @@
+- `[x]` Update navigation links in `header.php` to 1-word links and add missing pages.
+- `[x]` Update navigation links in `footer.php` and fix social media placeholders.
+- `[x]` Update `index.php` (homepage): Replace generic image with `assets/fredsadia.png`, integrate `assets/past-summit` images, and update news links to point to `news_article`.
+- `[x]` Create `speakers.php`.
+- `[x]` Create `faq.php`.
+- `[x]` Create `gallery.php`.
+- `[x]` Create `news_article.php`.
+- `[x]` Create `privacy.php`.
+- `[x]` Create `terms.php`.
+- `[x]` Update `resources.php` to link "Read Full Study" and "Brand Asset Pack".
+- `[x]` Update `register.php` privacy policy link.
+- `[x]` Verify new pages and links.
+- `[x]` Clean up UI typography: Remove all Em dashes from the whole website.
+- `[x]` Clean up UI layout: Remove the budget and Four-Day Program Overview sections from the about page.
+- `[x]` Clean up UI styling: Remove colored border-top and border-left accents across all cards, blockquotes, and sections.
+- `[x]` Replace Unsplash venue images in `index.php` with real photos from `assets/venues/`.
+- `[x]` Update keynote speakers gallery in `index.php`: Replace Fred Sadia placeholder with his real image and use initials fallbacks for others.
+- `[x]` Clean up other Unsplash headers across all pages.
+- `[x]` Set favicon globally in `includes/header.php`.
+- `[x]` Update founding organization cover image to use `assets/jitoleelogo.png` in `about.php`.
+- `[x]` Update co-organizer cover image to use `assets/globalprobono.png` in `about.php`.

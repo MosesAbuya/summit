@@ -426,8 +426,8 @@
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3.5rem;">
                 <div style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden;">
-                    <div style="height: 220px; overflow: hidden;">
-                        <img src="assets/fredsadia.png" alt="Fred Sadia - Founder" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    <div style="height: 220px; overflow: hidden; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                        <img src="assets/jitoleelogo.png" alt="Jitolee Good Friends Foundation Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                     </div>
                     <div style="padding: 2rem;">
                         <span class="badge" style="background: rgba(22,101,52,0.1); color: var(--primary-color); margin-bottom: 1rem; display: inline-block;">Founding Organization</span>
@@ -436,11 +436,8 @@
                     </div>
                 </div>
                 <div style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden;">
-                    <div style="height: 220px; overflow: hidden; background: linear-gradient(135deg, var(--primary-color) 0%, var(--deep-ebony) 100%); display: flex; align-items: center; justify-content: center;">
-                        <div style="text-align: center; color: white; padding: 2rem;">
-                            <i class="fa-solid fa-earth-africa" style="font-size: 4rem; opacity: 0.8; margin-bottom: 1rem;"></i>
-                            <div style="font-size: 1.5rem; font-weight: 700; font-family: var(--font-heading);">Global Pro Bono Network</div>
-                        </div>
+                    <div style="height: 220px; overflow: hidden; background: #f8fafc; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                        <img src="assets/globalprobono.png" alt="Global Pro Bono Network Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                     </div>
                     <div style="padding: 2rem;">
                         <span class="badge" style="background: rgba(14,165,233,0.1); color: #0ea5e9; margin-bottom: 1rem; display: inline-block;">Co-Organizer</span>
