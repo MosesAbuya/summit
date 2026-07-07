@@ -1,5 +1,12 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+require 'includes/db.php';
 
+// Fetch Latest 3 News
+$stmt = $pdo->query("SELECT * FROM news WHERE status = 'Published' ORDER BY created_at DESC LIMIT 3");
+$latest_news = $stmt->fetchAll();
+
+include 'includes/header.php'; 
+?>
 <!-- 1. Sick Interactive Hero Carousel -->
 <style>
     .hero-carousel { position: relative; height: 95vh; min-height: 600px; width: 100%; overflow: hidden; background: #000; }
@@ -39,9 +46,9 @@
     <div class="carousel-slide active" data-index="0">
         <img class="carousel-bg" src="assets/hero_slide_1.png" alt="Summit Main">
         <div class="carousel-content">
-            <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Oct 12-15 • Nairobi, Kenya</span>
-            <h1 class="carousel-title">Global Pro-bono<br>Summit Africa 2026</h1>
-            <p class="carousel-subtitle">Institutionalizing impact through structured corporate volunteerism. Join policymakers and grassroots leaders in bridging the continental divide.</p>
+            <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Nov 24-27 • Nairobi, Kenya</span>
+            <h1 class="carousel-title" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">GLOBAL SUMMIT ON<br>PRO BONO PRACTICE<br>AFRICA</h1>
+            <p class="carousel-subtitle">"Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063"</p>
             <div class="carousel-actions">
                 <a href="register" class="btn btn-primary btn-lg">Secure Your Pass</a>
                 <a href="program" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);">View Itinerary</a>
@@ -169,18 +176,18 @@
     <div class="container">
         <div class="welcome-grid">
             <div class="welcome-text">
-                <h2 class="welcome-title">Welcome to the Global Pro-bono Summit Africa 2026!</h2>
-                <p>The Global Pro-bono Summit Africa is the continent's premier summit that brings together thought leaders, policymakers, practitioners, development partners, the private sector, and grassroots communities to engage in meaningful discussions on professional volunteerism and chart a way forward.</p>
-                <p>Organized by the Jitolee Good Friends Foundation together with various State and Non-State actors, the Summit marks a significant milestone in our journey towards institutionalizing impact, providing a platform for sharing experiences, best practices, and innovative architectures in the pro-bono sector.</p>
-                <p>The Conference is set to take place from <strong>October 12 to 15 in Nairobi, Kenya</strong>. This year's core message:</p>
+                <h2 class="welcome-title">Welcome to the Global Summit on Pro Bono Practice</h2>
+                <p>In a world facing interconnected crises including climate disasters, AI job shifts, and educational gaps, this Summit is designed to regenerate and transform the landscape of professional pro bono service and volunteerism to intervene and address these polycrises.</p>
+                <p>Organized by the Global Pro Bono Network and Jitolee Good Friends Foundation, the Summit drives a <strong>'Multidisciplinary Revolution'</strong> by embedding healthcare, technology, education, climate, and finance into the ecosystem.</p>
+                <p>The Conference is set to take place from <strong>November 24th to 27th, 2026 in Nairobi, Kenya</strong>. This year's core focus:</p>
                 
                 <div class="blockquote-highlight mt-2">
-                    <p class="quote-text">"Professionalism in Service: Pro-bono as a Catalyst for Equity, Inclusion, and Social Justice."</p>
-                    <p class="quote-sub">Reminds us that volunteering is not just an act of charity, but an opportunity to offer equitable, structured, and sustainable capacity building for all communities.</p>
+                    <p class="quote-text">"Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063."</p>
+                    <p class="quote-sub">Aligning with the United Nations Agenda 2030 and the African Union Agenda 2063 to co-create high-impact sustainable solutions.</p>
                 </div>
             </div>
-            <div class="welcome-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Fredrick Sadia - Founder" class="founder-img">
+            <div class="welcome-image-wrapper african-frame">
+                <img src="assets/fredsadia.png" alt="Fredrick Sadia - Founder" class="founder-img" style="object-position: top;">
                 <div class="play-button-overlay">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                 </div>
@@ -195,19 +202,19 @@
         <div class="grid-2-col align-center">
             <div class="theme-overview-text">
                 <span class="section-eyebrow">2026 Summit Theme</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #0f172a;">Unlocking Africa's Potential through Professional Volunteerism</h2>
-                <p class="lead-text">Translating individual acts of goodwill into sustainable, institutional frameworks.</p>
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #0f172a;">A Multidisciplinary Revolution</h2>
+                <p class="lead-text">Embedding healthcare, technology, education, and climate action.</p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-main);">
-                    For decades, volunteerism in Africa has been characterized by informal, ad-hoc initiatives. While these grassroots efforts are commendable, there is an urgent need to elevate pro-bono service into structured, professional engagements that drive systemic change. 
+                    While African pro bono initiatives have traditionally focused on legal services, this Summit expands the horizon. By bridging the gap between professional expertise and community needs, we aim to deliver tangible Return on Investment (ROI): enhanced corporate ESG profiles, skilled talent development, and community resilience gains.
                     <br><br>
-                    This year's theme challenges corporations, legal fraternities, tech hubs, and governments to embed pro-bono work into their core operational policies. By aligning high-tier professional skills with the most pressing needs of underserved communities, we can unlock unprecedented socio-economic growth. The Summit explores how public-private partnerships can seamlessly facilitate cross-border skill exchanges, foster ESG compliance, and ultimately institutionalize impact across the continent.
+                    The Summit focuses on four critical SDGs: No Poverty (1), Quality Education (4), Decent Work (8), and Climate Action (13), directly advancing AU Agenda 2063 Aspirations for a Prosperous and People-driven Africa.
                 </p>
             </div>
             <div class="theme-overview-image" style="position: relative;">
-                <div class="image-wrapper shadow-lg radius-lg" style="position: relative; z-index: 2;">
-                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=2070&auto=format&fit=crop" alt="Conference Audience">
+                <div class="african-frame-bold image-wrapper shadow-lg radius-lg" style="position: relative; z-index: 2;">
+                    <img src="assets/past-summit/231130-101322.jpg" alt="Conference Audience">
                 </div>
-                <div style="position: absolute; bottom: -20px; left: -20px; width: 150px; height: 150px; background: var(--secondary-color); z-index: 1; border-radius: 12px; opacity: 0.8;"></div>
+                <div style="position: absolute; bottom: -20px; left: -20px; width: 150px; height: 150px; background-image: var(--pattern-ankara); background-size: 48px 48px; background-color: var(--kente-gold); z-index: 1; border-radius: 12px; opacity: 0.7;"></div>
             </div>
         </div>
     </div>
@@ -222,17 +229,26 @@
                 GLOBAL PRO-BONO<br>
                 <span>SUMMIT AFRICA 2026</span>
             </h2>
+            <span class="african-divider" style="margin-top: 1.5rem;"></span>
         </div>
         
-        <!-- Goal & Objective -->
-        <div class="grid-2-col mt-4">
+        <!-- The 4 Core Objectives -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem;">
             <div class="goal-box">
-                <h3 class="serif-heading">Goal</h3>
-                <p>Examine the role of structured pro-bono work in the realization of equity, inclusion, and social justice, generating practical frameworks that can be adopted by state and non-state actors for bridging the socioeconomic divide across the African continent.</p>
+                <h3 class="serif-heading" style="color: var(--terracotta); font-size: 2rem;">15</h3>
+                <p><strong>Cross-Sector Partnerships:</strong> Secure MoUs between corporates, academics, and NGOs for joint pro bono delivery.</p>
             </div>
-            <div class="objective-box">
-                <h3 class="serif-heading">Objective</h3>
-                <p>The overall objective of the summit is to assess the role of institutional volunteering in promoting sustainable development; and provide an exploratory platform for consultations and dialogue on how corporate-NGO partnerships can be optimally designed to accelerate impact.</p>
+            <div class="goal-box">
+                <h3 class="serif-heading" style="color: var(--savannah-sand); font-size: 2rem;">50</h3>
+                <p><strong>Pro Bono Initiatives:</strong> Launch scalable blueprints impacting 5,000 Africans, with a global ripple to 50,000 via shared toolkits.</p>
+            </div>
+            <div class="goal-box">
+                <h3 class="serif-heading" style="color: var(--primary-color); font-size: 2rem;">3</h3>
+                <p><strong>University Curricula:</strong> Integrate pro bono practice into at least 2-3 higher learning institutions by the end of 2027.</p>
+            </div>
+            <div class="goal-box">
+                <h3 class="serif-heading" style="color: var(--secondary-color); font-size: 2rem;">200</h3>
+                <p><strong>Accord Signatories:</strong> Adopt the Nairobi Pro Bono Accord/Declaration committing participants to 10,000 pro bono hours.</p>
             </div>
         </div>
     </div>
@@ -244,30 +260,31 @@
         <div class="section-header text-center">
             <span class="section-eyebrow">Program Architecture</span>
             <h2>Summit Program Tracks</h2>
-            <div class="divider center"></div>
+            <span class="african-divider-sm center"></span>
             <p class="subtitle mt-1">Structured engagement designed for maximum collaborative impact.</p>
         </div>
 
         <div class="tracks-grid">
+        <div class="tracks-grid">
             <div class="track-card">
-                <div class="track-header">Track 01</div>
-                <h3>Legal & Corporate</h3>
-                <p>Focusing on law firms, corporate governance, and integrating pro-bono work into ESG frameworks.</p>
+                <div class="track-header" style="color: var(--terracotta); font-weight: 700;">SDG 1 & AU Asp 1</div>
+                <h3>No Poverty</h3>
+                <p>Pro bono financial advisory, microfinance training, and property rights clinics to break intergenerational poverty cycles.</p>
             </div>
             <div class="track-card">
-                <div class="track-header">Track 02</div>
-                <h3>Tech for Good</h3>
-                <p>How developers, engineers, and tech corporations can architect scalable solutions for NGOs.</p>
+                <div class="track-header" style="color: var(--savannah-sand); font-weight: 700;">SDG 4 & AU Asp 1</div>
+                <h3>Quality Education</h3>
+                <p>Bridging the education gap for out-of-school youth with tech-driven mentorship and digital learning platforms.</p>
             </div>
             <div class="track-card">
-                <div class="track-header">Track 03</div>
-                <h3>Strengthening Civil Society</h3>
-                <p>Building the operational capacity of local African NGOs to receive and utilize volunteer skills.</p>
+                <div class="track-header" style="color: var(--primary-color); font-weight: 700;">SDG 8 & AU Asp 1</div>
+                <h3>Decent Work</h3>
+                <p>Harnessing the youth bulge through multidisciplinary pro bono for SME growth, employability, and tech/finance skills.</p>
             </div>
-            <div class="track-card track-highlight">
-                <div class="track-header" style="color: var(--secondary-color);">Special Track</div>
-                <h3 style="color: white; margin-bottom: 0.5rem;">Side Events & Networking</h3>
-                <p style="color: rgba(255,255,255,0.8); margin: 0;">Networking dinners and "Pro-bono Speed Dating" — matching global experts directly with NGOs in need.</p>
+            <div class="track-card track-highlight" style="background: var(--deep-ebony);">
+                <div class="track-header" style="color: var(--secondary-color); font-weight: 700;">SDG 13 & AU Asp 7</div>
+                <h3 style="color: white; margin-bottom: 0.5rem;">Climate Action</h3>
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">Exporting resilience: Nature-based solutions and expert climate volunteering to protect vulnerable livelihoods.</p>
             </div>
         </div>
     </div>
@@ -279,12 +296,12 @@
         <div class="section-header text-center">
             <span class="section-eyebrow">The Summit Experience</span>
             <h2>4 Days. 4 Landmark Venues.</h2>
-            <div class="divider center"></div>
+            <span class="african-divider-sm center"></span>
             <p class="subtitle mt-1">An immersive journey through Nairobi's most iconic institutions.</p>
         </div>
         
         <div class="venue-grid mt-4">
-            <div class="venue-card" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop');">
+            <div class="venue-card" style="background-image: url('assets/venues/uon.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 1</span>
@@ -294,7 +311,7 @@
                     <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop');">
+            <div class="venue-card" style="background-image: url('assets/venues/kra.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
@@ -304,7 +321,7 @@
                     <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('https://images.unsplash.com/photo-1590595906931-81f04f0ccebb?q=80&w=800&auto=format&fit=crop');">
+            <div class="venue-card" style="background-image: url('assets/venues/kicc.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 3</span>
@@ -314,7 +331,7 @@
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4f8d1e?q=80&w=800&auto=format&fit=crop');">
+            <div class="venue-card" style="background-image: url('assets/venues/nairobisafariclub.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 4</span>
@@ -329,12 +346,12 @@
 </section>
 
 <!-- 7. Global Speaker Gallery -->
-<section id="speakers" class="section bg-dark text-light" style="background-color: var(--bg-dark); color: white;">
+<section id="speakers" class="section bg-dark text-light" style="background-color: var(--night-sky); background-image: var(--pattern-adinkra); background-size: 80px 80px; color: white;">
     <div class="container">
         <div class="section-header text-center">
-            <span class="section-eyebrow" style="color: var(--secondary-color);">Global Speaker Gallery</span>
+            <span class="section-eyebrow" style="color: var(--kente-gold);">Global Speaker Gallery</span>
             <h2 class="text-white" style="color: white;">Voices of Impact</h2>
-            <div class="divider center" style="background-color: var(--secondary-color);"></div>
+            <span class="african-divider-sm center" style="opacity: 0.7;"></span>
         </div>
         
         <div class="speaker-spotlight-wrapper" style="margin-top: 3rem;">
@@ -358,7 +375,7 @@
             </div>
             <div class="speaker-display">
                 <div class="sd-image">
-                    <img id="sd-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="Fredrick Sadia">
+                    <img id="sd-img" src="assets/fredsadia.png" alt="Fredrick Sadia">
                 </div>
                 <div class="sd-content">
                     <span class="badge" id="sd-track">Keynote & Panel: Strengthening Civil Society</span>
@@ -372,12 +389,12 @@
 
 <!-- 8. Delegate Logistics Re-design -->
 <section id="logistics" class="section" style="background: url('https://images.unsplash.com/photo-1547471080-7fc2caa6f57e?q=80&w=2070&auto=format&fit=crop') center/cover; position: relative; padding: 8rem 0;">
-    <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(15, 23, 42, 0.85);"></div>
+    <div style="position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(13,27,42,0.88); background-image: var(--pattern-adinkra); background-size: 80px 80px;"></div>
     <div class="container" style="position: relative; z-index: 2;">
         <div class="section-header text-center text-light" style="margin-bottom: 4rem;">
-            <span class="section-eyebrow" style="color: var(--secondary-color);">Seamless Experience</span>
+            <span class="section-eyebrow" style="color: var(--kente-gold);">Seamless Experience</span>
             <h2 style="color: white;">Delegate Logistics</h2>
-            <div class="divider center" style="background-color: var(--secondary-color);"></div>
+            <span class="african-divider-sm center" style="opacity: 0.8; display:block; margin: 0.75rem auto;"></span>
         </div>
         
         <div class="logistics-glass-grid">
@@ -422,13 +439,53 @@
     </div>
 </section>
 
+<!-- 6.5 Latest News & Updates -->
+<section id="news" class="section bg-white">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="section-eyebrow">Stay Informed</span>
+            <h2>News & Updates</h2>
+            <span class="african-divider-sm center"></span>
+            <p class="subtitle mt-1">Latest announcements and impact stories from the Summit.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <?php if (count($latest_news) > 0): ?>
+                <?php foreach($latest_news as $news): ?>
+                    <div class="african-frame" style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; cursor: pointer;" onclick="window.location.href='news_article?id=<?php echo $news['id']; ?>'">
+                        <div style="height: 200px; overflow: hidden; position: relative;">
+                            <img src="<?php echo htmlspecialchars($news['image_url']); ?>" alt="News" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                        </div>
+                        <div style="padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column;">
+                            <div style="color: var(--kente-gold); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase;">
+                                <?php echo date('M d, Y', strtotime($news['created_at'])); ?>
+                            </div>
+                            <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem; color: #0f172a; line-height: 1.3;"><?php echo htmlspecialchars($news['title']); ?></h3>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; flex-grow: 1;">
+                                <?php echo htmlspecialchars($news['excerpt']); ?>
+                            </p>
+                            <a href="news_article?id=<?php echo $news['id']; ?>" style="color: var(--secondary-color); font-weight: 600; font-size: 0.9rem; text-decoration: none;">Read More &rarr;</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style="text-align: center; color: var(--text-muted); grid-column: 1 / -1;">No news updates currently available.</p>
+            <?php endif; ?>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="news" class="btn btn-outline" style="border-color: #cbd5e1; color: var(--text-main);">View All News</a>
+        </div>
+    </div>
+</section>
+
 <!-- 9. The Resource Center (Think Pieces) -->
 <section id="resources" class="section section-alt">
     <div class="container">
         <div class="section-header text-center">
             <span class="section-eyebrow">Knowledge Hub</span>
             <h2>The Resource Center</h2>
-            <div class="divider center"></div>
+            <span class="african-divider-sm center"></span>
         </div>
         
         <div class="grid-3-col" style="margin-top: 3rem;">
@@ -459,23 +516,29 @@
     <div class="container text-center">
         <span class="section-eyebrow">The Ecosystem</span>
         <h2>Partners & Global Network</h2>
-        <div class="divider center"></div>
+        <span class="african-divider-sm center"></span>
         
         <div class="sponsor-tiers" style="margin-top: 3rem;">
             <div class="tier">
-                <h4 class="tier-name">Diamond Partners</h4>
+                <h4 class="tier-name" style="color: #64748b;">Platinum Sponsors (KES 5M)</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Exclusive Naming Rights</p>
                 <div class="tier-logos">
-                    <div class="logo-box">Global Tech Corp</div>
-                    <div class="logo-box">Pan-African Law Group</div>
+                    <div class="logo-box">Safaricom (Invited)</div>
+                    <div class="logo-box">BMW Foundation (Invited)</div>
                 </div>
             </div>
             <div class="tier" style="margin-top: 2rem;">
-                <h4 class="tier-name">Platinum & Gold</h4>
+                <h4 class="tier-name" style="color: var(--secondary-color);">Gold (KES 3M) & Silver (KES 1.5M)</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Lead Workshops & Exhibition Priority</p>
                 <div class="tier-logos small">
-                    <div class="logo-box">Acme Foundation</div>
-                    <div class="logo-box">Dev For Good</div>
-                    <div class="logo-box">NGO Council</div>
+                    <div class="logo-box">Deloitte (Invited)</div>
+                    <div class="logo-box">Strathmore Univ.</div>
+                    <div class="logo-box">Kenya Red Cross</div>
                 </div>
+            </div>
+            <div class="tier" style="margin-top: 2rem;">
+                <h4 class="tier-name" style="color: var(--terracotta);">Bronze Sponsors (KES 500K)</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Registration Desks</p>
             </div>
         </div>
 

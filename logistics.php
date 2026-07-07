@@ -24,7 +24,7 @@
                         </ul>
                         <a href="https://www.etakenya.go.ke/en" target="_blank" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color); margin-top: 1rem;">Official Kenya eTA Portal &rarr;</a>
                     </div>
-                    <div style="background: var(--bg-alt); padding: 2rem; border-radius: var(--border-radius-md); border-left: 4px solid var(--secondary-color);">
+                    <div style="background: var(--bg-alt); padding: 2rem; border-radius: var(--border-radius-md); border: 1px solid #e2e8f0;">
                         <h4>Need Embassy Assistance?</h4>
                         <p style="font-size: 0.95rem; margin-top: 1rem;">If your local Kenyan embassy requires a physical letter of guarantee stamped by a recognized NGO, the Jitolee Good Friends Foundation legal team will express post this prior to October 1st.</p>
                         <p style="font-size: 0.95rem;">Contact: <strong>logistics@summitafrica.org</strong></p>
@@ -95,12 +95,12 @@
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-plane"></i></div>
                         <h3>Airport Transfers</h3>
-                        <p>Complimentary VIP shuttle buses will run continuously from Jomo Kenyatta International Airport (JKIA) to Partner Hotels on October 10th and 11th. Look for the Jitolee Foundation kiosks at Arrivals.</p>
+                        <p>Complimentary VIP shuttle buses will run continuously from JKIA to Partner Hotels on November 22nd and 23rd. KES 1,600,000 is allocated to handle travel and transport logistics.</p>
                     </div>
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-van-shuttle"></i></div>
                         <h3>Inter-Venue Shuttles</h3>
-                        <p>The 4 primary locations (UON, KRA Hall, KICC, Safari Club) are linked by a secure luxury bus loop running every 15 minutes during summit operational hours (07:00 - 20:00).</p>
+                        <p>Dedicated VIP shuttles are explicitly scheduled for afternoon experiential field visits on Days 2 and 3, as well as round-trip transit to the hotel lobby for the Nairobi National Park excursion on Day 4.</p>
                     </div>
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-taxi"></i></div>
@@ -116,10 +116,10 @@
                 <div class="grid-2-col align-center">
                     <div>
                         <p class="lead-text">Extend your stay in Magical Kenya</p>
-                        <p style="margin-bottom: 1.5rem;">After the Global Pro-bono Summit concludes, we highly encourage delegates to experience the breathtaking beauty of Kenya. Our concierge team assists interested parties in facilitating bespoke short-tours at their own cost through our trusted and vetted travel partners.</p>
+                        <p style="margin-bottom: 1.5rem;">After the Global Pro-bono Summit concludes, we highly encourage delegates to experience the breathtaking beauty of Kenya. Our concierge team assists interested parties in facilitating bespoke tours, starting with an integrated experience on Day 4.</p>
                         <ul class="feature-list">
-                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Nairobi National Park:</strong> A half-day wildlife drive just 15 minutes from the city center.</li>
-                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Maasai Mara Escapes:</strong> 2-to-3 day luxury safari packages available at exclusive delegate rates.</li>
+                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Nairobi National Park:</strong> Formally integrated into Day 4 with a 6:00 AM Game Ride.</li>
+                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Corporate Tree Planting:</strong> Participate in a corporate-sponsored Tree Planting Ceremony.</li>
                             <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Coastal Retreats:</strong> Direct flights to Mombasa and Diani Beach for post-summit relaxation.</li>
                         </ul>
                         <a href="contact" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color); margin-top: 1rem;">Enquire About Tours &rarr;</a>

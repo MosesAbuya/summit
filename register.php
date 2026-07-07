@@ -1,26 +1,4 @@
 <?php
-$message_status = "";
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_form'])) {
-    require 'includes/db.php';
-    try {
-        $stmt = $pdo->prepare("INSERT INTO registrations (registration_type, first_name, last_name, email, phone, organization, country, passport, dietary_requirements, accessibility_needs) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([
-            $_POST['registration_type'],
-            $_POST['first_name'],
-            $_POST['last_name'],
-            $_POST['email'],
-            $_POST['phone'],
-            $_POST['organization'],
-            $_POST['country'],
-            $_POST['passport'],
-            $_POST['dietary_requirements'],
-            $_POST['accessibility_needs']
-        ]);
-        $message_status = "success";
-    } catch (PDOException $e) {
-        $message_status = "error";
-    }
-}
 include 'includes/header.php'; 
 ?>
 
@@ -100,26 +78,11 @@ include 'includes/header.php';
                     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
                     @media(max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
                 </style>
-                <form action="register#regForm" method="POST" style="background: white; padding: 3rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--box-shadow);">
-                    <input type="hidden" name="register_form" value="1">
+                <form id="registerForm" style="background: white; padding: 3rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--box-shadow); position: relative;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.8rem; color: var(--text-main);">Global Delegate Portal</h3>
                     
-                    <?php if ($message_status === 'success'): ?>
-                        <div style="text-align: center; padding: 4rem 0;">
-                            <div style="width: 90px; height: 90px; background: #dcfce7; color: #166534; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1.5rem; box-shadow: 0 4px 15px rgba(22, 101, 52, 0.2);">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <h3 style="margin-bottom: 1rem; font-size: 2rem; color: var(--text-main);">Application Received!</h3>
-                            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">Your registration details have been securely transmitted to the Jitolee Foundation. Our team will review your application and contact you shortly.</p>
-                            <a href="index" class="btn btn-primary btn-lg">Return to Home</a>
-                        </div>
-                    <?php else: ?>
-                        <h3 style="margin-bottom: 1rem; font-size: 1.8rem; color: var(--text-main);">Global Delegate Portal</h3>
-                        
-                        <?php if ($message_status === 'error'): ?>
-                            <div style="background: #fee2e2; color: #991b1b; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #fecaca;">
-                                <strong>Database Error:</strong> Failed to save registration. Please ensure the backend database is imported.
-                            </div>
-                        <?php endif; ?>
+                    <!-- Styled Popup Container -->
+                    <div id="formStatus" style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid transparent;"></div>
                     
                     <div class="form-group">
                         <label class="form-label">Registration Type <span style="color:red;">*</span></label>
@@ -188,17 +151,92 @@ include 'includes/header.php';
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label">Thematic Track Alignment <span style="color:red;">*</span></label>
+                        <select name="track_alignment" class="form-control" required>
+                            <option value="" disabled selected>Select your primary track...</option>
+                            <option value="SDG 1: Poverty Reduction">SDG 1: Poverty Reduction (Microfinance & Property Clinics)</option>
+                            <option value="SDG 4: Quality Education">SDG 4: Quality Education (Mentorship & Digital Learning)</option>
+                            <option value="SDG 8: Decent Work">SDG 8: Decent Work (SME Growth & Tech/Finance)</option>
+                            <option value="SDG 13: Climate Action">SDG 13: Climate Action (Resilience & Nature-Based Solutions)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label">Accessibility Needs / Additional Info</label>
                         <textarea class="form-control" name="accessibility_needs" rows="3" placeholder="Please specify any specific accessibility requirements..."></textarea>
                     </div>
 
-                    <div class="form-group" style="margin-top: 2rem;">
-                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Proceed to Secure Checkout</button>
+                    <div class="form-group" style="background: rgba(234, 179, 8, 0.05); padding: 1.5rem; border-radius: var(--border-radius-md); border: 1px solid rgba(234, 179, 8, 0.2); margin-bottom: 1.5rem;">
+                        <label style="display: flex; align-items: flex-start; gap: 1rem; cursor: pointer;">
+                            <input type="checkbox" name="pro_bono_pledge" value="1" required style="margin-top: 0.3rem; width: 1.2rem; height: 1.2rem; accent-color: var(--primary-color);">
+                            <span style="font-size: 0.95rem; color: var(--text-main); line-height: 1.5;">
+                                <strong>Mandatory Commitment:</strong> I pledge that my organization will dedicate a minimum of 20 hours of pro bono service per employee annually to advance the Summit's goals.
+                            </span>
+                        </label>
                     </div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">Payments processed securely via global SSL. Read our Data Privacy Policy.</p>
+
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" style="width: 100%;">Proceed to Secure Checkout</button>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">Payments processed securely via global SSL. Read our <a href="privacy" style="color: var(--primary-color);">Data Privacy Policy</a>.</p>
                     
-                    <?php endif; ?>
                 </form>
+                
+                <script>
+                    document.getElementById('registerForm').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const form = this;
+                        const statusDiv = document.getElementById('formStatus');
+                        const btn = document.getElementById('submitBtn');
+                        
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+                        
+                        const formData = new FormData(form);
+                        
+                        fetch('ajax_register.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            statusDiv.style.display = 'block';
+                            if (data.status === 'success') {
+                                statusDiv.style.backgroundColor = '#dcfce7';
+                                statusDiv.style.color = '#166534';
+                                statusDiv.style.borderColor = '#bbf7d0';
+                                statusDiv.innerHTML = '<div style="text-align: center; padding: 2rem 0;"><div style="width: 80px; height: 80px; background: white; color: #166534; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem; box-shadow: 0 4px 10px rgba(22, 101, 52, 0.1);"><i class="fa-solid fa-check"></i></div><h3 style="margin-bottom: 1rem; font-size: 1.8rem;">Application Received!</h3><p style="font-size: 1.1rem; line-height: 1.6;">' + data.message + '</p></div>';
+                                form.reset();
+                                // Hide form fields after success
+                                Array.from(form.elements).forEach(el => {
+                                    if(el.tagName !== 'BUTTON' && el.id !== 'formStatus' && !el.closest('#formStatus')) {
+                                        el.closest('.form-group') ? el.closest('.form-group').style.display = 'none' : null;
+                                        el.closest('.form-row') ? el.closest('.form-row').style.display = 'none' : null;
+                                        if(el.tagName === 'HR') el.style.display = 'none';
+                                    }
+                                });
+                                btn.style.display = 'none';
+                            } else {
+                                statusDiv.style.backgroundColor = '#fee2e2';
+                                statusDiv.style.color = '#991b1b';
+                                statusDiv.style.borderColor = '#fecaca';
+                                statusDiv.innerHTML = '<strong><i class="fa-solid fa-triangle-exclamation"></i> Error:</strong> ' + data.message;
+                                btn.disabled = false;
+                                btn.innerHTML = 'Proceed to Secure Checkout';
+                            }
+                        })
+                        .catch(error => {
+                            statusDiv.style.display = 'block';
+                            statusDiv.style.backgroundColor = '#fee2e2';
+                            statusDiv.style.color = '#991b1b';
+                            statusDiv.style.borderColor = '#fecaca';
+                            statusDiv.innerHTML = '<strong><i class="fa-solid fa-triangle-exclamation"></i> Error:</strong> Could not connect to server.';
+                            btn.disabled = false;
+                            btn.innerHTML = 'Proceed to Secure Checkout';
+                        });
+                    });
+                </script>
             </div>
         </div>
     </section>

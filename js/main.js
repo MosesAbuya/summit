@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Basic Countdown functionality
-    const endDate = new Date('2026-10-15T09:00:00').getTime(); // Example future date
+    // Correct countdown target: November 24, 2026 at 09:00 EAT
+    const endDate = new Date('2026-11-24T09:00:00+03:00').getTime();
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
     const minutesEl = document.getElementById('minutes');
@@ -51,34 +51,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Speaker Gallery Interaction (Split Screen Tab Spotlight)
+    function makeAvatar(initials, bgColor) {
+        const size = 400;
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+            <rect width="${size}" height="${size}" fill="${bgColor}"/>
+            <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+                font-family="Outfit, Georgia, sans-serif" font-size="140" font-weight="700"
+                fill="rgba(255,255,255,0.92)">${initials}</text>
+        </svg>`;
+        return 'data:image/svg+xml;base64,' + btoa(svg);
+    }
+
     const speakerData = [
         {
             name: "Fredrick Sadia",
             role: "Founder, Jitolee Foundation",
             track: "Keynote & Panel: Strengthening Civil Society",
             bio: "Fredrick is a visionary leader in social impact and a board member of the Global Pro Bono Network. He has dedicated over a decade to building frameworks that empower communities through structured volunteerism across Africa.",
-            image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop"
+            image: "assets/fredsadia.png"
         },
         {
             name: "Dr. Amina Mohamed",
             role: "Policy Director, Africa NGO Council",
             track: "Track 1: Legal & Corporate Pro-bono",
             bio: "Dr. Amina leads international policy formulation regarding cross-border NGO cooperation. She is instrumental in aligning corporate social investment with public sector goals and developing intergovernmental synergy.",
-            image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"
+            image: makeAvatar("AM", "#c1440e")
         },
         {
             name: "David Okello",
             role: "Head of Corporate ESG",
             track: "Track 2: Tech for Good",
             bio: "An expert in integrating pro-bono initiatives into standard corporate practice, David has pioneered several multi-national programs across East Africa, focusing intensely on engineering solutions for social good.",
-            image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop"
+            image: makeAvatar("DO", "#166534")
         },
         {
             name: "Sarah Jenkins",
             role: "Global Volunteer Coordinator",
             track: "Track 3: Strengthening Civil Society",
             bio: "Sarah brings 15 years of experience in managing large-scale, international volunteer deployments and developing rigorous training modules for pro-bono consultants deployed across sub-Saharan Africa.",
-            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop"
+            image: makeAvatar("SJ", "#1e3a5f")
         }
     ];
 
@@ -103,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 setTimeout(() => {
                     sdImg.src = data.image;
+                    sdImg.alt = data.name;
                     sdName.innerText = data.name;
                     sdTrack.innerText = data.track;
                     sdBio.innerText = data.bio;
@@ -113,4 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    /* ─────────────────────────────────────────────
+       Scroll-reveal: fade-in elements as they enter
+       viewport. Add class 'reveal-on-scroll' to any
+       element you want animated on scroll.
+    ───────────────────────────────────────────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                // Unobserve after reveal so it stays visible
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    /* Auto-apply reveal to value cards, obj cards, track cards */
+    document.querySelectorAll('.value-card, .obj-card, .track-card, .resource-card-mini').forEach((el, i) => {
+        el.classList.add('reveal-on-scroll');
+        el.style.transitionDelay = `${i * 0.08}s`;
+        revealObserver.observe(el);
+    });
 });

@@ -6,6 +6,11 @@
   --secondary-color: hsl(45, 93%, 47%); /* Golden Yellow */
   --secondary-hover: hsl(45, 93%, 42%);
   
+  /* African Theme Accents */
+  --terracotta: #e25822; /* Warm Earth Red */
+  --savannah-sand: #f4a460; /* Earthy Ochre */
+  --deep-ebony: #2b2b2b; /* Dark Earth */
+  
   /* Neutrals */
   --bg-main: #ffffff;
   --bg-alt: #f8fafc;
@@ -686,7 +691,7 @@ img {
 
 /* Thematic Pillars */
 .tracks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-.track-card { background: white; padding: 2.5rem 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--box-shadow); border-top: 4px solid var(--primary-color); }
+.track-card { background: white; padding: 2.5rem 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--box-shadow); }
 .track-header { font-weight: 700; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 0.5rem; }
 .track-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
 .track-highlight { background: var(--primary-color); color: white; border-top-color: var(--secondary-color); }
@@ -807,11 +812,13 @@ img {
     line-height: 1.7;
 }
 
-/* Blockquote Highlight (Green border style) */
+/* Blockquote Highlight */
 .blockquote-highlight {
-    border-left: 4px solid var(--primary-color);
-    padding-left: 1.5rem;
+    border: 1px solid rgba(22,101,52,0.2);
+    padding: 1.5rem;
     margin-top: 2rem;
+    border-radius: var(--border-radius-md);
+    background: rgba(22,101,52,0.03);
 }
 .quote-text {
     font-size: 1.25rem;
