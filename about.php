@@ -78,11 +78,11 @@
         <div class="container">
             <div class="grid-2-col align-center" style="gap: 4rem;">
                 <div>
-                    <span class="section-eyebrow">Executive Summary</span>
-                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">A Convening Built for Africa's Critical Juncture</h2>
-                    <p style="color: var(--text-main); line-height: 1.8; margin-bottom: 1.25rem;">In a world facing interconnected crises: climate disasters displacing 21 million annually, 700 million living in extreme poverty amid AI job shifts, 250 million children out of school, and conflicts driving migration, the <strong>Global Summit on Pro Bono Practice</strong> is designed to regenerate and transform the landscape of professional pro bono service and volunteerism.</p>
-                    <p style="color: var(--text-main); line-height: 1.8; margin-bottom: 1.25rem;">While African pro bono initiatives have traditionally focused on legal services, this Summit drives a <strong>'Multidisciplinary Revolution'</strong> by embedding healthcare, technology, education, climate, and finance into the ecosystem to confront systemic global challenges.</p>
-                    <p style="color: var(--text-main); line-height: 1.8;">By aligning with the <strong>United Nations Agenda 2030</strong> and the <strong>African Union Agenda 2063</strong>, the summit provides a robust strategic platform for governments, corporates, NGOs, and academia to co-create high-impact sustainable solutions that empower marginalized communities whose livelihoods are threatened.</p>
+                    <span class="section-eyebrow">Summit Overview</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Fostering Sustainable Development through Global Pro Bono Practice</h2>
+                    <p style="color: var(--text-main); line-height: 1.8; margin-bottom: 1.25rem;">As Africa navigates complex socio-economic transitions, the <strong>Global Pro Bono Summit Africa</strong> provides a critical platform for regenerating and transforming the landscape of professional volunteerism. By fostering cross-sector collaboration, the Summit aims to build sustainable capacity and scale impactful solutions.</p>
+                    <p style="color: var(--text-main); line-height: 1.8; margin-bottom: 1.25rem;">While historical initiatives have largely focused on localized legal support, this Summit champions a <strong>'Multidisciplinary Revolution'</strong> by embedding healthcare, technology, education, climate, and finance into the Global Pro bono practice ecosystem to confront systemic challenges at scale.</p>
+                    <p style="color: var(--text-main); line-height: 1.8;">Aligning with the <strong>United Nations Agenda 2030</strong> and the <strong>African Union Agenda 2063</strong>, we offer a strategic nexus for governments, corporates, NGOs, and academia to co-create high-impact, sustainable solutions that empower developing communities globally.</p>
                 </div>
                 <div style="position: relative;">
                     <div class="african-frame-bold image-wrapper shadow-lg radius-lg">
@@ -107,12 +107,12 @@
             </div>
             <div style="max-width: 820px; margin: 3rem auto 0;">
                 <div class="quote-block" style="margin-bottom: 3rem;">
-                    "AU Agenda 2063 envisions a prosperous Continent based on inclusive growth, the 'Africa We Want.' This summit arrives at a critical juncture. The world needs to bridge the massive skills gap in Africa through professional services."
+                    "AU Agenda 2063 envisions a prosperous Africa based on inclusive growth. This summit arrives at a critical juncture. We must bridge the massive skills gap globally through expanded Global Pro bono practice."
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
                     <div style="background: white; padding: 2rem; border-radius: var(--border-radius-md); border: 1px solid #e2e8f0;">
                         <h4 style="color: var(--terracotta); margin-bottom: 0.75rem;"><i class="fa-solid fa-bolt-lightning"></i> The Skills Multiplier</h4>
-                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">While Africa's GDP continues to grow, systemic barriers in healthcare, infrastructure, and justice remain. Pro bono services act as a <strong>"Force Multiplier,"</strong> giving communities access to high-level technical expertise that would otherwise be cost-prohibitive.</p>
+                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">While global economies continue to grow, systemic barriers in healthcare, infrastructure, and justice remain. Global Pro bono practice acts as a <strong>"Force Multiplier,"</strong> giving communities access to high-level technical expertise that would otherwise be cost-prohibitive.</p>
                     </div>
                     <div style="background: white; padding: 2rem; border-radius: var(--border-radius-md); border: 1px solid #e2e8f0;">
                         <h4 style="color: var(--savannah-sand); margin-bottom: 0.75rem;"><i class="fa-solid fa-people-group"></i> Youth & Women as Drivers</h4>
@@ -130,7 +130,7 @@
                         <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;"><strong>Deloitte's</strong> skills-based programs lifted <strong>50,000 out of poverty.</strong></span></div>
                         <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;"><strong>Safaricom</strong> digitized <strong>500 SMEs</strong> via tech volunteers, a model replicable in Asia & Latin America.</span></div>
                         <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;"><strong>VSO's</strong> education programs boosted literacy <strong>up to 30%,</strong> informing UNESCO strategies.</span></div>
-                        <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;">Climate volunteering <strong>restored 500K hectares</strong> continent-wide, exporting resilience to Pacific islands.</span></div>
+                        <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;">Climate volunteering <strong>restored 500K hectares</strong> globally, exporting resilience across vulnerable regions.</span></div>
                         <div style="display: flex; gap: 1rem; align-items: start;"><span style="color: var(--kente-gold); font-size: 1.25rem; margin-top: 2px;"><i class="fa-solid fa-check-circle"></i></span><span style="color: var(--text-main); font-size: 0.95rem;"><strong>Kenya Red Cross:</strong> 280,000 volunteers reaching over <strong>3.4 million Kenyans.</strong></span></div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                 <div style="text-align: center; padding: 2.5rem 2rem; background: #f8fafc; border-radius: var(--border-radius-lg);">
                     <div style="font-size: 3.5rem; font-weight: 900; color: var(--terracotta); font-family: var(--font-heading); line-height: 1;">2 to 3</div>
                     <h3 style="font-size: 1.15rem; margin: 0.75rem 0 0.5rem;">University Curricula</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Integrate pro bono practice into at least 2 to 3 university curricula by the end of 2027, creating award-credit service-learning programs.</p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Integrate Global Pro bono practice into at least 2 to 3 university curricula by the end of 2027, creating award-credit learning programs.</p>
                 </div>
                 <div style="text-align: center; padding: 2.5rem 2rem; background: #f8fafc; border-radius: var(--border-radius-lg);">
                     <div style="font-size: 3.5rem; font-weight: 900; color: var(--secondary-color); font-family: var(--font-heading); line-height: 1;">200</div>
@@ -191,7 +191,7 @@
                             <span class="badge" style="background: rgba(193,68,14,0.1); color: var(--terracotta);">SDG 1</span>
                             <span class="badge" style="background: #f0fdf4; color: var(--primary-color);">AU Aspiration 1</span>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--terracotta);">No Poverty</h3>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--terracotta);">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</h3>
                         <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">400 million Africans, nearly 60% of the global poor, need targeted intervention. Pro bono financial advisors deliver microfinance training and property rights clinics to smallholder farmers. Corporates provide business mentoring with dedicated funding pipelines for women- and youth-led enterprises.</p>
                         <p style="color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;"><strong>Target:</strong> Break intergenerational poverty cycles with market linkages and structured funding pipelines.</p>
                     </div>
@@ -205,7 +205,7 @@
                             <span class="badge" style="background: rgba(234,179,8,0.1); color: var(--savannah-sand);">SDG 4</span>
                             <span class="badge" style="background: #f0fdf4; color: var(--primary-color);">AU Aspiration 1</span>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--savannah-sand);">Quality Education</h3>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--savannah-sand);">Pillar II: Education, Skills Development and Future Leadership</h3>
                         <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">Over 100 million African youth face acute barriers to quality education. Pro bono educators and tech experts deliver mentorship and digital learning platforms, while universities pioneer student-led tutoring programs integrated into curricula.</p>
                         <p style="color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;"><strong>Target:</strong> A 20% enrollment increase in pilot communities within 12 months, scalable nationally.</p>
                     </div>
@@ -219,7 +219,7 @@
                             <span class="badge" style="background: rgba(22,101,52,0.1); color: var(--primary-color);">SDG 8</span>
                             <span class="badge" style="background: #f0fdf4; color: var(--primary-color);">AU Aspiration 1</span>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--primary-color);">Decent Work</h3>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--primary-color);">Pillar III: Decent Work, Institutional Excellence and Professional Service</h3>
                         <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">Africa is home to 60% of the world's unemployed youth despite comprising only 16% of the global population. Pro bono professionals deliver skills workshops in tech, finance, and agri-business, while corporate volunteers match with SMEs for hands-on mentoring.</p>
                         <p style="color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;"><strong>Target:</strong> Employer-recognized credentials for immediate employability through entrepreneurship certification curricula.</p>
                     </div>
@@ -233,7 +233,7 @@
                             <span class="badge" style="background: rgba(14,165,233,0.1); color: #0ea5e9;">SDG 13</span>
                             <span class="badge" style="background: #f0fdf4; color: var(--primary-color);">AU Aspiration 7</span>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #0ea5e9;">Climate Action</h3>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.75rem; color: #0ea5e9;">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</h3>
                         <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">Droughts threaten 70% of African livelihoods, mirroring global climate displacement of 21 million annually. Pro bono engineers and agronomists develop climate resilience plans including drought-resistant farming and water harvesting, anchored in UNEA-7 nature-based solutions.</p>
                         <p style="color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid #e2e8f0; padding-top: 1rem;"><strong>Target:</strong> Deploy proven adaptive strategies among smallholder farmers via youth innovation pitch forums.</p>
                     </div>
@@ -269,8 +269,8 @@
                     </div>
                     <h3 style="font-size: 1.2rem; color: var(--savannah-sand);">For Academia</h3>
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                        <li style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.95rem; color: var(--text-main);"><i class="fa-solid fa-star" style="color: var(--kente-gold); margin-top: 3px; flex-shrink: 0;"></i> <span><strong>Service-Learning Innovation:</strong> Pioneer curricula awarding academic credits for pro bono work, building graduate professional identity.</span></li>
-                        <li style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.95rem; color: var(--text-main);"><i class="fa-solid fa-star" style="color: var(--kente-gold); margin-top: 3px; flex-shrink: 0;"></i> <span><strong>Supervised Rotations:</strong> Strathmore-style Service-Learning models with corporate partners, creating employer-recognized credentials.</span></li>
+                        <li style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.95rem; color: var(--text-main);"><i class="fa-solid fa-star" style="color: var(--kente-gold); margin-top: 3px; flex-shrink: 0;"></i> <span><strong>Academic Innovation:</strong> Pioneer curricula awarding academic credits for Global Pro bono practice, building graduate professional identity.</span></li>
+                        <li style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.95rem; color: var(--text-main);"><i class="fa-solid fa-star" style="color: var(--kente-gold); margin-top: 3px; flex-shrink: 0;"></i> <span><strong>Supervised Rotations:</strong> Practical models with corporate partners, creating employer-recognized credentials in Global Pro bono practice.</span></li>
                     </ul>
                 </div>
                 <div class="partner-value-card">
@@ -345,10 +345,10 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
                 <?php
                 $keynotes = [
-                    ["num" => "01", "color" => "var(--terracotta)", "title" => "Africa's Multidisciplinary Pro Bono Revolution", "desc" => "Unlocking Agenda 2063 Prosperity Through Corporate Pro Bono Practice."],
-                    ["num" => "02", "color" => "var(--savannah-sand)", "title" => "Youth and Women as Pro Bono Catalysts", "desc" => "Scaling jobs creation and equity among vulnerable groups."],
-                    ["num" => "03", "color" => "var(--primary-color)", "title" => "From Expertise to Impact", "desc" => "Institutionalizing Pro Bono Practice for Africa's SDG Priorities: Climate Resilience, Ending Poverty, and Quality Education."],
-                    ["num" => "04", "color" => "#0ea5e9", "title" => "Partnerships for Peace and Prosperity", "desc" => "Exporting Resilience to a Polycrisis World through North-South and South-South collaboration."],
+                    ["num" => "01", "color" => "var(--terracotta)", "title" => "Inclusive Economic Empowerment and Sustainable Livelihoods", "desc" => "Unlocking Agenda 2063 Prosperity Through Corporate Pro Bono Practice."],
+                    ["num" => "02", "color" => "var(--savannah-sand)", "title" => "Education, Skills Development and Future Leadership", "desc" => "Scaling jobs creation and equity among vulnerable groups."],
+                    ["num" => "03", "color" => "var(--primary-color)", "title" => "Decent Work, Institutional Excellence and Professional Service", "desc" => "Institutionalizing Pro Bono Practice for Africa's SDG Priorities: Climate Resilience, Ending Poverty, and Quality Education."],
+                    ["num" => "04", "color" => "#0ea5e9", "title" => "Climate Action, Environmental Stewardship and Community Resilience", "desc" => "Exporting Resilience to a Polycrisis World through North-South and South-South collaboration."],
                 ];
                 foreach ($keynotes as $k) {
                     echo "<div style='padding: 2rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; background: #f8fafc; display: flex; flex-direction: column; gap: 1rem;'>
@@ -384,10 +384,10 @@
                     <tbody>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
                             <td style="padding: 1rem 1.5rem; font-weight: 700; color: var(--terracotta);">Preparation</td>
-                            <td style="padding: 1rem 1.5rem; color: var(--text-main);">Committee formation, venue securing, sponsorship campaigns</td>
+                            <td style="padding: 1rem 1.5rem; color: var(--text-main);">Committee formation, venue securing, building partnerships</td>
                             <td style="padding: 1rem 1.5rem; color: var(--text-muted);">Organizers / Corporates</td>
-                            <td style="padding: 1rem 1.5rem; color: var(--text-muted);">May to Jul 2026</td>
-                            <td style="padding: 1rem 1.5rem; color: var(--text-muted);">Sponsorship partnerships signed</td>
+                            <td style="padding: 1rem 1.5rem; color: var(--text-muted);">May to Sept 2026</td>
+                            <td style="padding: 1rem 1.5rem; color: var(--text-muted);">Strategic partnerships signed</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
                             <td style="padding: 1rem 1.5rem; font-weight: 700; color: var(--savannah-sand);">Mobilization</td>
@@ -442,7 +442,7 @@
                     <div style="padding: 2rem;">
                         <span class="badge" style="background: rgba(14,165,233,0.1); color: #0ea5e9; margin-bottom: 1rem; display: inline-block;">Co-Organizer</span>
                         <h3 style="margin-bottom: 0.5rem;">Global Pro Bono Network (GPBN)</h3>
-                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">The Global Pro Bono Network is an international collaborative connecting pro bono networks, organizations, and practitioners across the world. GPBN amplifies the impact of professional volunteering by sharing models, building partnerships, and advocating for institutionalized pro bono across continents.</p>
+                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">The Global Pro Bono Network is an international collaborative connecting networks, organizations, and practitioners across the world. GPBN amplifies the impact of professional volunteering by sharing models, building partnerships, and advocating for institutionalized Global Pro bono practice globally.</p>
                     </div>
                 </div>
             </div>
@@ -514,10 +514,10 @@
         <div class="container">
             <span class="section-eyebrow">Join the Movement</span>
             <h2 style="font-size: 2.5rem; max-width: 600px; margin: 1rem auto 1.5rem;">"The Africa We Want" Starts with One Commitment.</h2>
-            <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto 2.5rem; font-size: 1.05rem; line-height: 1.7;">Investing in this Summit means investing in the structural transformation of Africa, harnessing professional skills to build a Resilient, Equitable, and Prosperous Continent.</p>
+            <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto 2.5rem; font-size: 1.05rem; line-height: 1.7;">Investing in this Summit means investing in structural transformation, harnessing professional skills to build a Resilient, Equitable, and Prosperous global community.</p>
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="register" class="btn btn-primary btn-lg">Register as Delegate</a>
-                <a href="contact" class="btn btn-outline btn-lg" style="border-color: var(--primary-color); color: var(--primary-color);">Become a Partner</a>
+                <a href="partner_application" class="btn btn-outline btn-lg" style="border-color: var(--primary-color); color: var(--primary-color);">Become a Partner</a>
             </div>
         </div>
     </section>

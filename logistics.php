@@ -16,7 +16,7 @@
                 <div class="grid-2-col">
                     <div>
                         <p class="lead-text">Kenya Electronic Travel Authorization (eTA)</p>
-                        <p>All foreign nationals crossing the Kenyan border for the Global Pro-bono Summit Africa 2026 must hold a valid eTA or Visa (dependent on origin). The Kenyan government has streamlined this process entirely online.</p>
+                        <p>All foreign nationals crossing the Kenyan border for the Global Pro Bono Summit Africa must hold a valid eTA or Visa (dependent on origin). The Kenyan government has streamlined this process entirely online.</p>
                         <ul class="feature-list">
                             <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Processing Time:</strong> Typically 3-5 business days.</li>
                             <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Summit Invitation Letters:</strong> Generated automatically within 48 hours upon successful registration approval.</li>
@@ -35,57 +35,8 @@
             <!-- 2. Accommodation -->
             <div id="accommodation" class="logistics-block" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
                 <h2 style="color: var(--primary-color); border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 2rem;">2. Preferred Event Accommodations</h2>
-                <p style="margin-bottom: 2rem;">We have partnered with leading highly-rated Nairobi hotels positioned within 5 kilometers of the primary venues (KICC, UON). Registered delegates using the unique code <strong style="color: var(--secondary-color);">PROBONO26</strong> receive up to 25% off standard rates.</p>
-                
-                <style>
-                    .hotel-table { width: 100%; border-collapse: collapse; text-align: left; }
-                    .hotel-table th, .hotel-table td { padding: 1rem; border-bottom: 1px solid #e2e8f0; }
-                    .hotel-table th { background-color: var(--bg-alt); font-family: var(--font-heading); color: var(--text-main); }
-                    .hotel-table tr:hover { background-color: #f8fafc; }
-                </style>
-                <div style="overflow-x: auto;">
-                    <table class="hotel-table">
-                        <thead>
-                            <tr>
-                                <th>Hotel Partner</th>
-                                <th>Star Rating</th>
-                                <th>Proximity to KICC</th>
-                                <th>Summit Rate (Nightly)</th>
-                                <th>Amenities Included</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>The Stanley Nairobi</strong></td>
-                                <td style="color: #fbbf24; font-size: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></td>
-                                <td>1.2 km (Shuttle provided)</td>
-                                <td>$185 USD</td>
-                                <td>Breakfast, High-speed Wi-Fi, Pool, Gym</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Nairobi Serena Hotel</strong></td>
-                                <td style="color: #fbbf24; font-size: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></td>
-                                <td>1.8 km (Shuttle provided)</td>
-                                <td>$210 USD</td>
-                                <td>Breakfast, Spa access, Executive Lounge</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Panari Hotel</strong></td>
-                                <td style="color: #fbbf24; font-size: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></td>
-                                <td>2.5 km (Shuttle provided)</td>
-                                <td>$130 USD</td>
-                                <td>Breakfast, Wi-Fi, Gym</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ibis Styles Nairobi</strong></td>
-                                <td style="color: #fbbf24; font-size: 0.8rem;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></td>
-                                <td>4.0 km (Shuttle provided)</td>
-                                <td>$85 USD</td>
-                                <td>Breakfast, Basic Wi-Fi</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <p style="margin-bottom: 2rem;">We have partnered with leading highly-rated Nairobi hotels positioned near our primary venues. Registered delegates using the unique code <strong style="color: var(--secondary-color);">PROBONO26</strong> receive exclusive Summit rates.</p>
+                <a href="accommodations" class="btn btn-primary">View Partner Hotels</a>
             </div>
 
             <!-- 3. Ground Transport -->
@@ -113,21 +64,8 @@
             <!-- 4. Post-Summit Tourism (NEW Section) -->
             <div id="tourism" class="logistics-block" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
                 <h2 style="color: var(--primary-color); border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 2rem;">4. Post-Summit Tourism & Safaris</h2>
-                <div class="grid-2-col align-center">
-                    <div>
-                        <p class="lead-text">Extend your stay in Magical Kenya</p>
-                        <p style="margin-bottom: 1.5rem;">After the Global Pro-bono Summit concludes, we highly encourage delegates to experience the breathtaking beauty of Kenya. Our concierge team assists interested parties in facilitating bespoke tours, starting with an integrated experience on Day 4.</p>
-                        <ul class="feature-list">
-                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Nairobi National Park:</strong> Formally integrated into Day 4 with a 6:00 AM Game Ride.</li>
-                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Corporate Tree Planting:</strong> Participate in a corporate-sponsored Tree Planting Ceremony.</li>
-                            <li><svg class="icon-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg> <strong>Coastal Retreats:</strong> Direct flights to Mombasa and Diani Beach for post-summit relaxation.</li>
-                        </ul>
-                        <a href="contact" class="btn btn-outline" style="border-color: var(--primary-color); color: var(--primary-color); margin-top: 1rem;">Enquire About Tours &rarr;</a>
-                    </div>
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop" alt="Safari Tour in Kenya" style="width: 100%; border-radius: var(--border-radius-lg); box-shadow: var(--box-shadow);">
-                    </div>
-                </div>
+                <p style="margin-bottom: 2rem;">After the Global Pro Bono Summit Africa concludes, we highly encourage delegates to experience the breathtaking beauty of Kenya. Our concierge team assists interested parties in facilitating bespoke tours, starting with an integrated experience on Day 4.</p>
+                <a href="tour_packages" class="btn btn-primary">View Curated Tour Packages</a>
             </div>
 
         </div>

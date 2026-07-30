@@ -61,3 +61,53 @@ INSERT INTO news (title, excerpt, content, image_url) VALUES
 ('Summit 2026 Registration Opens', 'We are thrilled to announce that early bird registration for the Global Summit on Pro Bono Practice is now live.', 'Full content for registration opening. Join us in Nairobi to be part of the multidisciplinary revolution...', 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800'),
 ('New Keynote Speaker Announced', 'Dr. Amina Mohamed joins the Summit to discuss the intersection of Policy, Compliance & ESG.', 'Full content about the keynote speaker. Dr. Amina will shed light on the regulatory frameworks impacting pro bono work...', 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800'),
 ('Safaricom Joins as Platinum Sponsor', 'Telecommunications giant Safaricom has committed to the Platinum Sponsorship tier, supercharging our ESG goals.', 'Safaricom is leading the charge in corporate social responsibility. Their partnership will enable the sponsorship of 50 grassroots delegates...', 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800');
+
+-- --------------------------------------------------------
+-- New Tables for Dynamic Content
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS partners (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    image_url VARCHAR(255),
+    is_major TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS speakers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
+    bio TEXT,
+    image_url VARCHAR(255),
+    is_keynote TINYINT(1) DEFAULT 0,
+    video_url VARCHAR(255),
+    theme VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS accommodations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hotel_name VARCHAR(255) NOT NULL,
+    description TEXT,
+    booking_link VARCHAR(255),
+    image_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert dummy data for partners
+INSERT INTO partners (name, description, image_url, is_major) VALUES
+('Safaricom', 'Telecommunications partner advancing digital inclusion.', 'assets/safaricom.png', 1),
+('Global Pro Bono Network', 'Co-host driving the multidisciplinary revolution.', 'assets/globalprobono.png', 1),
+('Jitolee Good Friends Foundation', 'Co-host championing grassroots impact.', 'assets/jitoleelogo.png', 1);
+
+-- Insert dummy data for speakers
+INSERT INTO speakers (name, title, bio, image_url, is_keynote, video_url, theme) VALUES
+('Fredrick Sadia', 'Founder & Co-host', 'Visionary leader for the Summit.', 'assets/fredsadia.png', 1, 'https://www.youtube.com/embed/dQw4w9WgXcQ', 'Pillar I'),
+('Amina Mohamed', 'Policy Expert', 'Advocating for institutional excellence.', 'assets/avatar.png', 1, '', 'Pillar II');
+
+-- Insert dummy data for accommodations
+INSERT INTO accommodations (hotel_name, description, booking_link, image_url) VALUES
+('Safari Park Hotel', 'Official Summit Venue and Accommodation Partner', 'https://safaripark-hotel.com', 'assets/venues/venue1.jpg'),
+('Radisson Blu Upper Hill', 'Premium partner hotel in the business district', 'https://radissonhotels.com', 'assets/venues/venue2.jpg');

@@ -62,42 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'data:image/svg+xml;base64,' + btoa(svg);
     }
 
-    const speakerData = [
-        {
-            name: "Fredrick Sadia",
-            role: "Founder, Jitolee Foundation",
-            track: "Keynote & Panel: Strengthening Civil Society",
-            bio: "Fredrick is a visionary leader in social impact and a board member of the Global Pro Bono Network. He has dedicated over a decade to building frameworks that empower communities through structured volunteerism across Africa.",
-            image: "assets/fredsadia.png"
-        },
-        {
-            name: "Dr. Amina Mohamed",
-            role: "Policy Director, Africa NGO Council",
-            track: "Track 1: Legal & Corporate Pro-bono",
-            bio: "Dr. Amina leads international policy formulation regarding cross-border NGO cooperation. She is instrumental in aligning corporate social investment with public sector goals and developing intergovernmental synergy.",
-            image: makeAvatar("AM", "#c1440e")
-        },
-        {
-            name: "David Okello",
-            role: "Head of Corporate ESG",
-            track: "Track 2: Tech for Good",
-            bio: "An expert in integrating pro-bono initiatives into standard corporate practice, David has pioneered several multi-national programs across East Africa, focusing intensely on engineering solutions for social good.",
-            image: makeAvatar("DO", "#166534")
-        },
-        {
-            name: "Sarah Jenkins",
-            role: "Global Volunteer Coordinator",
-            track: "Track 3: Strengthening Civil Society",
-            bio: "Sarah brings 15 years of experience in managing large-scale, international volunteer deployments and developing rigorous training modules for pro-bono consultants deployed across sub-Saharan Africa.",
-            image: makeAvatar("SJ", "#1e3a5f")
-        }
-    ];
-
     const speakerBtns = document.querySelectorAll('.speaker-btn');
     const sdImg = document.getElementById('sd-img');
     const sdName = document.getElementById('sd-name');
     const sdTrack = document.getElementById('sd-track');
     const sdBio = document.getElementById('sd-bio');
+    const sdVideoBtn = document.getElementById('sd-video-btn');
     const sdDisplay = document.querySelector('.speaker-display');
 
     if (speakerBtns.length > 0) {
@@ -106,18 +76,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 speakerBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                const index = btn.getAttribute('data-index');
-                const data = speakerData[index];
+                const name = btn.getAttribute('data-name');
+                const track = btn.getAttribute('data-track');
+                const bio = btn.getAttribute('data-bio');
+                let image = btn.getAttribute('data-image');
+                const video = btn.getAttribute('data-video');
+                
+                if (!image) {
+                    if (name === 'Fredrick Sadia') {
+                        image = 'assets/fredsadia.png';
+                    } else {
+                        const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                        const colors = ['#c1440e', '#166534', '#1e3a5f', '#d97706', '#4f46e5'];
+                        const bgColor = colors[name.length % colors.length];
+                        image = makeAvatar(initials, bgColor);
+                    }
+                }
                 
                 // Fade out transition
                 sdDisplay.style.opacity = '0';
                 
                 setTimeout(() => {
-                    sdImg.src = data.image;
-                    sdImg.alt = data.name;
-                    sdName.innerText = data.name;
-                    sdTrack.innerText = data.track;
-                    sdBio.innerText = data.bio;
+                    sdImg.src = image;
+                    sdImg.alt = name;
+                    sdName.innerText = name;
+                    sdTrack.innerText = track;
+                    sdBio.innerText = bio;
+                    if (sdVideoBtn) {
+                        sdVideoBtn.style.display = video ? 'flex' : 'none';
+                    }
                     
                     // Fade in transition
                     sdDisplay.style.opacity = '1';

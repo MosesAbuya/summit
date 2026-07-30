@@ -14,7 +14,7 @@
             <h2>Global Pro Bono Network Alliances</h2>
             <span class="african-divider-sm center"></span>
             <p style="max-width: 800px; margin: 1.5rem auto 3rem; font-size: 1.1rem; line-height: 1.7; color: var(--text-main);">
-                The Global Pro-bono Summit Africa 2026 is proudly backed by an international coalition of corporate entities, philanthropic trusts, and governmental bodies. By acting as Diamond, Platinum, and Gold sponsors, these organizations are actively closing the socioeconomic divide across the continent.
+                The Global Pro Bono Summit Africa is proudly backed by an international coalition of corporate entities, philanthropic trusts, and governmental bodies. By acting as Diamond, Platinum, and Gold sponsors, these organizations are actively closing the socioeconomic divide across the continent.
             </p>
 
             <div class="sponsor-tiers" style="margin-top: 3rem;">
@@ -43,8 +43,8 @@
                 <div class="grid-2-col align-center">
                     <div>
                         <h3 style="color: var(--primary-color); font-size: 1.8rem;">Become a Corporate Sponsor</h3>
-                        <p style="margin-top: 1rem; color: var(--text-main); line-height: 1.6;">Align your brand with Africa's fastest-growing social impact movement. Sponsoring the Global Pro-bono Summit 2026 not only fulfills your ESG targets but places your leadership directly in front of policymakers, global foundations, and key innovators.</p>
-                        <a href="contact" class="btn btn-secondary" style="margin-top: 1.5rem;">Request Sponsorship Deck</a>
+                        <p style="margin-top: 1rem; color: var(--text-main); line-height: 1.6;">Align your brand with Africa's fastest-growing social impact movement. Sponsoring the Global Pro Bono Summit Africa not only fulfills your ESG targets but places your leadership directly in front of policymakers, global foundations, and key innovators.</p>
+                        <a href="partner_application" class="btn btn-secondary" style="margin-top: 1.5rem;">Request Sponsorship Deck</a>
                     </div>
                     <div style="display: flex; justify-content: center;">
                         <div class="african-frame" style="max-width: 400px; width: 100%;">

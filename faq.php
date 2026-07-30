@@ -14,7 +14,7 @@
 <div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/past-summit/231201-153912.jpg') center/cover; padding: 6rem 0; text-align: center; color: white;">
     <div class="container">
         <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Frequently Asked Questions</h1>
-        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Everything you need to know about the Global Summit on Pro Bono Practice.</p>
+        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Everything you need to know about the Global Pro Bono Summit Africa.</p>
     </div>
 </div>
 
@@ -28,7 +28,7 @@
                     <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    The Global Summit on Pro Bono Practice is a high-level convening designed to regenerate and transform the landscape of professional pro bono service and volunteerism. By embedding healthcare, technology, education, climate, and finance into the ecosystem, it aims to deliver tangible ROI through enhanced corporate ESG profiles, skilled talent development, and community resilience gains.
+                    The Global Pro Bono Summit Africa is a high-level convening designed to regenerate and transform the landscape of professional pro bono service and volunteerism. By embedding healthcare, technology, education, climate, and finance into the ecosystem, it aims to deliver tangible ROI through enhanced corporate ESG profiles, skilled talent development, and community resilience gains.
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
                     <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    Our 2026 theme is "Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063." The programming focuses on four primary tracks: SDG 1 (No Poverty), SDG 4 (Quality Education), SDG 8 (Decent Work), and SDG 13 (Climate Action).
+                    Our 2026 theme is "Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063." The programming focuses on four primary pillars: Inclusive Economic Empowerment, Education & Skills Development, Decent Work, and Climate Action.
                 </div>
             </div>
 

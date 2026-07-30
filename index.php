@@ -5,6 +5,14 @@ require 'includes/db.php';
 $stmt = $pdo->query("SELECT * FROM news WHERE status = 'Published' ORDER BY created_at DESC LIMIT 3");
 $latest_news = $stmt->fetchAll();
 
+// Fetch Speakers
+$stmt = $pdo->query("SELECT * FROM speakers ORDER BY id ASC");
+$speakers = $stmt->fetchAll();
+
+// Fetch Partners
+$stmt = $pdo->query("SELECT * FROM partners ORDER BY id ASC");
+$partners = $stmt->fetchAll();
+
 include 'includes/header.php'; 
 ?>
 <!-- 1. Sick Interactive Hero Carousel -->
@@ -176,9 +184,9 @@ include 'includes/header.php';
     <div class="container">
         <div class="welcome-grid">
             <div class="welcome-text">
-                <h2 class="welcome-title">Welcome to the Global Summit on Pro Bono Practice</h2>
+                <h2 class="welcome-title">Welcome to the Global Pro Bono Summit Africa</h2>
                 <p>In a world facing interconnected crises including climate disasters, AI job shifts, and educational gaps, this Summit is designed to regenerate and transform the landscape of professional pro bono service and volunteerism to intervene and address these polycrises.</p>
-                <p>Organized by the Global Pro Bono Network and Jitolee Good Friends Foundation, the Summit drives a <strong>'Multidisciplinary Revolution'</strong> by embedding healthcare, technology, education, climate, and finance into the ecosystem.</p>
+                <p>Organized by the Global Pro Bono Network and Jitolee Good Friends Foundation, the Summit drives a <strong>'Multidisciplinary Revolution'</strong> grounded in four strategic pillars: Inclusive Economic Empowerment, Education & Skills Development, Decent Work & Institutional Excellence, and Climate Action.</p>
                 <p>The Conference is set to take place from <strong>November 24th to 27th, 2026 in Nairobi, Kenya</strong>. This year's core focus:</p>
                 
                 <div class="blockquote-highlight mt-2">
@@ -203,12 +211,12 @@ include 'includes/header.php';
             <div class="theme-overview-text">
                 <span class="section-eyebrow">2026 Summit Theme</span>
                 <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #0f172a;">A Multidisciplinary Revolution</h2>
-                <p class="lead-text">Embedding healthcare, technology, education, and climate action.</p>
                 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-main);">
                     While African pro bono initiatives have traditionally focused on legal services, this Summit expands the horizon. By bridging the gap between professional expertise and community needs, we aim to deliver tangible Return on Investment (ROI): enhanced corporate ESG profiles, skilled talent development, and community resilience gains.
-                    <br><br>
-                    The Summit focuses on four critical SDGs: No Poverty (1), Quality Education (4), Decent Work (8), and Climate Action (13), directly advancing AU Agenda 2063 Aspirations for a Prosperous and People-driven Africa.
                 </p>
+                <div style="flex: 1; min-width: 300px;">
+                    <p>The Summit focuses on four critical pillars: Inclusive Economic Empowerment, Education & Skills Development, Decent Work, and Climate Action, directly advancing AU Agenda 2063 Aspirations for a Prosperous and People-driven Africa.</p>
+                </div>
             </div>
             <div class="theme-overview-image" style="position: relative;">
                 <div class="african-frame-bold image-wrapper shadow-lg radius-lg" style="position: relative; z-index: 2;">
@@ -226,8 +234,8 @@ include 'includes/header.php';
         <!-- Big Typographic Header -->
         <div class="massive-title-section text-center">
             <h2 class="massive-title">
-                GLOBAL PRO-BONO<br>
-                <span>SUMMIT AFRICA 2026</span>
+                GLOBAL PRO BONO<br>
+                <span>SUMMIT AFRICA</span>
             </h2>
             <span class="african-divider" style="margin-top: 1.5rem;"></span>
         </div>
@@ -268,22 +276,22 @@ include 'includes/header.php';
         <div class="tracks-grid">
             <div class="track-card">
                 <div class="track-header" style="color: var(--terracotta); font-weight: 700;">SDG 1 & AU Asp 1</div>
-                <h3>No Poverty</h3>
+                <h3 style="font-size: 1.25rem;">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</h3>
                 <p>Pro bono financial advisory, microfinance training, and property rights clinics to break intergenerational poverty cycles.</p>
             </div>
             <div class="track-card">
                 <div class="track-header" style="color: var(--savannah-sand); font-weight: 700;">SDG 4 & AU Asp 1</div>
-                <h3>Quality Education</h3>
+                <h3 style="font-size: 1.25rem;">Pillar II: Education, Skills Development and Future Leadership</h3>
                 <p>Bridging the education gap for out-of-school youth with tech-driven mentorship and digital learning platforms.</p>
             </div>
             <div class="track-card">
                 <div class="track-header" style="color: var(--primary-color); font-weight: 700;">SDG 8 & AU Asp 1</div>
-                <h3>Decent Work</h3>
+                <h3 style="font-size: 1.25rem;">Pillar III: Decent Work, Institutional Excellence and Professional Service</h3>
                 <p>Harnessing the youth bulge through multidisciplinary pro bono for SME growth, employability, and tech/finance skills.</p>
             </div>
             <div class="track-card track-highlight" style="background: var(--deep-ebony);">
                 <div class="track-header" style="color: var(--secondary-color); font-weight: 700;">SDG 13 & AU Asp 7</div>
-                <h3 style="color: white; margin-bottom: 0.5rem;">Climate Action</h3>
+                <h3 style="color: white; margin-bottom: 0.5rem; font-size: 1.25rem;">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</h3>
                 <p style="color: rgba(255,255,255,0.8); margin: 0;">Exporting resilience: Nature-based solutions and expert climate volunteering to protect vulnerable livelihoods.</p>
             </div>
         </div>
@@ -355,37 +363,98 @@ include 'includes/header.php';
         </div>
         
         <div class="speaker-spotlight-wrapper" style="margin-top: 3rem;">
+            <?php if (count($speakers) > 0): ?>
             <div class="speaker-list">
-                <button class="speaker-btn active" data-index="0">
-                    <div class="sb-name">Fredrick Sadia</div>
-                    <div class="sb-role">Founder, Jitolee Foundation</div>
+                <?php foreach($speakers as $index => $speaker): ?>
+                <button class="speaker-btn <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo $index; ?>" 
+                    data-name="<?php echo htmlspecialchars($speaker['name']); ?>" 
+                    data-role="<?php echo htmlspecialchars($speaker['role']); ?>"
+                    data-track="<?php echo htmlspecialchars($speaker['track']); ?>"
+                    data-bio="<?php echo htmlspecialchars($speaker['bio']); ?>"
+                    data-image="<?php echo htmlspecialchars($speaker['image_url']); ?>"
+                    data-video="<?php echo htmlspecialchars($speaker['video_url']); ?>">
+                    <div class="sb-name"><?php echo htmlspecialchars($speaker['name']); ?></div>
+                    <div class="sb-role"><?php echo htmlspecialchars($speaker['role']); ?></div>
                 </button>
-                <button class="speaker-btn" data-index="1">
-                    <div class="sb-name">Dr. Amina Mohamed</div>
-                    <div class="sb-role">Policy Director, Africa NGO Council</div>
-                </button>
-                <button class="speaker-btn" data-index="2">
-                    <div class="sb-name">David Okello</div>
-                    <div class="sb-role">Head of Corporate ESG</div>
-                </button>
-                <button class="speaker-btn" data-index="3">
-                    <div class="sb-name">Sarah Jenkins</div>
-                    <div class="sb-role">Global Volunteer Coordinator</div>
-                </button>
+                <?php endforeach; ?>
             </div>
             <div class="speaker-display">
-                <div class="sd-image">
-                    <img id="sd-img" src="assets/fredsadia.png" alt="Fredrick Sadia">
+                <div class="sd-image" style="position: relative;">
+                    <?php 
+                        $firstSpeakerImg = $speakers[0]['image_url'] ? htmlspecialchars($speakers[0]['image_url']) : 'https://ui-avatars.com/api/?name='.urlencode($speakers[0]['name']).'&background=random&size=500';
+                        if ($speakers[0]['name'] == 'Fredrick Sadia' && !$speakers[0]['image_url']) {
+                            $firstSpeakerImg = 'assets/fredsadia.png';
+                        }
+                    ?>
+                    <img id="sd-img" src="<?php echo $firstSpeakerImg; ?>" alt="<?php echo htmlspecialchars($speakers[0]['name']); ?>">
+                    <div id="sd-video-btn" class="video-play-btn" style="display: <?php echo $speakers[0]['video_url'] ? 'flex' : 'none'; ?>;" onclick="openVideoModal(document.querySelector('.speaker-btn.active').getAttribute('data-video'))">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
                 </div>
                 <div class="sd-content">
-                    <span class="badge" id="sd-track">Keynote & Panel: Strengthening Civil Society</span>
-                    <h3 id="sd-name" style="color: white;">Fredrick Sadia</h3>
-                    <p class="sd-bio" id="sd-bio">Fredrick is a visionary leader in social impact and a board member of the Global Pro Bono Network. He has dedicated over a decade to building frameworks that empower communities through structured volunteerism across Africa.</p>
+                    <span class="badge" id="sd-track"><?php echo htmlspecialchars($speakers[0]['track']); ?></span>
+                    <h3 id="sd-name" style="color: white;"><?php echo htmlspecialchars($speakers[0]['name']); ?></h3>
+                    <p class="sd-bio" id="sd-bio"><?php echo htmlspecialchars($speakers[0]['bio']); ?></p>
                 </div>
             </div>
+            <?php else: ?>
+                <p style="color: var(--text-muted); text-align: center; width: 100%;">Keynote speakers will be announced soon.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);">
+    <div class="modal-content" style="margin: 10% auto; width: 80%; max-width: 800px; position: relative;">
+        <span class="close" onclick="closeVideoModal()" style="color: white; float: right; font-size: 28px; font-weight: bold; cursor: pointer; position: absolute; right: -30px; top: -30px;">&times;</span>
+        <div style="padding-top: 56.25%; position: relative;">
+            <iframe id="videoIframe" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+.video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.video-play-btn:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+</style>
+
+<script>
+function openVideoModal(url) {
+    if(!url) return;
+    let embedUrl = url;
+    if(url.includes('youtube.com/watch?v=')) {
+        embedUrl = url.replace('watch?v=', 'embed/');
+    } else if(url.includes('youtu.be/')) {
+        embedUrl = url.replace('youtu.be/', 'youtube.com/embed/');
+    }
+    document.getElementById('videoIframe').src = embedUrl;
+    document.getElementById('videoModal').style.display = 'block';
+}
+function closeVideoModal() {
+    document.getElementById('videoIframe').src = '';
+    document.getElementById('videoModal').style.display = 'none';
+}
+</script>
 
 <!-- 8. Delegate Logistics Re-design -->
 <section id="logistics" class="section" style="background: url('https://images.unsplash.com/photo-1547471080-7fc2caa6f57e?q=80&w=2070&auto=format&fit=crop') center/cover; position: relative; padding: 8rem 0;">
@@ -413,7 +482,7 @@ include 'includes/header.php';
                 </div>
                 <h3>Premium Accommodation</h3>
                 <p>Enjoy negotiated corporate rates at our 5-star partner hotels situated within a 2-kilometer radius of our primary venues. Complimentary daily shuttles included.</p>
-                <a href="logistics#accommodation" class="glass-link">View Partner Hotels &rarr;</a>
+                <a href="accommodations" class="glass-link">View Partner Hotels &rarr;</a>
             </div>
             
             <div class="glass-card">
@@ -511,7 +580,37 @@ include 'includes/header.php';
     </div>
 </section>
 
-<!-- 10. Partners & Global Network -->
+<!-- 10. Major Partners -->
+<section id="major-partners" class="section bg-light">
+    <div class="container text-center">
+        <span class="section-eyebrow">Supported By</span>
+        <h2>Major Partners</h2>
+        <span class="african-divider-sm center"></span>
+        <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: center;">
+            <?php if (count($partners) > 0): ?>
+                <?php foreach($partners as $partner): ?>
+                    <div class="partner-card" style="background: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <?php if ($partner['logo_url']): ?>
+                            <img src="<?php echo htmlspecialchars($partner['logo_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
+                        <?php else: ?>
+                            <h4 style="color: var(--primary-color); margin: 0;"><?php echo htmlspecialchars($partner['name']); ?></h4>
+                        <?php endif; ?>
+                        <?php if ($partner['description']): ?>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><?php echo htmlspecialchars($partner['description']); ?></p>
+                        <?php endif; ?>
+                        <?php if ($partner['tier']): ?>
+                            <span class="badge" style="margin-top: 1rem; background: var(--light-bg); color: var(--text-main);"><?php echo htmlspecialchars($partner['tier']); ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style="color: var(--text-muted); grid-column: 1 / -1;">Our partners will be announced soon.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 11. Partners & Global Network -->
 <section id="partners" class="section bg-white border-y">
     <div class="container text-center">
         <span class="section-eyebrow">The Ecosystem</span>

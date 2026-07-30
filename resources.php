@@ -1,4 +1,20 @@
-<?php include 'includes/header.php'; ?>
+<?php
+require 'includes/db.php';
+
+$stmt_whitepapers = $pdo->prepare("SELECT * FROM resources WHERE category = 'Whitepapers & Research' ORDER BY created_at DESC");
+$stmt_whitepapers->execute();
+$whitepapers = $stmt_whitepapers->fetchAll();
+
+$stmt_casestudies = $pdo->prepare("SELECT * FROM resources WHERE category = 'Case Studies' ORDER BY created_at DESC");
+$stmt_casestudies->execute();
+$casestudies = $stmt_casestudies->fetchAll();
+
+$stmt_media = $pdo->prepare("SELECT * FROM resources WHERE category = 'Media Toolkit' ORDER BY created_at DESC");
+$stmt_media->execute();
+$media = $stmt_media->fetchAll();
+
+include 'includes/header.php'; 
+?>
 
 <div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/hero-bg.png') center/cover; padding: 6rem 0; text-align: center; color: white;">
     <div class="container">
@@ -19,32 +35,26 @@
             </div>
             
             <div style="display: grid; gap: 1.5rem;">
-                <div style="border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0;">The Impact Measurement Report</h4>
-                        <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">Featuring the collective data and metrics of "High Impact Africa Pro Bono Projects" co-developed with global networks.</p>
-                        <p style="margin: 0.25rem 0 0 0; color: var(--primary-color); font-size: 0.8rem; font-weight: 600;">Status: Pending Final Publication</p>
+                <?php if (count($whitepapers) > 0): ?>
+                    <?php foreach($whitepapers as $wp): ?>
+                    <div style="border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div style="flex: 1; min-width: 250px;">
+                            <h4 style="margin: 0 0 0.25rem 0;"><?php echo htmlspecialchars($wp['title']); ?></h4>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;"><?php echo htmlspecialchars($wp['description']); ?></p>
+                            <p style="margin: 0.25rem 0 0 0; color: <?php echo $wp['status'] == 'Active' ? 'var(--primary-color)' : 'var(--terracotta)'; ?>; font-size: 0.8rem; font-weight: 600;">Status: <?php echo htmlspecialchars($wp['status']); ?></p>
+                        </div>
+                        <?php if ($wp['status'] == 'Active' && !empty($wp['file_url'])): ?>
+                            <a href="<?php echo htmlspecialchars($wp['file_url']); ?>" target="_blank" class="btn btn-primary" style="min-width: 120px;"><i class="fa-solid fa-download"></i> Download</a>
+                        <?php elseif ($wp['status'] == 'For Summit Delegates Only' && !empty($wp['file_url'])): ?>
+                            <a href="<?php echo htmlspecialchars($wp['file_url']); ?>" target="_blank" class="btn btn-primary" style="min-width: 120px;"><i class="fa-solid fa-download"></i> Early Access</a>
+                        <?php else: ?>
+                            <button class="btn btn-outline" style="min-width: 120px;" disabled><i class="fa-solid fa-lock"></i> Locked</button>
+                        <?php endif; ?>
                     </div>
-                    <button class="btn btn-outline" style="min-width: 120px;" disabled><i class="fa-solid fa-lock"></i> Locked</button>
-                </div>
-                
-                <div style="border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0;">Policy Advocacy Paper</h4>
-                        <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">Formal recommendations compiled for the Kenyan Government and the African Union regarding tax incentives for corporations engaging in high-impact pro bono activities.</p>
-                        <p style="margin: 0.25rem 0 0 0; color: var(--primary-color); font-size: 0.8rem; font-weight: 600;">Status: Awaiting Ratification</p>
-                    </div>
-                    <button class="btn btn-outline" style="min-width: 120px;" disabled><i class="fa-solid fa-lock"></i> Locked</button>
-                </div>
- 
-                <div style="border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0;">Actionable Toolkits & Project Blueprints</h4>
-                        <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem;">The 50 scalable workshop prototypes and blueprints developed across the thematic tracks distributed upon summit closure.</p>
-                        <p style="margin: 0.25rem 0 0 0; color: var(--secondary-color); font-size: 0.8rem; font-weight: 600;">Status: For Summit Delegates Only</p>
-                    </div>
-                    <button class="btn btn-primary" style="min-width: 120px;"><i class="fa-solid fa-download"></i> Early Access</button>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: var(--text-muted);">Check back soon for upcoming whitepapers.</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -59,16 +69,23 @@
                 <span class="african-divider-sm" style="margin: 0.5rem 0 1.5rem;"></span>
             </div>
  
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                <div style="background: white; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--box-shadow);">
-                    <img src="assets/past-summit/231201-131346.jpg" style="width: 100%; height: 200px; object-fit: cover;">
-                    <div style="padding: 1.5rem;">
-                        <span class="badge" style="background: var(--bg-alt); color: var(--primary-color);">Tech Deployment</span>
-                        <h4 style="margin: 1rem 0 0.5rem 0;">Digitalizing Rural Clinics in Kenya</h4>
-                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.5;">How pro-bono engineers deployed open-source health tracking to 50 rural facilities.</p>
-                        <a href="assets/case-study-rural-clinics.pdf" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 1rem;">Read Full Study &rarr;</a>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <?php if (count($casestudies) > 0): ?>
+                    <?php foreach($casestudies as $cs): ?>
+                    <div style="background: white; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--box-shadow); border: 1px solid #e2e8f0; padding: 1.5rem; display: flex; flex-direction: column;">
+                        <span class="badge" style="background: var(--bg-alt); color: var(--primary-color); align-self: flex-start; margin-bottom: 1rem;">Case Study</span>
+                        <h4 style="margin: 0 0 0.5rem 0;"><?php echo htmlspecialchars($cs['title']); ?></h4>
+                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.5; flex-grow: 1;"><?php echo htmlspecialchars($cs['description']); ?></p>
+                        <?php if ($cs['status'] == 'Active' && !empty($cs['file_url'])): ?>
+                            <a href="<?php echo htmlspecialchars($cs['file_url']); ?>" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 1rem;"><i class="fa-solid fa-file-pdf"></i> Read Full Study &rarr;</a>
+                        <?php else: ?>
+                            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--terracotta); font-weight: 600;"><i class="fa-solid fa-lock"></i> <?php echo htmlspecialchars($cs['status']); ?></p>
+                        <?php endif; ?>
                     </div>
-                </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: var(--text-muted);">More case studies will be published soon.</p>
+                <?php endif; ?>
             </div>
         </div>
     </section>
@@ -80,7 +97,17 @@
             </div>
             <h2>Partner Brand & Media Toolkit</h2>
             <p style="color: var(--text-main); font-size: 1.1rem; max-width: 600px; margin: 1rem auto 2rem;">Access official Summit logos, typography guidelines, and pre-approved marketing copy for your organization's PR channels.</p>
-            <a href="assets/summit-brand-assets.zip" class="btn btn-primary btn-lg" download><i class="fa-solid fa-file-zipper"></i> Download Brand Asset Pack (.ZIP)</a>
+            
+            <?php if (count($media) > 0): ?>
+                <?php $m = $media[0]; ?>
+                <?php if ($m['status'] == 'Active' && !empty($m['file_url'])): ?>
+                    <a href="<?php echo htmlspecialchars($m['file_url']); ?>" class="btn btn-primary btn-lg" download><i class="fa-solid fa-file-zipper"></i> Download Brand Asset Pack (.ZIP)</a>
+                <?php else: ?>
+                    <button class="btn btn-outline btn-lg" disabled><i class="fa-solid fa-lock"></i> <?php echo htmlspecialchars($m['status']); ?></button>
+                <?php endif; ?>
+            <?php else: ?>
+                <a href="assets/summit-brand-assets.zip" class="btn btn-primary btn-lg" download><i class="fa-solid fa-file-zipper"></i> Download Brand Asset Pack (.ZIP)</a>
+            <?php endif; ?>
         </div>
     </section>
 </main>

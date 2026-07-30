@@ -16,7 +16,7 @@ include 'includes/header.php';
             <div class="text-center" style="margin-bottom: 4rem;">
                 <span class="section-eyebrow">Participation Options</span>
                 <h2 style="font-size: 2.5rem; margin-top: 0.5rem; color: #0f172a;">Join The Movement</h2>
-                <p class="lead-text" style="max-width: 700px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--text-main);">The Global Pro-bono Summit facilitates attendance through direct delegate passes, corporate sponsorships, and philanthropic support tickets.</p>
+                <p class="lead-text" style="max-width: 700px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--text-main);">The Global Pro Bono Summit Africa facilitates attendance through direct delegate passes, corporate sponsorships, and philanthropic support tickets.</p>
             </div>
 
             <!-- Pricing / Tiers Grid -->
@@ -154,10 +154,10 @@ include 'includes/header.php';
                         <label class="form-label">Thematic Track Alignment <span style="color:red;">*</span></label>
                         <select name="track_alignment" class="form-control" required>
                             <option value="" disabled selected>Select your primary track...</option>
-                            <option value="SDG 1: Poverty Reduction">SDG 1: Poverty Reduction (Microfinance & Property Clinics)</option>
-                            <option value="SDG 4: Quality Education">SDG 4: Quality Education (Mentorship & Digital Learning)</option>
-                            <option value="SDG 8: Decent Work">SDG 8: Decent Work (SME Growth & Tech/Finance)</option>
-                            <option value="SDG 13: Climate Action">SDG 13: Climate Action (Resilience & Nature-Based Solutions)</option>
+                            <option value="Pillar I: Inclusive Economic Empowerment">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</option>
+                            <option value="Pillar II: Education, Skills Development">Pillar II: Education, Skills Development and Future Leadership</option>
+                            <option value="Pillar III: Decent Work, Institutional Excellence">Pillar III: Decent Work, Institutional Excellence and Professional Service</option>
+                            <option value="Pillar IV: Climate Action, Environmental Stewardship">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</option>
                         </select>
                     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Pro-bono Summit Africa 2026</title>
+    <title>Global Pro Bono Summit Africa</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
@@ -47,6 +47,18 @@
       .mega-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
       .mega-menu ul li a { color: white !important; text-decoration: none; font-size: 0.95rem !important; transition: color 0.2s; font-weight: 400 !important; }
       .mega-menu ul li a:hover { color: var(--secondary-color) !important; padding-left: 5px; }
+
+      /* New Global Mega Menu Styles */
+      .nav-item-mega { position: relative; }
+      .global-mega-menu { display: none; position: absolute; top: calc(100% + 1rem); left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.98); backdrop-filter: blur(15px); width: 800px; max-width: 90vw; border-radius: 12px; padding: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.6); z-index: 100; border: 1px solid rgba(255,255,255,0.1); grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; opacity: 0; transition: opacity 0.3s ease, top 0.3s ease; pointer-events: none; }
+      .global-mega-menu.active { display: grid; opacity: 1; pointer-events: auto; top: calc(100% + 0.5rem); }
+      .global-mega-menu::before { content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px; } /* hover bridge */
+      
+      .dynamic-col { border-right: 1px solid rgba(255,255,255,0.1); padding-right: 2rem; display: flex; flex-direction: column; justify-content: center; }
+      .dynamic-col img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,0.1); }
+      .dynamic-col h3 { color: var(--secondary-color); font-size: 1.25rem; margin-bottom: 0.5rem; }
+      .dynamic-col p { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0; }
+
     </style>
 </head>
 <body>
@@ -81,42 +93,44 @@
                     </div>
                 </a>
             </div>
-            <div class="nav-wrapper">
+            <div class="nav-wrapper" style="position: relative;">
                 <nav class="main-nav">
-                    <ul style="gap: 1rem;">
+                    <ul style="gap: 1rem; position: relative;">
                         <li><a href="index">Home</a></li>
-                        <li><a href="about">About</a></li>
-                        <li><a href="program">Program</a></li>
-                        <li><a href="projects">Projects</a></li>
-                        <li><a href="resources">Resources</a></li>
+                        <li class="nav-item-mega" data-mega="about"><a href="about">About</a></li>
+                        <li class="nav-item-mega" data-mega="program"><a href="program">Program</a></li>
+                        <li class="nav-item-mega" data-mega="projects"><a href="best_practices">Best Practices</a></li>
+                        <li class="nav-item-mega" data-mega="resources"><a href="resources">Resources</a></li>
                         <li><a href="news">News</a></li>
                         <li><a href="contact">Contact</a></li>
                     </ul>
                 </nav>
-                <div class="mega-menu-wrapper">
-                    <div class="mega-toggle">
-                        <i class="fa-solid fa-bars-staggered"></i>
+                
+                <!-- Global Mega Menu -->
+                <div class="global-mega-menu" id="global-mega-menu">
+                    <div class="dynamic-col" id="mega-dynamic-col">
+                        <!-- Dynamic Content Inserted Here via JS -->
+                        <img src="assets/past-summit/231130-101322.jpg" alt="Dynamic">
+                        <h3>Global Pro Bono</h3>
+                        <p>Leveraging multidisciplinary expertise for sustainable development across the continent.</p>
                     </div>
-                    <div class="mega-menu">
-                        <div class="mega-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></div>
-                        <div>
-                            <h4>Summit Information</h4>
-                            <ul>
-                                <li><a href="about">About the Foundation</a></li>
-                                <li><a href="program">Summit Program Tracks</a></li>
-                                <li><a href="speakers">Keynote Speakers</a></li>
-                                <li><a href="logistics">Delegate Logistics</a></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4>Explore & Engage</h4>
-                            <ul>
-                                <li><a href="projects">Pro-bono Projects</a></li>
-                                <li><a href="partners">Our Partners</a></li>
-                                <li><a href="gallery">Event Gallery</a></li>
-                                <li><a href="faq">Frequently Asked Questions</a></li>
-                            </ul>
-                        </div>
+                    <div class="mega-static-col">
+                        <h4 style="color: var(--kente-gold); font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-family: var(--font-heading);">Summit Information</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li><a href="about" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">About the Foundation</a></li>
+                            <li><a href="program" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Summit Program Tracks</a></li>
+                            <li><a href="speakers" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Keynote Speakers</a></li>
+                            <li><a href="logistics" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Delegate Logistics</a></li>
+                        </ul>
+                    </div>
+                    <div class="mega-static-col">
+                        <h4 style="color: var(--kente-gold); font-size: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; font-family: var(--font-heading);">Explore & Engage</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li><a href="projects" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Pro-bono Projects</a></li>
+                            <li><a href="partners" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Our Partners</a></li>
+                            <li><a href="gallery" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Event Gallery</a></li>
+                            <li><a href="faq" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Frequently Asked Questions</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="header-cta">
@@ -148,25 +162,64 @@
                 });
             }
 
-            /* ── Mega Menu Toggle ── */
-            const megaToggle = document.querySelector('.mega-toggle');
-            const megaMenu = document.querySelector('.mega-menu');
-            const megaClose = document.querySelector('.mega-close');
-            
-            if (megaToggle && megaMenu) {
-                megaToggle.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    megaMenu.classList.toggle('active');
-                });
-                if (megaClose) {
-                    megaClose.addEventListener('click', () => {
-                        megaMenu.classList.remove('active');
-                    });
+            /* ── Global Mega Menu Toggle ── */
+            const megaItems = document.querySelectorAll('.nav-item-mega');
+            const globalMegaMenu = document.getElementById('global-mega-menu');
+            const dynamicCol = document.getElementById('mega-dynamic-col');
+            let megaTimeout;
+
+            const megaData = {
+                'about': {
+                    img: 'assets/past-summit/231130-101322.jpg',
+                    title: 'About the Summit',
+                    desc: 'Fostering Sustainable Development through Global Pro bono practice and strategic partnerships.'
+                },
+                'program': {
+                    img: 'assets/past-summit/231201-101415.jpg',
+                    title: 'Summit Program',
+                    desc: 'Explore the 4 Strategic Pillars driving impactful sessions and multi-disciplinary workshops.'
+                },
+                'projects': {
+                    img: 'assets/past-summit/231201-153912.jpg',
+                    title: 'Best Practices',
+                    desc: 'Showcasing high-impact models that redefine corporate social responsibility in Africa.'
+                },
+                'resources': {
+                    img: 'assets/past-summit/231201-135335.jpg',
+                    title: 'Resource Center',
+                    desc: 'Access whitepapers, case studies, and blueprints for measurable development impact.'
                 }
-                document.addEventListener('click', (e) => {
-                    if (!megaMenu.contains(e.target) && !megaToggle.contains(e.target)) {
-                        megaMenu.classList.remove('active');
+            };
+
+            megaItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    clearTimeout(megaTimeout);
+                    const key = item.getAttribute('data-mega');
+                    if(megaData[key]) {
+                        dynamicCol.innerHTML = `
+                            <img src="${megaData[key].img}" alt="${megaData[key].title}">
+                            <h3>${megaData[key].title}</h3>
+                            <p>${megaData[key].desc}</p>
+                        `;
                     }
+                    globalMegaMenu.classList.add('active');
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    megaTimeout = setTimeout(() => {
+                        globalMegaMenu.classList.remove('active');
+                    }, 200);
+                });
+            });
+
+            if(globalMegaMenu) {
+                globalMegaMenu.addEventListener('mouseenter', () => {
+                    clearTimeout(megaTimeout);
+                });
+                globalMegaMenu.addEventListener('mouseleave', () => {
+                    megaTimeout = setTimeout(() => {
+                        globalMegaMenu.classList.remove('active');
+                    }, 200);
                 });
             }
 

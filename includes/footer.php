@@ -1,8 +1,21 @@
     <footer class="main-footer">
+        <!-- Massive Official Phrase Banner -->
+        <div style="text-align: center; padding: 4rem 2rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 3rem;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; line-height: 1.2; margin: 0 auto; max-width: 1200px; text-transform: uppercase; letter-spacing: 2px;">
+                <span style="color: white; display: block;">Leveraging Multidisciplinary Pro Bono</span>
+                <span style="color: var(--terracotta); display: block; margin-top: 0.5rem;">For SDGs & Agenda 2063</span>
+            </h2>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: 2.5rem;">
+                <span style="display: inline-block; width: 80px; height: 2px; background-color: var(--kente-gold);"></span>
+                <i class="fa-solid fa-diamond" style="color: var(--kente-gold); font-size: 0.8rem;"></i>
+                <span style="display: inline-block; width: 80px; height: 2px; background-color: var(--kente-gold);"></span>
+            </div>
+        </div>
+
         <div class="container footer-container">
             <div class="footer-col brand-col">
                 <div class="logo-text" style="color: white; margin-bottom: 1rem;">
-                    <span class="main-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">Global Pro-bono Summit Africa</span>
+                    <span class="main-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">Global Pro Bono Summit Africa</span>
                 </div>
                 <p class="slogan" style="color: var(--secondary-color); font-weight: 600; font-size: 1.1rem; margin-bottom: 1.5rem;">"Professionalism in Service, Impact in Community."</p>
                 <p>Organized jointly by the Global Pro Bono Network and Jitolee Good Friends Foundation.</p>
@@ -31,7 +44,7 @@
                         <li><a href="about">About Foundation</a></li>
                         <li><a href="program">Summit Program</a></li>
                         <li><a href="speakers">Keynote Speakers</a></li>
-                        <li><a href="projects">Pro-bono Projects</a></li>
+                        <li><a href="best_practices">Best Practices</a></li>
                         <li><a href="news">News & Updates</a></li>
                     </ul>
                     <ul class="quick-links">
@@ -58,7 +71,8 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+
+        <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 2rem;">
             <p>&copy; <?php echo date('Y'); ?> Global Pro Bono Summit Africa. Organized by GPBN & Jitolee Foundation.</p>
             <div style="display: flex; gap: 1rem;">
                 <a href="privacy" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>

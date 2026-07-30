@@ -2,8 +2,8 @@
 
 <div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/hero-bg.png') center/cover; padding: 6rem 0; text-align: center; color: white;">
     <div class="container">
-        <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Pro-bono Impact Projects</h1>
-        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Real-world applications of professional volunteerism.</p>
+        <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Pro Bono Best Practices</h1>
+        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Real-world applications of professional volunteerism aligned with our Strategic Pillars.</p>
     </div>
 </div>
 
@@ -24,7 +24,7 @@
                         <div style="position:absolute; top:0; left:0; right:0; height:5px; background-image: var(--pattern-kente-strip); background-size: 20px 5px;"></div>
                     </div>
                     <div style="padding: 1.5rem;">
-                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Tech & Education</span>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Pillar I: Inclusive Economic Empowerment</span>
                         <h3 style="margin: 0.5rem 0; font-size: 1.25rem;">Safaricom Employee Volunteering</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Implemented free internet in schools via Kenya’s Digital Literacy Programme, targeting 10,000+ scholarships. Tech volunteers successfully digitized 500 local SMEs.</p>
                         <a href="contact" style="display: inline-block; margin-top: 1rem; color: var(--primary-color); font-weight: 600;">Support this project &rarr;</a>
@@ -37,7 +37,7 @@
                         <div style="position:absolute; top:0; left:0; right:0; height:5px; background-image: var(--pattern-kente-strip); background-size: 20px 5px;"></div>
                     </div>
                     <div style="padding: 1.5rem;">
-                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Healthcare & Academia</span>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Pillar II: Education & Skills Development</span>
                         <h3 style="margin: 0.5rem 0; font-size: 1.25rem;">Strathmore University Service-Learning</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Successfully pioneered community clinic models and curriculum-integrated student service-learning programs that build lifetime service norms.</p>
                         <a href="contact" style="display: inline-block; margin-top: 1rem; color: var(--primary-color); font-weight: 600;">Support this project &rarr;</a>
@@ -50,7 +50,7 @@
                         <div style="position:absolute; top:0; left:0; right:0; height:5px; background-image: var(--pattern-kente-strip); background-size: 20px 5px;"></div>
                     </div>
                     <div style="padding: 1.5rem;">
-                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Climate Resilience</span>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Pillar IV: Climate Action</span>
                         <h3 style="margin: 0.5rem 0; font-size: 1.25rem;">Kenya Red Cross Innovation Hub</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Coordinates a powerhouse network of more than 280,000 volunteers, strengthening climate resilience and expanding skills for 3.4 million Kenyans.</p>
                         <a href="contact" style="display: inline-block; margin-top: 1rem; color: var(--primary-color); font-weight: 600;">Support this project &rarr;</a>
@@ -63,7 +63,7 @@
                         <div style="position:absolute; top:0; left:0; right:0; height:5px; background-image: var(--pattern-kente-strip); background-size: 20px 5px;"></div>
                     </div>
                     <div style="padding: 1.5rem;">
-                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Corporate Benchmarks</span>
+                        <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase;">Pillar III: Decent Work & Institutional Excellence</span>
                         <h3 style="margin: 0.5rem 0; font-size: 1.25rem;">Global Tech & Skills Pro Bono</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Highlights include IBM's tech volunteering which digitized 1,000+ NGOs, and Deloitte's skills-based programs which lifted 50,000 individuals out of poverty.</p>
                         <a href="contact" style="display: inline-block; margin-top: 1rem; color: var(--primary-color); font-weight: 600;">Support this project &rarr;</a>

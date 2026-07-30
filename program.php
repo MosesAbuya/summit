@@ -74,12 +74,12 @@
                             <li class="timeline-item">
                                 <span class="time-badge">02:40 PM - 03:00 PM</span>
                                 <h4 style="font-size: 1.25rem;">Keynote Session Phase I</h4>
-                                <div class="timeline-speaker">Thematic Areas 1 & 2: SDGs 1 & 4</div>
+                                <div class="timeline-speaker">Pillar I & Pillar II</div>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-badge">03:00 PM - 03:45 PM</span>
                                 <h4 style="font-size: 1.25rem;">High-Level Panel Discussion</h4>
-                                <div class="timeline-speaker">Operationalizing professional service to address poverty and education gaps</div>
+                                <div class="timeline-speaker">Operationalizing professional service to address Pillar I & II</div>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-badge">03:45 PM - 04:10 PM</span>
@@ -88,7 +88,7 @@
                             <li class="timeline-item">
                                 <span class="time-badge">04:10 PM - 04:30 PM</span>
                                 <h4 style="font-size: 1.25rem;">Keynote Session Phase II</h4>
-                                <div class="timeline-speaker">Thematic Areas 3 & 4: SDGs 8 & 13</div>
+                                <div class="timeline-speaker">Pillar III & Pillar IV</div>
                             </li>
                             <li class="timeline-item">
                                 <span class="time-badge">04:30 PM - 05:15 PM</span>
@@ -109,7 +109,7 @@
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
                             <div class="accordion-day">Day 2 • November 25, 2026</div>
-                            <h3 class="accordion-title">Deep Dives & Institutional Practice (SDGs 1 & 4)</h3>
+                            <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar I & II)</h3>
                             <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> KRA Hall & Experiential Sites</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -119,7 +119,7 @@
                         <ul class="timeline-list">
                             <li class="timeline-item">
                                 <span class="time-badge">08:00 AM - 09:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Deep Dive Session 1: Eradicating Extreme Poverty</h4>
+                                <h4 style="font-size: 1.25rem;">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</h4>
                                 <div class="timeline-speaker">Microfinance, property rights, women/youth enterprise funding</div>
                             </li>
                             <li class="timeline-item">
@@ -128,7 +128,7 @@
                             </li>
                             <li class="timeline-item">
                                 <span class="time-badge">10:00 AM - 11:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Deep Dive Session 2: Transforming Quality Education</h4>
+                                <h4 style="font-size: 1.25rem;">Pillar II: Education, Skills Development and Future Leadership</h4>
                                 <div class="timeline-speaker">Digital learning platforms, university tutoring</div>
                             </li>
                             <li class="timeline-item">
@@ -154,7 +154,7 @@
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
                             <div class="accordion-day">Day 3 • November 26, 2026</div>
-                            <h3 class="accordion-title">Deep Dives & Institutional Practice (SDGs 8 & 13)</h3>
+                            <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar III & IV)</h3>
                             <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> KICC Plenary & Experiential Sites</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -164,7 +164,7 @@
                         <ul class="timeline-list">
                             <li class="timeline-item">
                                 <span class="time-badge">08:00 AM - 09:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Deep Dive Session 3: Decent Work & Economic Growth</h4>
+                                <h4 style="font-size: 1.25rem;">Pillar III: Decent Work, Institutional Excellence and Professional Service</h4>
                                 <div class="timeline-speaker">Corporate volunteering with SMEs, tech/finance mentoring</div>
                             </li>
                             <li class="timeline-item">
@@ -173,7 +173,7 @@
                             </li>
                             <li class="timeline-item">
                                 <span class="time-badge">10:00 AM - 11:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Deep Dive Session 4: Climate Action & Adaptation</h4>
+                                <h4 style="font-size: 1.25rem;">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</h4>
                                 <div class="timeline-speaker">Engineers & agronomists for drought resistance; UNEA-7 alignment</div>
                             </li>
                             <li class="timeline-item">
