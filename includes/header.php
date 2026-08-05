@@ -59,6 +59,27 @@
       .dynamic-col h3 { color: var(--secondary-color); font-size: 1.25rem; margin-bottom: 0.5rem; }
       .dynamic-col p { color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.5; margin-bottom: 0; }
 
+      @media (max-width: 950px) {
+          .global-mega-menu {
+              position: relative !important;
+              top: 0 !important;
+              left: 0 !important;
+              transform: none !important;
+              width: 100% !important;
+              grid-template-columns: 1fr !important;
+              padding: 1rem !important;
+              gap: 1rem !important;
+              margin-top: 1rem;
+          }
+          .dynamic-col {
+              border-right: none;
+              border-bottom: 1px solid rgba(255,255,255,0.1);
+              padding-right: 0;
+              padding-bottom: 1rem;
+          }
+          .dynamic-col img { height: auto; max-height: 120px; }
+      }
+
     </style>
 </head>
 <body>

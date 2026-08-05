@@ -72,9 +72,9 @@
             </div>
         </div>
 
-        <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 2rem;">
+        <div class="footer-bottom" style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; margin-top: 2rem;">
             <p>&copy; <?php echo date('Y'); ?> Global Pro Bono Summit Africa. Organized by GPBN & Jitolee Foundation.</p>
-            <div style="display: flex; gap: 1rem;">
+            <div style="display: flex; gap: 1rem; justify-content: center;">
                 <a href="privacy" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy Policy</a>
                 <a href="terms" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Terms of Service</a>
             </div>

@@ -9,9 +9,13 @@ $latest_news = $stmt->fetchAll();
 $stmt = $pdo->query("SELECT * FROM speakers ORDER BY id ASC");
 $speakers = $stmt->fetchAll();
 
-// Fetch Partners
-$stmt = $pdo->query("SELECT * FROM partners ORDER BY id ASC");
-$partners = $stmt->fetchAll();
+// Fetch Major Partners
+$stmt = $pdo->query("SELECT * FROM partners WHERE is_major = 1 ORDER BY id ASC");
+$major_partners = $stmt->fetchAll();
+
+// Fetch Ecosystem Partners
+$stmt = $pdo->query("SELECT * FROM partners WHERE is_major = 0 ORDER BY id ASC");
+$ecosystem_partners = $stmt->fetchAll();
 
 include 'includes/header.php'; 
 ?>
@@ -57,7 +61,7 @@ include 'includes/header.php';
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Nov 24-27 • Nairobi, Kenya</span>
             <h1 class="carousel-title" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">GLOBAL SUMMIT ON<br>PRO BONO PRACTICE<br>AFRICA</h1>
             <p class="carousel-subtitle">"Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063"</p>
-            <div class="carousel-actions">
+            <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="register" class="btn btn-primary btn-lg">Secure Your Pass</a>
                 <a href="program" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);">View Itinerary</a>
             </div>
@@ -71,7 +75,7 @@ include 'includes/header.php';
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(234,179,8,0.2); border-radius: 30px; border: 1px solid rgba(234,179,8,0.5); backdrop-filter: blur(10px); color: var(--secondary-color); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Strategic Alliances</span>
             <h1 class="carousel-title">Become a Corporate<br>Partner</h1>
             <p class="carousel-subtitle">Align your brand with Africa's premier social impact event. Explore Diamond, Platinum, and Gold sponsorship tiers to supercharge your ESG goals.</p>
-            <div class="carousel-actions">
+            <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="partners" class="btn btn-secondary btn-lg" style="color: #000;">View Corporate Tiers</a>
                 <a href="contact" class="btn btn-outline btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);">Request Deck</a>
             </div>
@@ -85,7 +89,7 @@ include 'includes/header.php';
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Empower Grassroots</span>
             <h1 class="carousel-title">Support The<br>Movement</h1>
             <p class="carousel-subtitle">Cannot attend? Your financial support can sponsor an African grassroots NGO leader to access the summit fully subsidized.</p>
-            <div class="carousel-actions">
+            <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="register" class="btn btn-primary btn-lg">Sponsor a Delegate</a>
             </div>
         </div>
@@ -98,7 +102,7 @@ include 'includes/header.php';
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Day 4 Conclusion</span>
             <h1 class="carousel-title">The Global Impact<br>Awards Gala</h1>
             <p class="carousel-subtitle">Join us at the Nairobi Safari Club for a night of elegance, celebrating the pioneers of Pan-African volunteerism.</p>
-            <div class="carousel-actions">
+            <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="program#day4" class="btn btn-secondary btn-lg" style="color: #000;">View Gala Details</a>
             </div>
         </div>
@@ -495,7 +499,7 @@ function closeVideoModal() {
             </div>
             
             <!-- Adding the Tourism card link to the grid -->
-            <div class="glass-card" style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: 2rem;">
+            <div class="glass-card" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2rem;">
                 <div>
                     <h3 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
                         <span style="color: var(--secondary-color);"><i class="fa-solid fa-earth-africa"></i></span> Post-Summit Touring
@@ -587,19 +591,16 @@ function closeVideoModal() {
         <h2>Major Partners</h2>
         <span class="african-divider-sm center"></span>
         <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: center;">
-            <?php if (count($partners) > 0): ?>
-                <?php foreach($partners as $partner): ?>
+            <?php if (count($major_partners) > 0): ?>
+                <?php foreach($major_partners as $partner): ?>
                     <div class="partner-card" style="background: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                        <?php if ($partner['logo_url']): ?>
-                            <img src="<?php echo htmlspecialchars($partner['logo_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
+                        <?php if ($partner['image_url']): ?>
+                            <img src="<?php echo htmlspecialchars($partner['image_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
                         <?php else: ?>
                             <h4 style="color: var(--primary-color); margin: 0;"><?php echo htmlspecialchars($partner['name']); ?></h4>
                         <?php endif; ?>
                         <?php if ($partner['description']): ?>
                             <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><?php echo htmlspecialchars($partner['description']); ?></p>
-                        <?php endif; ?>
-                        <?php if ($partner['tier']): ?>
-                            <span class="badge" style="margin-top: 1rem; background: var(--light-bg); color: var(--text-main);"><?php echo htmlspecialchars($partner['tier']); ?></span>
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
@@ -617,28 +618,23 @@ function closeVideoModal() {
         <h2>Partners & Global Network</h2>
         <span class="african-divider-sm center"></span>
         
-        <div class="sponsor-tiers" style="margin-top: 3rem;">
-            <div class="tier">
-                <h4 class="tier-name" style="color: #64748b;">Platinum Sponsors (KES 5M)</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Exclusive Naming Rights</p>
-                <div class="tier-logos">
-                    <div class="logo-box">Safaricom (Invited)</div>
-                    <div class="logo-box">BMW Foundation (Invited)</div>
-                </div>
-            </div>
-            <div class="tier" style="margin-top: 2rem;">
-                <h4 class="tier-name" style="color: var(--secondary-color);">Gold (KES 3M) & Silver (KES 1.5M)</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Lead Workshops & Exhibition Priority</p>
-                <div class="tier-logos small">
-                    <div class="logo-box">Deloitte (Invited)</div>
-                    <div class="logo-box">Strathmore Univ.</div>
-                    <div class="logo-box">Kenya Red Cross</div>
-                </div>
-            </div>
-            <div class="tier" style="margin-top: 2rem;">
-                <h4 class="tier-name" style="color: var(--terracotta);">Bronze Sponsors (KES 500K)</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">Registration Desks</p>
-            </div>
+        <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: center;">
+            <?php if (count($ecosystem_partners) > 0): ?>
+                <?php foreach($ecosystem_partners as $partner): ?>
+                    <div class="partner-card" style="background: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <?php if ($partner['image_url']): ?>
+                            <img src="<?php echo htmlspecialchars($partner['image_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
+                        <?php else: ?>
+                            <h4 style="color: var(--primary-color); margin: 0;"><?php echo htmlspecialchars($partner['name']); ?></h4>
+                        <?php endif; ?>
+                        <?php if ($partner['description']): ?>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><?php echo htmlspecialchars($partner['description']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p style="color: var(--text-muted); grid-column: 1 / -1;">Our global network will be updated soon.</p>
+            <?php endif; ?>
         </div>
 
         <div class="network-marquee" style="margin-top: 4rem;">
