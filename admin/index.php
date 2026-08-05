@@ -132,7 +132,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             // Scroll to form
             form.scrollIntoView({ behavior: 'smooth' });
         }
-    
+    </script>
     <script>
         function switchTab(tabId, el) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
