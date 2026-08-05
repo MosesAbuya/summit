@@ -6,116 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 require '../includes/db.php';
 
-// Handle Post Actions
-$admin_msg = "";
-$admin_msg_type = "success";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['action']) && $_POST['action'] === 'save_mailer_settings') {
-        $form_type = $_POST['form_type'];
-        $company_email = $_POST['company_email'];
-        $smtp_host = $_POST['smtp_host'];
-        $smtp_port = (int)$_POST['smtp_port'];
-        $smtp_user = $_POST['smtp_user'];
-        $smtp_pass = !empty($_POST['smtp_pass']) ? $_POST['smtp_pass'] : null;
-        $from_email = $_POST['from_email'];
-        $from_name = $_POST['from_name'];
-        
-        // If password is not provided, don't update it
-        if ($smtp_pass) {
-            $stmt = $pdo->prepare("INSERT INTO mailer_settings (form_type, company_email, smtp_host, smtp_port, smtp_user, smtp_pass, from_email, from_name) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
-                                   ON DUPLICATE KEY UPDATE company_email=?, smtp_host=?, smtp_port=?, smtp_user=?, smtp_pass=?, from_email=?, from_name=?");
-            $stmt->execute([$form_type, $company_email, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $from_email, $from_name,
-                                        $company_email, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $from_email, $from_name]);
-        } else {
-            $stmt = $pdo->prepare("UPDATE mailer_settings SET company_email=?, smtp_host=?, smtp_port=?, smtp_user=?, from_email=?, from_name=? WHERE form_type=?");
-            $stmt->execute([$company_email, $smtp_host, $smtp_port, $smtp_user, $from_email, $from_name, $form_type]);
-        }
-        $admin_msg = "Mailer settings for " . ucfirst($form_type) . " updated successfully!";
-    }
-    
-    if (isset($_POST['action']) && $_POST['action'] === 'add_news') {
-        $title = $_POST['title'];
-        $excerpt = $_POST['excerpt'];
-        $content = $_POST['content'];
-        $image_url = $_POST['image_url'];
-        
-        $stmt = $pdo->prepare("INSERT INTO news (title, excerpt, content, image_url) VALUES (?, ?, ?, ?)");
-        if($stmt->execute([$title, $excerpt, $content, $image_url])) {
-            $admin_msg = "News article published successfully!";
-        } else {
-            $admin_msg = "Failed to publish news.";
-            $admin_msg_type = "error";
-        }
-    }
-
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_news') {
-        $id = $_POST['news_id'];
-        $stmt = $pdo->prepare("DELETE FROM news WHERE id = ?");
-        $stmt->execute([$id]);
-        $admin_msg = "News article deleted.";
-    }
-    
-    // Partners CRUD
-    if (isset($_POST['action']) && $_POST['action'] === 'add_partner') {
-        $stmt = $pdo->prepare("INSERT INTO partners (name, description, image_url, is_major) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$_POST['name'], $_POST['description'], $_POST['image_url'], isset($_POST['is_major']) ? 1 : 0]);
-        $admin_msg = "Partner added successfully!";
-    }
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_partner') {
-        $stmt = $pdo->prepare("DELETE FROM partners WHERE id = ?");
-        $stmt->execute([$_POST['partner_id']]);
-        $admin_msg = "Partner deleted.";
-    }
-
-    // Speakers CRUD
-    if (isset($_POST['action']) && $_POST['action'] === 'add_speaker') {
-        $stmt = $pdo->prepare("INSERT INTO speakers (name, title, bio, image_url, is_keynote, video_url, theme) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$_POST['name'], $_POST['title'], $_POST['bio'], $_POST['image_url'], isset($_POST['is_keynote']) ? 1 : 0, $_POST['video_url'], $_POST['theme']]);
-        $admin_msg = "Speaker added successfully!";
-    }
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_speaker') {
-        $stmt = $pdo->prepare("DELETE FROM speakers WHERE id = ?");
-        $stmt->execute([$_POST['speaker_id']]);
-        $admin_msg = "Speaker deleted.";
-    }
-
-    // Accommodations CRUD
-    if (isset($_POST['action']) && $_POST['action'] === 'add_accommodation') {
-        $stmt = $pdo->prepare("INSERT INTO accommodations (hotel_name, description, booking_link, image_url) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$_POST['hotel_name'], $_POST['description'], $_POST['booking_link'], $_POST['image_url']]);
-        $admin_msg = "Accommodation added successfully!";
-    }
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_accommodation') {
-        $stmt = $pdo->prepare("DELETE FROM accommodations WHERE id = ?");
-        $stmt->execute([$_POST['accommodation_id']]);
-        $admin_msg = "Accommodation deleted.";
-    }
-
-    // Resources CRUD
-    if (isset($_POST['action']) && $_POST['action'] === 'add_resource') {
-        $file_url = '';
-        if (isset($_FILES['resource_file']) && $_FILES['resource_file']['error'] === UPLOAD_ERR_OK) {
-            $upload_dir = '../assets/resources/';
-            if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
-            $filename = time() . '_' . basename($_FILES['resource_file']['name']);
-            $target = $upload_dir . $filename;
-            if (move_uploaded_file($_FILES['resource_file']['tmp_name'], $target)) {
-                $file_url = 'assets/resources/' . $filename;
-            }
-        }
-        $stmt = $pdo->prepare("INSERT INTO resources (title, description, file_url, category, status) VALUES (?, ?, ?, ?, ?)");
-        $stmt->execute([$_POST['title'], $_POST['description'], $file_url, $_POST['category'], $_POST['status']]);
-        $admin_msg = "Resource added successfully!";
-    }
-    if (isset($_POST['action']) && $_POST['action'] === 'delete_resource') {
-        $stmt = $pdo->prepare("DELETE FROM resources WHERE id = ?");
-        $stmt->execute([$_POST['resource_id']]);
-        $admin_msg = "Resource deleted.";
-    }
-}
-
+// POST requests are now handled by api.php via AJAX
 
 // Fetch Data
 $stmt_reg = $pdo->query("SELECT * FROM registrations ORDER BY created_at DESC");
@@ -162,15 +53,17 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
-        function switchTab(tabId) {
+        function switchTab(tabId, el) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('border-green-600', 'text-green-600');
-                el.classList.add('border-transparent', 'text-slate-500');
+            document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                btn.classList.remove('bg-green-800', 'border-l-4', 'border-green-400');
+                btn.classList.add('text-green-100');
             });
             document.getElementById(tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).classList.remove('border-transparent', 'text-slate-500');
-            document.getElementById('btn-' + tabId).classList.add('border-green-600', 'text-green-600');
+            if (el) {
+                el.classList.add('bg-green-800', 'border-l-4', 'border-green-400');
+                el.classList.remove('text-green-100');
+            }
         }
         
         function switchMailerTab(formType) {
@@ -185,43 +78,34 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         }
     </script>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans antialiased">
-    <nav class="bg-green-900 text-white shadow-lg relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-3">
-                    <i class="fa-solid fa-shield-halved text-green-400 text-xl"></i>
-                    <span class="font-bold text-xl tracking-wide">Summit Admin Hub</span>
-                </div>
-                <div class="flex items-center gap-4">
-                    <span class="text-green-200 text-sm font-medium">Welcome, <?php echo htmlspecialchars($_SESSION['admin_user'] ?? 'Sadia'); ?>!</span>
-                    <a href="logout.php" class="bg-green-800 hover:bg-green-700 px-4 py-2 rounded-md font-medium transition text-sm flex items-center gap-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                </div>
-            </div>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-green-900 text-white flex flex-col shadow-xl flex-shrink-0 z-20 relative">
+        <div class="p-6 flex items-center gap-3 border-b border-green-800">
+            <i class="fa-solid fa-shield-halved text-green-400 text-2xl"></i>
+            <span class="font-bold text-xl tracking-wide">Admin Hub</span>
         </div>
-    </nav>
-    
-    <div class="bg-white shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex space-x-8 overflow-x-auto pb-2">
-                <button id="btn-tab-submissions" onclick="switchTab('tab-submissions')" class="tab-btn border-green-600 text-green-600 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-inbox mr-2"></i>Submissions</button>
-                <button id="btn-tab-partners" onclick="switchTab('tab-partners')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-handshake mr-2"></i>Partners</button>
-                <button id="btn-tab-speakers" onclick="switchTab('tab-speakers')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-microphone mr-2"></i>Speakers</button>
-                <button id="btn-tab-accommodations" onclick="switchTab('tab-accommodations')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-bed mr-2"></i>Accommodations</button>
-                <button id="btn-tab-news" onclick="switchTab('tab-news')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-regular fa-newspaper mr-2"></i>News & Updates</button>
-                <button id="btn-tab-resources" onclick="switchTab('tab-resources')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-folder-open mr-2"></i>Resources</button>
-                <button id="btn-tab-mailer" onclick="switchTab('tab-mailer')" class="tab-btn border-transparent text-slate-500 hover:text-slate-700 border-b-2 py-4 px-1 text-sm font-medium whitespace-nowrap focus:outline-none"><i class="fa-solid fa-envelope-open-text mr-2"></i>Mailer Settings</button>
-            </div>
+        <div class="p-4 flex-1 overflow-y-auto">
+            <nav class="flex flex-col gap-2">
+                <button onclick="switchTab('tab-submissions', this)" class="sidebar-btn bg-green-800 border-l-4 border-green-400 flex items-center gap-3 px-4 py-3 rounded-md text-left transition"><i class="fa-solid fa-inbox w-5"></i> Submissions</button>
+                <button onclick="switchTab('tab-partners', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-handshake w-5"></i> Partners</button>
+                <button onclick="switchTab('tab-speakers', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-microphone w-5"></i> Speakers</button>
+                <button onclick="switchTab('tab-accommodations', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-bed w-5"></i> Accommodations</button>
+                <button onclick="switchTab('tab-news', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-regular fa-newspaper w-5"></i> News</button>
+                <button onclick="switchTab('tab-resources', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-folder-open w-5"></i> Resources</button>
+                <button onclick="switchTab('tab-mailer', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-envelope-open-text w-5"></i> Mailer Settings</button>
+            </nav>
         </div>
-    </div>
+        <div class="p-4 border-t border-green-800">
+            <div class="mb-4 px-2 text-sm text-green-300">Logged in as <?php echo htmlspecialchars($_SESSION['admin_user'] ?? 'Admin'); ?></div>
+            <a href="logout.php" class="block w-full text-center bg-green-800 hover:bg-green-700 px-4 py-2 rounded-md font-medium transition text-sm flex items-center justify-center gap-2"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </aside>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <?php if($admin_msg): ?>
-            <div class="<?php echo $admin_msg_type === 'success' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700'; ?> px-4 py-3 rounded relative border mb-6" role="alert">
-              <span class="block sm:inline"><?php echo htmlspecialchars($admin_msg); ?></span>
-            </div>
-        <?php endif; ?>
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-slate-50 relative p-8">
+        <!-- Toast Container -->
+        <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2"></div>
 
         <!-- ==============================
              TAB 1: SUBMISSIONS
@@ -318,7 +202,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 <div class="lg:col-span-1">
                     <div class="bg-white shadow rounded-lg p-6">
                         <h3 class="text-lg font-bold mb-4">Add Partner</h3>
-                        <form method="POST">
+                        <form class="ajax-form" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_partner">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Partner Name</label>
@@ -330,7 +214,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Image URL</label>
-                                <input type="text" name="image_url" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
+                                <input type="file" name="image_file" accept="image/*" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
                             </div>
                             <div class="mb-4 flex items-center">
                                 <input type="checkbox" name="is_major" id="is_major" class="h-4 w-4 text-green-600 border-slate-300 rounded">
@@ -356,11 +240,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <td class="px-6 py-4"><div class="text-sm font-bold"><?php echo htmlspecialchars($p['name']); ?></div></td>
                                     <td class="px-6 py-4"><span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full <?php echo $p['is_major'] ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'; ?>"><?php echo $p['is_major'] ? 'Yes' : 'No'; ?></span></td>
                                     <td class="px-6 py-4 text-right">
-                                        <form method="POST" onsubmit="return confirm('Delete partner?');">
-                                            <input type="hidden" name="action" value="delete_partner">
-                                            <input type="hidden" name="partner_id" value="<?php echo $p['id']; ?>">
-                                            <button type="submit" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
-                                        </form>
+                                        <button type="button" onclick=\"ajaxDelete('delete_partner', 'partner_id', <?php echo $p['id']; ?>, this.closest('tr'), 'tab-partners')\"" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -379,7 +259,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 <div class="lg:col-span-1">
                     <div class="bg-white shadow rounded-lg p-6">
                         <h3 class="text-lg font-bold mb-4">Add Speaker</h3>
-                        <form method="POST">
+                        <form class="ajax-form" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_speaker">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Speaker Name</label>
@@ -395,7 +275,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Image URL</label>
-                                <input type="text" name="image_url" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
+                                <input type="file" name="image_file" accept="image/*" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Theme (Pillar)</label>
@@ -436,11 +316,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <td class="px-6 py-4 text-sm"><?php echo htmlspecialchars($s['theme']); ?></td>
                                     <td class="px-6 py-4"><span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full <?php echo $s['is_keynote'] ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'; ?>"><?php echo $s['is_keynote'] ? 'Yes' : 'No'; ?></span></td>
                                     <td class="px-6 py-4 text-right">
-                                        <form method="POST" onsubmit="return confirm('Delete speaker?');">
-                                            <input type="hidden" name="action" value="delete_speaker">
-                                            <input type="hidden" name="speaker_id" value="<?php echo $s['id']; ?>">
-                                            <button type="submit" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
-                                        </form>
+                                        <button type="button" onclick=\"ajaxDelete('delete_speaker', 'speaker_id', <?php echo $s['id']; ?>, this.closest('tr'), 'tab-speakers')\"" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -459,7 +335,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 <div class="lg:col-span-1">
                     <div class="bg-white shadow rounded-lg p-6">
                         <h3 class="text-lg font-bold mb-4">Add Accommodation</h3>
-                        <form method="POST">
+                        <form class="ajax-form" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_accommodation">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Hotel Name</label>
@@ -475,7 +351,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Image URL</label>
-                                <input type="text" name="image_url" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
+                                <input type="file" name="image_file" accept="image/*" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
                             </div>
                             <button type="submit" class="w-full bg-green-700 text-white font-medium py-2 px-4 rounded-md">Add Accommodation</button>
                         </form>
@@ -495,11 +371,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <tr>
                                     <td class="px-6 py-4"><div class="text-sm font-bold"><?php echo htmlspecialchars($a['hotel_name']); ?></div></td>
                                     <td class="px-6 py-4 text-right">
-                                        <form method="POST" onsubmit="return confirm('Delete accommodation?');">
-                                            <input type="hidden" name="action" value="delete_accommodation">
-                                            <input type="hidden" name="accommodation_id" value="<?php echo $a['id']; ?>">
-                                            <button type="submit" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
-                                        </form>
+                                        <button type="button" onclick=\"ajaxDelete('delete_accommodation', 'accommodation_id', <?php echo $a['id']; ?>, this.closest('tr'), 'tab-accommodations')\"" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -518,7 +390,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 <div class="lg:col-span-1">
                     <div class="bg-white shadow rounded-lg p-6">
                         <h3 class="text-lg font-bold mb-4">Publish News</h3>
-                        <form method="POST">
+                        <form class="ajax-form" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_news">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Headline Title</label>
@@ -526,7 +398,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Image URL</label>
-                                <input type="url" name="image_url" class="w-full border-slate-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" placeholder="https://..." required>
+                                <input type="file" name="image_file" accept="image/*" class="w-full border-slate-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm" required>
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Excerpt (Short description)</label>
@@ -559,11 +431,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                             <div class="text-sm font-bold text-slate-900"><?php echo htmlspecialchars($news['title']); ?></div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this article?');">
-                                                <input type="hidden" name="action" value="delete_news">
-                                                <input type="hidden" name="news_id" value="<?php echo $news['id']; ?>">
-                                                <button type="submit" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
-                                            </form>
+                                            <button type="button" onclick=\"ajaxDelete('delete_news', 'news_id', <?php echo $news['id']; ?>, this.closest('tr'), 'tab-news')\"" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -597,7 +465,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     <h3 class="text-lg font-bold text-slate-800 mb-1">General / Contact Form</h3>
                     <p class="text-sm text-slate-500 mb-6">Default settings used by the general contact form.</p>
                     
-                    <form method="POST">
+                    <form class="ajax-form" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_mailer_settings">
                         <input type="hidden" name="form_type" value="contact">
                         
@@ -646,7 +514,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     <h3 class="text-lg font-bold text-slate-800 mb-1">Registration Form</h3>
                     <p class="text-sm text-slate-500 mb-6">Settings used for delegate and sponsorship registrations.</p>
                     
-                    <form method="POST">
+                    <form class="ajax-form" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_mailer_settings">
                         <input type="hidden" name="form_type" value="registration">
                         
@@ -700,7 +568,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             
             <div class="bg-white shadow rounded-lg p-6 mb-8">
                 <h3 class="text-lg font-bold mb-4 border-b pb-2">Add New Resource</h3>
-                <form method="POST" enctype="multipart/form-data">
+                <form class="ajax-form" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="add_resource">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
@@ -767,11 +635,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <?php endif; ?>
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
-                                <form method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this resource?');">
-                                    <input type="hidden" name="action" value="delete_resource">
-                                    <input type="hidden" name="resource_id" value="<?php echo $res['id']; ?>">
-                                    <button type="submit" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
-                                </form>
+                                <button type="button" onclick=\"ajaxDelete('delete_resource', 'resource_id', <?php echo $res['id']; ?>, this.closest('tr'), 'tab-resources')\"" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -784,5 +648,106 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         </div>
 
     </main>
+    <script>
+        function showToast(message, type='success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `px-4 py-3 rounded shadow-lg text-white font-medium flex items-center gap-2 transform transition-all duration-300 translate-x-full ${type === 'success' ? 'bg-green-600' : 'bg-red-600'}`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-check-circle' : 'fa-triangle-exclamation'}"></i> ${message}`;
+            container.appendChild(toast);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-x-full');
+            });
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        async function refreshTable(tabId) {
+            try {
+                const response = await fetch(window.location.href);
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                const currentTable = document.querySelector(`#${tabId} tbody`);
+                const newTable = doc.querySelector(`#${tabId} tbody`);
+                
+                if(currentTable && newTable) {
+                    currentTable.innerHTML = newTable.innerHTML;
+                }
+            } catch (err) {
+                console.error("Failed to refresh table", err);
+            }
+        }
+
+        document.querySelectorAll('.ajax-form').forEach(form => {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Saving...';
+                btn.disabled = true;
+                
+                try {
+                    const formData = new FormData(form);
+                    const res = await fetch('api.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await res.json();
+                    
+                    if (data.success) {
+                        showToast(data.message, 'success');
+                        form.reset();
+                        // Find which tab we are in
+                        const tab = form.closest('.tab-content');
+                        if (tab) {
+                            await refreshTable(tab.id);
+                        }
+                    } else {
+                        showToast(data.message, 'error');
+                    }
+                } catch (err) {
+                    showToast('Network error occurred.', 'error');
+                } finally {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            });
+        });
+
+        async function ajaxDelete(action, idKey, idVal, rowElement, tabId) {
+            if(!confirm('Are you sure you want to delete this record?')) return;
+            
+            const formData = new FormData();
+            formData.append('action', action);
+            formData.append(idKey, idVal);
+            
+            try {
+                const res = await fetch('api.php', { method: 'POST', body: formData });
+                const data = await res.json();
+                
+                if (data.success) {
+                    showToast(data.message, 'success');
+                    // Animate row out
+                    rowElement.style.transition = 'opacity 0.3s ease';
+                    rowElement.style.opacity = '0';
+                    setTimeout(() => {
+                        rowElement.remove();
+                    }, 300);
+                } else {
+                    showToast(data.message, 'error');
+                }
+            } catch (err) {
+                showToast('Network error occurred.', 'error');
+            }
+        }
+    </script>
 </body>
 </html>
