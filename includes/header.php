@@ -78,7 +78,9 @@
               padding-bottom: 1rem;
           }
           .dynamic-col img { height: auto; max-height: 120px; }
+          .mobile-mega-btn { display: list-item !important; }
       }
+      .mobile-mega-btn { display: none; }
 
     </style>
 </head>
@@ -124,6 +126,7 @@
                         <li class="nav-item-mega" data-mega="resources"><a href="resources">Resources</a></li>
                         <li><a href="news">News</a></li>
                         <li><a href="contact">Contact</a></li>
+                        <li class="mobile-mega-btn"><a href="#" id="mobile-mega-trigger">Explore More <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 0.5rem;"></i></a></li>
                     </ul>
                 </nav>
                 
@@ -214,6 +217,7 @@
 
             megaItems.forEach(item => {
                 item.addEventListener('mouseenter', () => {
+                    if (window.innerWidth <= 950) return; // Ignore hover on mobile
                     clearTimeout(megaTimeout);
                     const key = item.getAttribute('data-mega');
                     if(megaData[key]) {
@@ -227,6 +231,7 @@
                 });
                 
                 item.addEventListener('mouseleave', () => {
+                    if (window.innerWidth <= 950) return; // Ignore on mobile
                     megaTimeout = setTimeout(() => {
                         globalMegaMenu.classList.remove('active');
                     }, 200);
@@ -235,12 +240,40 @@
 
             if(globalMegaMenu) {
                 globalMegaMenu.addEventListener('mouseenter', () => {
+                    if (window.innerWidth <= 950) return;
                     clearTimeout(megaTimeout);
                 });
                 globalMegaMenu.addEventListener('mouseleave', () => {
+                    if (window.innerWidth <= 950) return;
                     megaTimeout = setTimeout(() => {
                         globalMegaMenu.classList.remove('active');
                     }, 200);
+                });
+            }
+
+            /* ── Mobile Explore More Toggle ── */
+            const mobileMegaTrigger = document.getElementById('mobile-mega-trigger');
+            if (mobileMegaTrigger) {
+                mobileMegaTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isActive = globalMegaMenu.classList.contains('active');
+                    
+                    if (!isActive) {
+                        // Ensure dynamic col has some default content on mobile
+                        if (dynamicCol.innerHTML.trim() === '') {
+                            const defaultKey = 'about';
+                            dynamicCol.innerHTML = `
+                                <img src="${megaData[defaultKey].img}" alt="${megaData[defaultKey].title}">
+                                <h3>${megaData[defaultKey].title}</h3>
+                                <p>${megaData[defaultKey].desc}</p>
+                            `;
+                        }
+                        globalMegaMenu.classList.add('active');
+                        mobileMegaTrigger.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
+                    } else {
+                        globalMegaMenu.classList.remove('active');
+                        mobileMegaTrigger.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
+                    }
                 });
             }
 
