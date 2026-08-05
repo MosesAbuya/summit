@@ -522,7 +522,7 @@ function closeVideoModal() {
             <p class="subtitle mt-1">Latest announcements and impact stories from the Summit.</p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             <?php if (count($latest_news) > 0): ?>
                 <?php foreach($latest_news as $news): ?>
                     <div class="african-frame" style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; cursor: pointer;" onclick="window.location.href='news_article?id=<?php echo $news['id']; ?>'">

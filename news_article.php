@@ -24,7 +24,7 @@ if (!$article) {
 include 'includes/header.php'; 
 ?>
 
-<div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('<?php echo htmlspecialchars($article['image_url']); ?>') center/cover; padding: 8rem 0 4rem; text-align: left; color: white;">
+<div class="page-header" style="background: var(--primary-color); padding: 8rem 0 4rem; text-align: left; color: white;">
     <div class="container" style="max-width: 800px;">
         <span class="badge" style="background: var(--terracotta); color: white; margin-bottom: 1rem; display: inline-block;">
             <?php echo date('F d, Y', strtotime($article['created_at'])); ?>
@@ -47,12 +47,16 @@ include 'includes/header.php';
                 </a>
             </div>
             
+            <?php if($article['image_url']): ?>
+            <div style="margin-bottom: 3rem; border-radius: var(--border-radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+                <img src="<?php echo htmlspecialchars($article['image_url']); ?>" alt="Featured Photo" style="width: 100%; height: auto; object-fit: cover;">
+            </div>
+            <?php endif; ?>
+            
             <div class="article-content" style="font-size: 1.1rem; line-height: 1.8; color: var(--text-main);">
                 <?php 
-                // Using nl2br to convert newlines to paragraphs/breaks
-                // This is a simple formatting approach for standard text content
-                $content = htmlspecialchars($article['content']);
-                echo nl2br($content); 
+                // Render raw HTML from TinyMCE
+                echo $article['content']; 
                 ?>
             </div>
 
