@@ -114,7 +114,7 @@
                     </div>
                 </a>
             </div>
-            <div class="nav-wrapper" style="position: relative;">
+            <div class="nav-wrapper">
                 <nav class="main-nav">
                     <ul style="gap: 1rem; position: relative;">
                         <li><a href="index">Home</a></li>
