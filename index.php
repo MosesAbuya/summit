@@ -391,7 +391,8 @@ include 'includes/header.php';
         </h2>
         
         <p style="font-size: 1.25rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 3rem; font-weight: 300; border-left: 4px solid var(--terracotta); padding-left: 1.5rem;">
-            After transforming communities across New York, Berlin, Singapore, and Mumbai, the Global Pro Bono Summit makes its historic debut in Nairobi. Join us as we center African voices, drive sustainable impact, and ignite a new era of professional volunteerism.
+            After making its transformative impacts on Pro Bono Practitioners and Subsidiaries in the Americas, Europe, and Asia... the Global Pro Bono Summit makes its historic debut in the youthful continent of Africa, in Nairobi, the capital city of Kenya and Africa's premier meeting venue.<br><br>
+            Join us as we center and amplify African voices, drive sustainable pro bono impact, and ignite a continental era of professional volunteerism... in the Americas.
         </p>
         
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -507,7 +508,7 @@ include 'includes/header.php';
         </div>
         
         <div class="venue-grid mt-4">
-            <div class="venue-card" style="background-image: url('assets/venues/placeholder_venue_1.jpg');">
+            <div class="venue-card" style="background-image: url('assets/venues/kicc.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 1</span>
@@ -517,7 +518,7 @@ include 'includes/header.php';
                     <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/venues/kicc.jpg');">
+            <div class="venue-card" style="background-image: url('assets/strath.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
@@ -537,7 +538,7 @@ include 'includes/header.php';
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/strath.jpg');">
+            <div class="venue-card" style="background-image: url('assets/venues/placeholder_gala.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 4</span>
