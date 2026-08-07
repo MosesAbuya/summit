@@ -77,7 +77,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         });
         
         function editRecord(tabId, dataStr, actionName) {
-            const data = JSON.parse(dataStr.replace(/&quot;/g, '"'));
+            const data = JSON.parse(atob(dataStr));
             const tab = document.getElementById(tabId);
             const form = tab.querySelector('form.ajax-form');
             if(!form) return;
@@ -321,7 +321,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <td class="px-6 py-4"><div class="text-sm font-bold"><?php echo htmlspecialchars($p['name']); ?></div></td>
                                     <td class="px-6 py-4"><span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full <?php echo $p['is_major'] ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'; ?>"><?php echo $p['is_major'] ? 'Yes' : 'No'; ?></span></td>
                                     <td class="px-6 py-4 text-right">
-                                        <button type="button" onclick="editRecord('tab-partners', '<?php echo htmlspecialchars(json_encode($p), ENT_QUOTES, 'UTF-8'); ?>', 'update_partner')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
+                                        <button type="button" onclick="editRecord('tab-partners', '<?php echo base64_encode(json_encode($p)); ?>', 'update_partner')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
                                         <button type="button" onclick="ajaxDelete('delete_partner', 'partner_id', <?php echo $p['id']; ?>, this.closest('tr'), 'tab-partners')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
@@ -398,7 +398,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <td class="px-6 py-4 text-sm"><?php echo htmlspecialchars($s['theme']); ?></td>
                                     <td class="px-6 py-4"><span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full <?php echo $s['is_keynote'] ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'; ?>"><?php echo $s['is_keynote'] ? 'Yes' : 'No'; ?></span></td>
                                     <td class="px-6 py-4 text-right">
-                                        <button type="button" onclick="editRecord('tab-speakers', '<?php echo htmlspecialchars(json_encode($s), ENT_QUOTES, 'UTF-8'); ?>', 'update_speaker')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
+                                        <button type="button" onclick="editRecord('tab-speakers', '<?php echo base64_encode(json_encode($s)); ?>', 'update_speaker')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
                                         <button type="button" onclick="ajaxDelete('delete_speaker', 'speaker_id', <?php echo $s['id']; ?>, this.closest('tr'), 'tab-speakers')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
@@ -454,7 +454,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <tr>
                                     <td class="px-6 py-4"><div class="text-sm font-bold"><?php echo htmlspecialchars($a['hotel_name']); ?></div></td>
                                     <td class="px-6 py-4 text-right">
-                                        <button type="button" onclick="editRecord('tab-accommodations', '<?php echo htmlspecialchars(json_encode($a), ENT_QUOTES, 'UTF-8'); ?>', 'update_accommodation')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
+                                        <button type="button" onclick="editRecord('tab-accommodations', '<?php echo base64_encode(json_encode($a)); ?>', 'update_accommodation')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
                                         <button type="button" onclick="ajaxDelete('delete_accommodation', 'accommodation_id', <?php echo $a['id']; ?>, this.closest('tr'), 'tab-accommodations')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
@@ -515,7 +515,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                             <div class="text-sm font-bold text-slate-900"><?php echo htmlspecialchars($news['title']); ?></div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <button type="button" onclick="editRecord('tab-news', '<?php echo htmlspecialchars(json_encode($news), ENT_QUOTES, 'UTF-8'); ?>', 'update_news')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
+                                            <button type="button" onclick="editRecord('tab-news', '<?php echo base64_encode(json_encode($news)); ?>', 'update_news')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
                                             <button type="button" onclick="ajaxDelete('delete_news', 'news_id', <?php echo $news['id']; ?>, this.closest('tr'), 'tab-news')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                         </td>
                                     </tr>
@@ -720,7 +720,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <?php endif; ?>
                             </td>
                             <td class="px-6 py-4 text-right text-sm font-medium">
-                                <button type="button" onclick="editRecord('tab-resources', '<?php echo htmlspecialchars(json_encode($res), ENT_QUOTES, 'UTF-8'); ?>', 'update_resource')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i></button>
+                                <button type="button" onclick="editRecord('tab-resources', '<?php echo base64_encode(json_encode($res)); ?>', 'update_resource')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i></button>
                                 <button type="button" onclick="ajaxDelete('delete_resource', 'resource_id', <?php echo $res['id']; ?>, this.closest('tr'), 'tab-resources')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
