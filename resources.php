@@ -13,6 +13,10 @@ $stmt_media = $pdo->prepare("SELECT * FROM resources WHERE category = 'Media Too
 $stmt_media->execute();
 $media = $stmt_media->fetchAll();
 
+$stmt_historical = $pdo->prepare("SELECT * FROM resources WHERE category = 'Historical Report' ORDER BY title DESC");
+$stmt_historical->execute();
+$historical_reports = $stmt_historical->fetchAll();
+
 include 'includes/header.php'; 
 ?>
 
@@ -85,6 +89,37 @@ include 'includes/header.php';
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p style="color: var(--text-muted);">More case studies will be published soon.</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <section id="historical-reports" class="section bg-dark text-light" style="scroll-margin-top: 8rem; background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('https://globalprobono.org/wp-content/uploads/2018/02/Lisbon-2017-recap-cover.jpg') center/cover; padding: 6rem 0; color: white;">
+        <div class="container" style="max-width: 900px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;">
+                <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); color: var(--terracotta); display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.5rem;">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </div>
+                <h2 style="color: white; margin: 0;">Past Global Summit Reports</h2>
+            </div>
+
+            <div style="display: grid; gap: 1.5rem;">
+                <?php if (count($historical_reports) > 0): ?>
+                    <?php foreach($historical_reports as $hr): ?>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; backdrop-filter: blur(10px);">
+                        <div style="flex: 1; min-width: 250px;">
+                            <h4 style="margin: 0 0 0.25rem 0; color: white;"><?php echo htmlspecialchars($hr['title']); ?></h4>
+                            <p style="margin: 0; color: rgba(255,255,255,0.7); font-size: 0.95rem;"><?php echo htmlspecialchars($hr['description']); ?></p>
+                        </div>
+                        <?php if (!empty($hr['file_url'])): ?>
+                            <a href="<?php echo htmlspecialchars($hr['file_url']); ?>" target="_blank" class="btn btn-outline" style="min-width: 120px; color: white; border-color: rgba(255,255,255,0.3);"><i class="fa-solid fa-download"></i> Download</a>
+                        <?php else: ?>
+                            <button class="btn btn-outline" style="min-width: 120px; color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.2);" disabled><i class="fa-solid fa-lock"></i> Coming Soon</button>
+                        <?php endif; ?>
+                    </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: rgba(255,255,255,0.7);">Check back soon for historical reports.</p>
                 <?php endif; ?>
             </div>
         </div>

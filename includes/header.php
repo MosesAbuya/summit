@@ -145,6 +145,7 @@
                             <li><a href="program" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Summit Program Tracks</a></li>
                             <li><a href="speakers" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Keynote Speakers</a></li>
                             <li><a href="logistics" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Delegate Logistics</a></li>
+                            <li><a href="resources#historical-reports" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Past Global Summit Reports</a></li>
                         </ul>
                     </div>
                     <div class="mega-static-col">

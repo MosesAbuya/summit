@@ -27,7 +27,7 @@
                         <span class="badge" style="background: rgba(193, 68, 14, 0.1); color: var(--terracotta); margin-bottom: 1rem; display: inline-block;">Day 4 Integration</span>
                         <h3 style="color: #0f172a; margin-bottom: 0.5rem;">Nairobi National Park Game Drive</h3>
                         <p style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Half-Day Experience (6:00 AM - 1:00 PM)</p>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">Formally integrated into Day 4 of the Summit. Experience wildlife against the city skyline before returning to the Nairobi Safari Club for the closing Gala Dinner.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; flex-grow: 1;">Formally integrated into Day 4 of the Summit. Experience wildlife against the city skyline before returning to the venue for the closing Gala Dinner.</p>
                         <a href="contact" class="btn btn-outline" style="margin-top: 1.5rem; text-align: center;">Enquire Package</a>
                     </div>
                 </div>

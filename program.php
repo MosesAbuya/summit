@@ -54,53 +54,17 @@
                         <div>
                             <div class="accordion-day">Day 1 • November 24, 2026</div>
                             <h3 class="accordion-title">Vision Setting & Thematic Alignments</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> UON Main Hall</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
                         <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit kicks off at the historic University of Nairobi. This day focuses on bridging student innovation with established corporate pro-bono architectures, building the pipeline of future impact leaders.</p>
-                        <ul class="timeline-list">
-                            <li class="timeline-item">
-                                <span class="time-badge">01:00 PM - 02:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Delegate Registration & Welcoming of Guests</h4>
-                                <div class="timeline-speaker">Arrival and Accreditation</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">02:00 PM - 02:40 PM</span>
-                                <h4 style="font-size: 1.25rem;">Official Opening Ceremony & Leadership Speeches</h4>
-                                <div class="timeline-speaker">Welcome by organizers & Opening Address by High-level Kenya Government representative</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">02:40 PM - 03:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Keynote Session Phase I</h4>
-                                <div class="timeline-speaker">Pillar I & Pillar II</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">03:00 PM - 03:45 PM</span>
-                                <h4 style="font-size: 1.25rem;">High-Level Panel Discussion</h4>
-                                <div class="timeline-speaker">Operationalizing professional service to address Pillar I & II</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">03:45 PM - 04:10 PM</span>
-                                <h4 style="font-size: 1.25rem;">Networking Coffee & Tea Break</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">04:10 PM - 04:30 PM</span>
-                                <h4 style="font-size: 1.25rem;">Keynote Session Phase II</h4>
-                                <div class="timeline-speaker">Pillar III & Pillar IV</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">04:30 PM - 05:15 PM</span>
-                                <h4 style="font-size: 1.25rem;">High-Level Panel Discussion</h4>
-                                <div class="timeline-speaker">Connecting technical expertise with local innovations</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">06:30 PM - 09:30 PM</span>
-                                <h4 style="font-size: 1.25rem;">Official Welcoming & Opening Dinner</h4>
-                                <div class="timeline-speaker">East African cultural entertainment showcase</div>
-                            </li>
-                        </ul>
+                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -110,42 +74,17 @@
                         <div>
                             <div class="accordion-day">Day 2 • November 25, 2026</div>
                             <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar I & II)</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> KRA Hall & Experiential Sites</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
                         <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">A deep dive into regulatory frameworks and direct engagement on poverty reduction and quality education.</p>
-                        <ul class="timeline-list">
-                            <li class="timeline-item">
-                                <span class="time-badge">08:00 AM - 09:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</h4>
-                                <div class="timeline-speaker">Microfinance, property rights, women/youth enterprise funding</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">09:30 AM - 10:00 AM</span>
-                                <h4 style="font-size: 1.25rem;">Mid-Morning Tea & Refreshments Break</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">10:00 AM - 11:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Pillar II: Education, Skills Development and Future Leadership</h4>
-                                <div class="timeline-speaker">Digital learning platforms, university tutoring</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">11:30 AM - 01:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Parallel Break-Out Sessions: Co-Creating Blueprints</h4>
-                                <div class="timeline-speaker">Track A: Food Security | Track B: Youth Tech Mentorship | Track C: Governance & Accountability</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">01:00 PM - 02:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Luncheon</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">02:00 PM - 05:30 PM</span>
-                                <h4 style="font-size: 1.25rem;">Experiential Field Visits: Pro Bono in True Practice</h4>
-                                <div class="timeline-speaker">VIP Shuttles to Option 1: Safaricom HQ/Digital Hub OR Option 2: Strathmore Univ. Community Clinics</div>
-                            </li>
-                        </ul>
+                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -155,42 +94,17 @@
                         <div>
                             <div class="accordion-day">Day 3 • November 26, 2026</div>
                             <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar III & IV)</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> KICC Plenary & Experiential Sites</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
                         <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">Focusing on decent work, economic growth, and climate action. Featuring high-level global networking.</p>
-                        <ul class="timeline-list">
-                            <li class="timeline-item">
-                                <span class="time-badge">08:00 AM - 09:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Pillar III: Decent Work, Institutional Excellence and Professional Service</h4>
-                                <div class="timeline-speaker">Corporate volunteering with SMEs, tech/finance mentoring</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">09:30 AM - 10:00 AM</span>
-                                <h4 style="font-size: 1.25rem;">Mid-Morning Tea & Refreshments Break</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">10:00 AM - 11:30 AM</span>
-                                <h4 style="font-size: 1.25rem;">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</h4>
-                                <div class="timeline-speaker">Engineers & agronomists for drought resistance; UNEA-7 alignment</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">11:30 AM - 01:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Parallel Break-Out Sessions: Co-Creating Blueprints</h4>
-                                <div class="timeline-speaker">Track A: Capacity Frameworks for Job Creation | Track B: Community Adaptation | Track C: Gender Inclusion</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">01:00 PM - 02:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Luncheon</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">02:00 PM - 05:30 PM</span>
-                                <h4 style="font-size: 1.25rem;">Experiential Field Visits: Pro Bono in True Practice</h4>
-                                <div class="timeline-speaker">VIP Shuttles to Option 1: UNEP Regional Offices / NEMA OR Option 2: Kenya Red Cross Innovation Hub</div>
-                            </li>
-                        </ul>
+                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -200,38 +114,17 @@
                         <div>
                             <div class="accordion-day">Day 4 • November 27, 2026</div>
                             <h3 class="accordion-title">Ecological Stewardship & Accord Ratification</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Nairobi Safari Club / National Park</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
                         <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit concludes with an elegant evening of celebration and reflection. We honor the outstanding corporations, foundations, and individuals driving impactful pro-bono projects across the continent.</p>
-                        <ul class="timeline-list">
-                            <li class="timeline-item">
-                                <span class="time-badge">06:00 AM - 12:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Ecological Immersive Experience: Nairobi National Park</h4>
-                                <div class="timeline-speaker">Early morning Game Ride & Corporate-sponsored Tree Planting Ceremony</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">12:00 PM - 03:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">Mid-Day Intermission & Free Time</h4>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">03:00 PM - 04:30 PM</span>
-                                <h4 style="font-size: 1.25rem;">Closing Plenary & Accord Ratification Ceremony</h4>
-                                <div class="timeline-speaker">Signing of the "Nairobi Pro Bono Accord/Declaration"</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">04:30 PM - 06:00 PM</span>
-                                <h4 style="font-size: 1.25rem;">The Africa Pro Bono Awards Ceremony</h4>
-                                <div class="timeline-speaker">Celebrating cross-sector partnerships, corporate ESG, and grassroots CSOs</div>
-                            </li>
-                            <li class="timeline-item">
-                                <span class="time-badge">06:00 PM - Late</span>
-                                <h4 style="font-size: 1.25rem;">Grand Gala Closing Dinner & Celebration</h4>
-                                <div class="timeline-speaker">Live performance by a premier African band</div>
-                            </li>
-                        </ul>
+                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
+                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
+                        </div>
                     </div>
                 </div>
 

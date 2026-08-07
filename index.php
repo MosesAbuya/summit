@@ -56,7 +56,7 @@ include 'includes/header.php';
 
     <!-- Slide 1 -->
     <div class="carousel-slide active" data-index="0">
-        <img class="carousel-bg" src="assets/hero_slide_1.png" alt="Summit Main">
+        <img class="carousel-bg" src="assets/hero_slide_1_v3.jpg" alt="Summit Main">
         <div class="carousel-content">
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Nov 24-27 • Nairobi, Kenya</span>
             <h1 class="carousel-title" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">GLOBAL SUMMIT ON<br>PRO BONO PRACTICE<br>AFRICA</h1>
@@ -101,7 +101,7 @@ include 'includes/header.php';
         <div class="carousel-content">
             <span style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Day 4 Conclusion</span>
             <h1 class="carousel-title">The Global Impact<br>Awards Gala</h1>
-            <p class="carousel-subtitle">Join us at the Nairobi Safari Club for a night of elegance, celebrating the pioneers of Pan-African volunteerism.</p>
+            <p class="carousel-subtitle">Join us for a night of elegance, celebrating the pioneers of Pan-African volunteerism.</p>
             <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="program#day4" class="btn btn-secondary btn-lg" style="color: #000;">View Gala Details</a>
             </div>
@@ -110,7 +110,7 @@ include 'includes/header.php';
 
     <div class="carousel-thumbnails">
         <div class="thumb active" data-target="0">
-            <img src="assets/hero_slide_1.png">
+            <img src="assets/hero_slide_1_v3.jpg">
             <div class="thumb-label">The Summit</div>
         </div>
         <div class="thumb" data-target="1">
@@ -205,6 +205,18 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- First Time in Africa CTA -->
+<section class="section" style="background: var(--bg-alt); padding: 4rem 0;">
+    <div class="container" style="text-align: center; max-width: 800px;">
+        <span class="badge" style="background: rgba(193, 68, 14, 0.1); color: var(--terracotta); margin-bottom: 1rem; display: inline-block;">A Historic Milestone</span>
+        <h2 style="font-size: 2.5rem; color: #0f172a; margin-bottom: 1.5rem; font-family: var(--font-heading);">Coming to Africa for the First Time</h2>
+        <p style="font-size: 1.15rem; line-height: 1.8; color: var(--text-main); margin-bottom: 2rem;">
+            The Global Pro Bono Summit has been a catalyst for change worldwide—convening leaders in New York, San Francisco, Berlin, Singapore, Lisbon, and Mumbai. Now, this global movement arrives in Nairobi, marking a historic first for the African continent.
+        </p>
+        <a href="resources#historical-reports" class="btn btn-outline">Explore Past Global Summits</a>
     </div>
 </section>
 
@@ -317,9 +329,9 @@ include 'includes/header.php';
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 1</span>
-                    <h3>UON Main Hall</h3>
+                    <h3>Venue to be confirmed</h3>
                     <p class="venue-event">Future Leaders & Academia</p>
-                    <p class="venue-desc">Kicking off the summit at the University of Nairobi, bridging the gap between student innovation and corporate pro-bono architectures.</p>
+                    <p class="venue-desc">Kicking off the summit, bridging the gap between student innovation and corporate pro-bono architectures.</p>
                     <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
@@ -327,9 +339,9 @@ include 'includes/header.php';
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
-                    <h3>KRA Hall</h3>
+                    <h3>Venue to be confirmed</h3>
                     <p class="venue-event">Policy, Compliance & ESG</p>
-                    <p class="venue-desc">A deep dive into regulatory frameworks and corporate governance, hosted at the prestigious Kenya Revenue Authority complex.</p>
+                    <p class="venue-desc">A deep dive into regulatory frameworks and corporate governance and policy.</p>
                     <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
@@ -337,9 +349,9 @@ include 'includes/header.php';
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 3</span>
-                    <h3>KICC Plenary</h3>
+                    <h3>Venue to be confirmed</h3>
                     <p class="venue-event">Global Networking & Main Summit</p>
-                    <p class="venue-desc">The primary institutional gathering at the Kenyatta International Convention Centre, featuring global keynotes and strategy sessions.</p>
+                    <p class="venue-desc">The primary institutional gathering featuring global keynotes and strategy sessions.</p>
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
@@ -347,7 +359,7 @@ include 'includes/header.php';
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 4</span>
-                    <h3>Nairobi Safari Club</h3>
+                    <h3>Venue to be confirmed</h3>
                     <p class="venue-event">Gala Dinner & Impact Awards</p>
                     <p class="venue-desc">Closing the summit with an elegant evening of celebration, recognizing outstanding pro-bono contributions across Africa.</p>
                     <a href="program#day4" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
@@ -522,7 +534,7 @@ function closeVideoModal() {
             <p class="subtitle mt-1">Latest announcements and impact stories from the Summit.</p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div class="grid-3-col" style="margin-top: 3rem;">
             <?php if (count($latest_news) > 0): ?>
                 <?php foreach($latest_news as $news): ?>
                     <div class="african-frame" style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; cursor: pointer;" onclick="window.location.href='news_article?id=<?php echo $news['id']; ?>'">
@@ -546,8 +558,8 @@ function closeVideoModal() {
             <?php endif; ?>
         </div>
         
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="news" class="btn btn-outline" style="border-color: #cbd5e1; color: var(--text-main);">View All News</a>
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="news" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;"><i class="fa-solid fa-newspaper" style="margin-right: 0.5rem;"></i> View All News Updates</a>
         </div>
     </div>
 </section>
@@ -637,11 +649,11 @@ function closeVideoModal() {
             <?php endif; ?>
         </div>
 
-        <div class="network-marquee" style="margin-top: 4rem;">
-            <p class="marquee-title">Proud members of the Global Pro Bono Network</p>
-            <div class="marquee-track">
-                <span>Continental Impact</span> • <span>Jitolee Foundation</span> • <span>Africa NGO Council</span> • <span>Global Pro Bono Network</span>
-            </div>
+        <div class="gpbn-cta" style="margin-top: 4rem; padding: 4rem 2rem; background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)), url('assets/gpbn_cta_bg.jpg') center/cover; border-radius: var(--border-radius-lg); text-align: center; color: white; box-shadow: var(--shadow-lg);">
+            <img src="assets/globalprobono.png" alt="Global Pro Bono Network" style="max-height: 90px; margin: 0 auto 1.5rem; filter: brightness(0) invert(1);">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white; font-family: var(--font-heading);">A Proud Member of the Global Pro Bono Network</h3>
+            <p style="font-size: 1.15rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6;">Connecting with visionary leaders worldwide to drive sustainable impact and empower communities across continents through professional volunteerism.</p>
+            <a href="https://globalprobono.org" target="_blank" class="btn btn-primary btn-lg" style="background: var(--terracotta); border-color: var(--terracotta); color: white;">Explore The Network &rarr;</a>
         </div>
     </div>
 </section>
