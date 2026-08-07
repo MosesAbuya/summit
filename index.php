@@ -507,7 +507,7 @@ include 'includes/header.php';
         </div>
         
         <div class="venue-grid mt-4">
-            <div class="venue-card" style="background-image: url('assets/venues/uon.jpg');">
+            <div class="venue-card" style="background-image: url('assets/venues/placeholder_venue_1.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 1</span>
@@ -527,7 +527,7 @@ include 'includes/header.php';
                     <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/strath.jpg');">
+            <div class="venue-card" style="background-image: url('assets/venues/placeholder_venue_3.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 3</span>
@@ -537,7 +537,7 @@ include 'includes/header.php';
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/venues/nairobisafariclub.jpg');">
+            <div class="venue-card" style="background-image: url('assets/strath.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 4</span>
