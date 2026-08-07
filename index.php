@@ -517,7 +517,7 @@ include 'includes/header.php';
                     <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/venues/kra.jpg');">
+            <div class="venue-card" style="background-image: url('assets/venues/kicc.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
