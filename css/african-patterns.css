@@ -1,7 +1,7 @@
 /* ============================================================
    AFRICAN PATTERNS & THEME - Global Pro Bono Summit Africa
    A comprehensive Africanization layer for the entire website.
-   Patterns are pure CSS/SVG — zero external assets.
+   Patterns are pure CSS/SVG   zero external assets.
    ============================================================ */
 
 /* --------------------------------
@@ -32,10 +32,10 @@
   /* ── Pattern: Ankara Bold (Diamonds & Chevrons) ── */
   --pattern-ankara: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Crect width='48' height='48' fill='none'/%3E%3Cpolygon points='24,4 44,24 24,44 4,24' fill='none' stroke='%23D4A017' stroke-width='1.5' opacity='0.22'/%3E%3Cpolygon points='24,12 36,24 24,36 12,24' fill='%23C1440E' opacity='0.08'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%23D4A017' opacity='0.2'/%3E%3Ccircle cx='24' cy='4' r='1.5' fill='%23C1440E' opacity='0.2'/%3E%3Ccircle cx='44' cy='24' r='1.5' fill='%23C1440E' opacity='0.2'/%3E%3Ccircle cx='24' cy='44' r='1.5' fill='%23C1440E' opacity='0.2'/%3E%3Ccircle cx='4' cy='24' r='1.5' fill='%23C1440E' opacity='0.2'/%3E%3C/svg%3E");
 
-  /* ── Pattern: Shweshwe (Fine dots & circles — South African) ── */
+  /* ── Pattern: Shweshwe (Fine dots & circles   South African) ── */
   --pattern-shweshwe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect width='24' height='24' fill='none'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%232D6A4F' opacity='0.1'/%3E%3Ccircle cx='0' cy='0' r='1' fill='%23D4A017' opacity='0.08'/%3E%3Ccircle cx='24' cy='0' r='1' fill='%23D4A017' opacity='0.08'/%3E%3Ccircle cx='0' cy='24' r='1' fill='%23D4A017' opacity='0.08'/%3E%3Ccircle cx='24' cy='24' r='1' fill='%23D4A017' opacity='0.08'/%3E%3Ccircle cx='12' cy='0' r='0.75' fill='%23C1440E' opacity='0.06'/%3E%3Ccircle cx='0' cy='12' r='0.75' fill='%23C1440E' opacity='0.06'/%3E%3Ccircle cx='24' cy='12' r='0.75' fill='%23C1440E' opacity='0.06'/%3E%3Ccircle cx='12' cy='24' r='0.75' fill='%23C1440E' opacity='0.06'/%3E%3C/svg%3E");
 
-  /* ── Kente Strip (for dividers & borders — high contrast) ── */
+  /* ── Kente Strip (for dividers & borders   high contrast) ── */
   --pattern-kente-strip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12'%3E%3Crect x='0' y='0' width='20' height='6' fill='%23C1440E'/%3E%3Crect x='0' y='6' width='20' height='6' fill='%23D4A017'/%3E%3Crect x='0' y='0' width='4' height='12' fill='%232D6A4F' opacity='0.7'/%3E%3Crect x='8' y='0' width='4' height='12' fill='%232D6A4F' opacity='0.7'/%3E%3Crect x='16' y='0' width='4' height='12' fill='%232D6A4F' opacity='0.7'/%3E%3C/svg%3E");
 }
 
@@ -44,7 +44,7 @@
    AFRICAN ANIMATIONS
    ================================ */
 
-/* Pulsing glow for CTAs — Terracotta fire effect */
+/* Pulsing glow for CTAs   Terracotta fire effect */
 @keyframes africanPulse {
   0%   { box-shadow: 0 0 0 0 var(--terracotta-glow), 0 4px 15px rgba(0,0,0,0.2); }
   50%  { box-shadow: 0 0 0 12px transparent, 0 8px 25px rgba(193,68,14,0.25); }
@@ -57,7 +57,7 @@
   100% { background-position: 200% center; }
 }
 
-/* Pattern-position animation — "woven fabric" drift for textured backgrounds */
+/* Pattern-position animation   "woven fabric" drift for textured backgrounds */
 @keyframes weaveSlide {
   0%   { background-position: 0 0; }
   100% { background-position: 80px 80px; }
@@ -77,12 +77,12 @@
 
 
 /* ================================
-   AFRICAN DIVIDERS — Elegant Style
+   AFRICAN DIVIDERS   Elegant Style
    ================================ */
 
 /*
   Full-width decorative divider: a chain of Adinkra diamonds
-  made entirely with CSS — no images needed.
+  made entirely with CSS   no images needed.
 */
 .african-divider {
   width: 100%;
@@ -196,7 +196,7 @@
   z-index: -1;
 }
 
-/* Photo border variant — for speaker and project images */
+/* Photo border variant   for speaker and project images */
 .african-frame-bold::before {
   inset: -10px;
   background-image: var(--pattern-ankara);
@@ -262,7 +262,7 @@
 
 
 /* ================================
-   NAVBAR — SMART STICKY
+   NAVBAR   SMART STICKY
    ================================ */
 
 /* Transition for slide-away and slide-back */
@@ -273,7 +273,7 @@
   border-radius: 24px !important;
 }
 
-/* When scrolling DOWN — navbar hides */
+/* When scrolling DOWN   navbar hides */
 .main-header.nav-hidden {
   transform: translateY(-120%) !important;
 }
@@ -311,7 +311,7 @@
   box-shadow: 0 1px 10px rgba(212,160,23,0.4);
 }
 
-/* Active nav link — gold underline */
+/* Active nav link   gold underline */
 .main-nav a.active {
   color: var(--kente-gold) !important;
 }
@@ -338,7 +338,7 @@
    CARD ENHANCEMENTS
    ================================ */
 
-/* Value cards — Ankara pattern top border */
+/* Value cards   Ankara pattern top border */
 .value-card {
   border-top: 0 !important;
   position: relative;
@@ -368,7 +368,7 @@
   animation: adinkraSpin 0.4s ease-out forwards;
 }
 
-/* Track cards — vertical Kente left border */
+/* Track cards   vertical Kente left border */
 .track-card {
   border-top: 0 !important;
   border-left: 6px solid transparent !important;
@@ -426,7 +426,7 @@
 
 
 /* ================================
-   BUTTONS — SHIMMER & PULSE
+   BUTTONS   SHIMMER & PULSE
    ================================ */
 
 .btn-primary {
@@ -485,7 +485,7 @@
 
 
 /* ================================
-   FOOTER — RICH AFRICAN STYLE
+   FOOTER   RICH AFRICAN STYLE
    ================================ */
 
 .main-footer {
@@ -497,7 +497,7 @@
 
 /*
   Elegant multi-colour gradient border on top of footer
-  Inspired by the Kente cloth colour sequence — no ribbon, pure CSS gradient.
+  Inspired by the Kente cloth colour sequence   no ribbon, pure CSS gradient.
 */
 .main-footer::before {
   content: '';
@@ -516,7 +516,7 @@
   );
 }
 
-/* Footer bottom — a fine diamond-dot separator above copyright */
+/* Footer bottom   a fine diamond-dot separator above copyright */
 .footer-bottom {
   position: relative;
   padding-top: 2rem;
@@ -539,7 +539,7 @@
   );
 }
 
-/* Social icons — terracotta hover rings */
+/* Social icons   terracotta hover rings */
 .social-icon {
   transition: all 0.3s ease !important;
 }
@@ -595,7 +595,7 @@ h1, h2 {
   border: 1px solid rgba(193,68,14,0.2);
 }
 
-/* Section headers — Adinkra-inspired elegant styling */
+/* Section headers   Adinkra-inspired elegant styling */
 .section-header {
   position: relative;
 }
@@ -660,7 +660,7 @@ h1, h2 {
   z-index: 5;
 }
 
-/* Progress bar — gold Kente */
+/* Progress bar   gold Kente */
 .progress-bar {
   background: linear-gradient(90deg, var(--kente-gold), var(--terracotta-light), var(--kente-gold)) !important;
   background-size: 200% 100%;
@@ -681,7 +681,7 @@ h1, h2 {
   animation: floatBadge 3s ease-in-out infinite;
 }
 
-/* Countdown box — African gold */
+/* Countdown box   African gold */
 .cd-box {
   border-color: rgba(212,160,23,0.2) !important;
   background: rgba(0,0,0,0.5) !important;

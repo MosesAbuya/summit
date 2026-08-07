@@ -29,7 +29,7 @@ This patchwork of overlapping approaches has served us well, but we have to admi
 
 ## SMTPUTF8
 
-`SMTPUTF8` is another SMTP extension, defined in [RFC 6531](https://www.rfc-editor.org/rfc/rfc6531) in 2012. This essentially solves the whole problem, allowing the entire SMTP conversation — commands, headers, and message bodies — to be sent in raw, unencoded UTF-8.
+`SMTPUTF8` is another SMTP extension, defined in [RFC 6531](https://www.rfc-editor.org/rfc/rfc6531) in 2012. This essentially solves the whole problem, allowing the entire SMTP conversation   commands, headers, and message bodies   to be sent in raw, unencoded UTF-8.
 
 But there's a problem with this approach: adoption. If you send a UTF-8 message to a recipient whose mail server doesn't support this format, the sender has to somehow downgrade the message to make it survive a transition to 7-bit. This is a hard problem to solve, especially since there is no way to make a 7-bit system support UTF-8 in the local parts of addresses. This downgrade problem is what held up the adoption of `SMTPUTF8` in PHPMailer for many years, but in that time the *de facto* approach has become to simply fail in that situation, and tell the recipient it's time they upgraded their mail server 😅.
 
