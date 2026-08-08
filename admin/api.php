@@ -8,6 +8,10 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 require '../includes/db.php';
+require '../vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['action'])) {
     echo json_encode(['success' => false, 'message' => 'Invalid request']);
@@ -259,6 +263,133 @@ try {
         exit;
     }
     
+    // Ticketing API Endpoints
+    if ($action === 'save_package') {
+        $id = $_POST['id'] ?? '';
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price_usd = $_POST['price_usd'];
+        $price_kes = $_POST['price_kes'];
+        $sort_order = $_POST['sort_order'];
+        $is_active = isset($_POST['is_active']) ? 1 : 0;
+        
+        if ($id) {
+            $stmt = $pdo->prepare("UPDATE ticket_packages SET name=?, description=?, price_usd=?, price_kes=?, sort_order=?, is_active=? WHERE id=?");
+            $stmt->execute([$name, $description, $price_usd, $price_kes, $sort_order, $is_active, $id]);
+            echo json_encode(['success' => true, 'message' => "Package updated successfully!"]);
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $description, $price_usd, $price_kes, $sort_order, $is_active]);
+            echo json_encode(['success' => true, 'message' => "Package added successfully!"]);
+        }
+        exit;
+    }
+    
+    if ($action === 'delete_package') {
+        $stmt = $pdo->prepare("DELETE FROM ticket_packages WHERE id = ?");
+        $stmt->execute([$_POST['id']]);
+        echo json_encode(['success' => true, 'message' => "Package deleted."]);
+        exit;
+    }
+    
+    if ($action === 'save_promo') {
+        $id = $_POST['id'] ?? '';
+        $code = strtoupper($_POST['code']);
+        $discount_usd = $_POST['discount_usd'];
+        $discount_kes = $_POST['discount_kes'];
+        $is_active = isset($_POST['is_active']) ? 1 : 0;
+        
+        if ($id) {
+            $stmt = $pdo->prepare("UPDATE promo_codes SET code=?, discount_usd=?, discount_kes=?, is_active=? WHERE id=?");
+            $stmt->execute([$code, $discount_usd, $discount_kes, $is_active, $id]);
+            echo json_encode(['success' => true, 'message' => "Promo updated successfully!"]);
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO promo_codes (code, discount_usd, discount_kes, is_active) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$code, $discount_usd, $discount_kes, $is_active]);
+            echo json_encode(['success' => true, 'message' => "Promo added successfully!"]);
+        }
+        exit;
+    }
+    
+    if ($action === 'delete_promo') {
+        $stmt = $pdo->prepare("DELETE FROM promo_codes WHERE id = ?");
+        $stmt->execute([$_POST['id']]);
+        echo json_encode(['success' => true, 'message' => "Promo deleted."]);
+        exit;
+    }
+
+    if ($action === 'confirm_order') {
+        $id = $_POST['id'];
+        
+        $stmt = $pdo->prepare("SELECT * FROM ticket_orders WHERE id = ?");
+        $stmt->execute([$id]);
+        $order = $stmt->fetch();
+        
+        if (!$order) {
+            echo json_encode(['success' => false, 'message' => "Order not found."]);
+            exit;
+        }
+        
+        $stmtUpdate = $pdo->prepare("UPDATE ticket_orders SET payment_status = 'confirmed', payment_confirmed_at = NOW() WHERE id = ?");
+        $stmtUpdate->execute([$id]);
+        
+        // Send final confirmation email
+        $stmt_settings = $pdo->prepare("SELECT * FROM mailer_settings WHERE form_type = 'registration' LIMIT 1");
+        $stmt_settings->execute();
+        $settings = $stmt_settings->fetch();
+
+        if ($settings && !empty($settings['smtp_host'])) {
+            $mail = new PHPMailer(true);
+            try {
+                $mail->isSMTP();
+                $mail->Host       = $settings['smtp_host'];
+                $mail->SMTPAuth   = true;
+                $mail->Username   = $settings['smtp_user'];
+                $mail->Password   = $settings['smtp_pass'];
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port       = $settings['smtp_port'];
+                $mail->setFrom($settings['from_email'], $settings['from_name']);
+                
+                $mail->addAddress($order['email'], $order['first_name'] . ' ' . $order['last_name']);
+                $mail->isHTML(true);
+                $mail->Subject = 'E-Ticket Confirmed - Global Pro Bono Summit';
+                $mail->Body    = "
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;'>
+                    <div style='background: #166534; padding: 25px; text-align: center; border-bottom: 4px solid #d4a017;'>
+                        <h2 style='color: #ffffff; margin: 0; font-size: 22px;'>Global Pro Bono Summit - E-Ticket</h2>
+                    </div>
+                    <div style='padding: 35px; background: #ffffff; color: #334155; line-height: 1.6; font-size: 16px;'>
+                        <h3>Dear {$order['first_name']},</h3>
+                        <p>We are thrilled to confirm that your payment has been received and your tickets are fully confirmed!</p>
+                        
+                        <div style='background: #f8fafc; padding: 20px; border-radius: 4px; border: 1px dashed #166534; margin-bottom: 20px; text-align: center;'>
+                            <h4 style='margin-top: 0; font-size: 14px; color: #64748b; text-transform: uppercase;'>Ticket Reference</h4>
+                            <div style='font-size: 28px; font-weight: 900; color: #166534; letter-spacing: 2px;'>{$order['order_ref']}</div>
+                        </div>
+
+                        <p>Please present this reference number or this email at the registration desk when you arrive at the summit.</p>
+                        <p>We look forward to welcoming you.</p>
+                        <br>
+                        <p>Warm regards,<br><strong>The Organizing Committee</strong></p>
+                    </div>
+                </div>";
+                $mail->send();
+            } catch (Exception $e) {
+                // log silently
+            }
+        }
+        
+        echo json_encode(['success' => true, 'message' => "Order confirmed and email sent."]);
+        exit;
+    }
+    
+    if ($action === 'delete_order') {
+        $stmt = $pdo->prepare("DELETE FROM ticket_orders WHERE id = ?");
+        $stmt->execute([$_POST['id']]);
+        echo json_encode(['success' => true, 'message' => "Order deleted."]);
+        exit;
+    }
+
     echo json_encode(['success' => false, 'message' => 'Unknown action']);
 
 } catch (PDOException $e) {

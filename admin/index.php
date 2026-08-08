@@ -12,6 +12,15 @@ require '../includes/db.php';
 $stmt_reg = $pdo->query("SELECT * FROM registrations ORDER BY created_at DESC");
 $registrations = $stmt_reg->fetchAll();
 
+$stmt_orders = $pdo->query("SELECT * FROM ticket_orders ORDER BY created_at DESC");
+$ticket_orders = $stmt_orders->fetchAll();
+
+$stmt_packages = $pdo->query("SELECT * FROM ticket_packages ORDER BY sort_order ASC");
+$ticket_packages = $stmt_packages->fetchAll();
+
+$stmt_promos = $pdo->query("SELECT * FROM promo_codes ORDER BY created_at DESC");
+$promo_codes = $stmt_promos->fetchAll();
+
 $stmt_enq = $pdo->query("SELECT * FROM enquiries ORDER BY created_at DESC");
 $enquiries = $stmt_enq->fetchAll();
 
@@ -168,7 +177,10 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         </div>
         <div class="p-4 flex-1 overflow-y-auto">
             <nav class="flex flex-col gap-2">
-                <button onclick="switchTab('tab-submissions', this)" class="sidebar-btn bg-green-800 border-l-4 border-green-400 flex items-center gap-3 px-4 py-3 rounded-md text-left transition"><i class="fa-solid fa-inbox w-5"></i> Submissions</button>
+                <button onclick="switchTab('tab-submissions', this)" class="sidebar-btn bg-green-800 border-l-4 border-green-400 flex items-center gap-3 px-4 py-3 rounded-md text-left transition"><i class="fa-solid fa-inbox w-5"></i> Registrations</button>
+                <button onclick="switchTab('tab-ticket-orders', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-ticket w-5"></i> Ticket Orders</button>
+                <button onclick="switchTab('tab-ticket-packages', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-box w-5"></i> Ticket Packages</button>
+                <button onclick="switchTab('tab-promo-codes', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-tag w-5"></i> Promo Codes</button>
                 <button onclick="switchTab('tab-partners', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-handshake w-5"></i> Partners</button>
                 <button onclick="switchTab('tab-speakers', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-microphone w-5"></i> Speakers</button>
                 <button onclick="switchTab('tab-accommodations', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-bed w-5"></i> Accommodations</button>
@@ -278,6 +290,223 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         <!-- ==============================
              TAB: PARTNERS
              ============================== -->
+        <!-- ==============================
+             TAB: TICKET ORDERS
+             ============================== -->
+        <div id="tab-ticket-orders" class="tab-content hidden">
+            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-ticket text-green-700"></i> Ticket Orders</h2>
+            <div class="bg-white shadow rounded-lg overflow-hidden mb-12">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Order Ref</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Attendee</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Total (USD)</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-200">
+                            <?php if (count($ticket_orders) > 0): ?>
+                                <?php foreach($ticket_orders as $o): ?>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900"><?php echo htmlspecialchars($o['order_ref']); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-bold text-slate-900"><?php echo htmlspecialchars($o['first_name'] . ' ' . $o['last_name']); ?></div>
+                                        <div class="text-sm text-slate-500"><?php echo htmlspecialchars($o['email']); ?></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700">$<?php echo number_format($o['total_usd'], 2); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <?php if($o['payment_status'] === 'confirmed'): ?>
+                                            <span class="px-2 py-1 rounded bg-green-100 text-green-800 text-xs font-bold">Confirmed</span>
+                                        <?php elseif($o['payment_status'] === 'proof_uploaded'): ?>
+                                            <span class="px-2 py-1 rounded bg-yellow-100 text-yellow-800 text-xs font-bold">Proof Uploaded</span>
+                                        <?php else: ?>
+                                            <span class="px-2 py-1 rounded bg-slate-100 text-slate-800 text-xs font-bold">Pending</span>
+                                        <?php endif; ?>
+                                        
+                                        <?php if($o['payment_proof_url']): ?>
+                                            <a href="../<?php echo $o['payment_proof_url']; ?>" target="_blank" class="text-blue-500 ml-2 text-xs hover:underline"><i class="fa-solid fa-file"></i> View Proof</a>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                        <?php if($o['payment_status'] !== 'confirmed'): ?>
+                                            <button onclick="confirmOrder(<?php echo $o['id']; ?>)" class="text-green-600 hover:text-green-900 mr-2"><i class="fa-solid fa-check"></i> Confirm</button>
+                                        <?php endif; ?>
+                                        <button onclick="deleteRecord(<?php echo $o['id']; ?>, 'delete_order')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr><td colspan="5" class="px-6 py-8 text-center text-slate-500">No ticket orders found.</td></tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <script>
+            function confirmOrder(id) {
+                if(!confirm('Are you sure you want to confirm this order? This will send the final confirmation email to the attendee.')) return;
+                fetch('api.php', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: 'action=confirm_order&id=' + id
+                }).then(r => r.json()).then(res => {
+                    if(res.success) location.reload();
+                    else alert('Error: ' + res.message);
+                });
+            }
+            </script>
+        </div>
+
+        <!-- ==============================
+             TAB: TICKET PACKAGES
+             ============================== -->
+        <div id="tab-ticket-packages" class="tab-content hidden">
+            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-box text-green-700"></i> Ticket Packages</h2>
+            
+            <div class="bg-white shadow rounded-lg p-6 mb-12 border-t-4 border-green-600">
+                <h3 class="text-lg font-bold mb-4 text-slate-800">Add / Edit Package</h3>
+                <form class="ajax-form flex flex-col gap-4">
+                    <input type="hidden" name="action" value="save_package">
+                    <input type="hidden" name="id" value="">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Name</label>
+                            <input type="text" name="name" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Sort Order</label>
+                            <input type="number" name="sort_order" value="0" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Price (USD)</label>
+                            <input type="number" step="0.01" name="price_usd" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Price (KES)</label>
+                            <input type="number" step="0.01" name="price_kes" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Description (Frontend view)</label>
+                        <textarea name="description" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" rows="2"></textarea>
+                    </div>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                        <input type="checkbox" name="is_active" value="1" checked class="w-5 h-5 text-green-600 rounded">
+                        Active / Visible on Frontend
+                    </label>
+
+                    <div>
+                        <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md font-bold transition"><i class="fa-solid fa-plus"></i> Save Package</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white shadow rounded-lg overflow-hidden mb-12">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Package Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Prices</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <?php foreach($ticket_packages as $p): ?>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900"><?php echo htmlspecialchars($p['name']); ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">$<?php echo $p['price_usd']; ?> / KES <?php echo $p['price_kes']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <?php echo $p['is_active'] ? '<span class="text-green-600 font-bold">Active</span>' : '<span class="text-red-600">Inactive</span>'; ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <button onclick="editRecord('tab-ticket-packages', '<?php echo base64_encode(json_encode($p)); ?>', 'save_package')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteRecord(<?php echo $p['id']; ?>, 'delete_package')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==============================
+             TAB: PROMO CODES
+             ============================== -->
+        <div id="tab-promo-codes" class="tab-content hidden">
+            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-tag text-green-700"></i> Promo Codes</h2>
+            
+            <div class="bg-white shadow rounded-lg p-6 mb-12 border-t-4 border-green-600">
+                <h3 class="text-lg font-bold mb-4 text-slate-800">Add / Edit Promo Code</h3>
+                <form class="ajax-form flex flex-col gap-4">
+                    <input type="hidden" name="action" value="save_promo">
+                    <input type="hidden" name="id" value="">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Code</label>
+                            <input type="text" name="code" class="w-full px-4 py-2 border rounded-md uppercase focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Discount (USD)</label>
+                            <input type="number" step="0.01" name="discount_usd" value="0" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Discount (KES)</label>
+                            <input type="number" step="0.01" name="discount_kes" value="0" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                    </div>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                        <input type="checkbox" name="is_active" value="1" checked class="w-5 h-5 text-green-600 rounded">
+                        Active
+                    </label>
+
+                    <div>
+                        <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-6 py-2 rounded-md font-bold transition"><i class="fa-solid fa-plus"></i> Save Promo</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white shadow rounded-lg overflow-hidden mb-12">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Code</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Discount</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <?php foreach($promo_codes as $pc): ?>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900"><?php echo htmlspecialchars($pc['code']); ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">$<?php echo $pc['discount_usd']; ?> / KES <?php echo $pc['discount_kes']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <?php echo $pc['is_active'] ? '<span class="text-green-600 font-bold">Active</span>' : '<span class="text-red-600">Inactive</span>'; ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <button onclick="editRecord('tab-promo-codes', '<?php echo base64_encode(json_encode($pc)); ?>', 'save_promo')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteRecord(<?php echo $pc['id']; ?>, 'delete_promo')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div id="tab-partners" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-1">
