@@ -193,8 +193,31 @@ try {
     // Auto-update to handle changed text on existing databases
     try {
         $pdo->exec("UPDATE ticket_packages SET name = 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.' WHERE name = 'Sponsor a Delegate'");
-    } catch (PDOException $e) {
     }
+
+    // Auto-seed historical reports if missing
+    try {
+        $stmt_historical_check = $pdo->query("SELECT COUNT(*) FROM resources WHERE category = 'Historical Report'");
+        if ($stmt_historical_check->fetchColumn() == 0) {
+            $reports_to_seed = [
+                ['title' => '2019 Global Pro Bono Summit (New York) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2019/12/GPBS_Upshot_2019_final.pdf'],
+                ['title' => '2018 Global Pro Bono Summit (Mumbai) Report', 'url' => ''],
+                ['title' => '2017 Global Pro Bono Summit (Lisbon) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/Global_ProBono_Summit_2017_overview.pdf'],
+                ['title' => '2016 Global Pro Bono Summit (Singapore) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2016-recap.pdf'],
+                ['title' => '2015 Global Pro Bono Summit (Berlin) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2015-summary.pdf'],
+                ['title' => '2014 Global Pro Bono Summit (San Francisco) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2014-summary.pdf'],
+                ['title' => '2013 Global Pro Bono Summit (New York) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2013-summary.pdf']
+            ];
+            
+            $stmt_ins = $pdo->prepare("INSERT INTO resources (title, description, file_url, category, status) VALUES (?, ?, ?, ?, ?)");
+            foreach($reports_to_seed as $r) {
+                $status = empty($r['url']) ? 'Coming Soon' : 'Active';
+                $desc = 'Official summary and recap report from the ' . $r['title'];
+                $stmt_ins->execute([$r['title'], $desc, $r['url'], 'Historical Report', $status]);
+            }
+        }
+    } catch(PDOException $e) {}
+
 } catch (PDOException $e) {
     die("Database Connection failed. Please ensure database.sql is imported: " . $e->getMessage());
 }
