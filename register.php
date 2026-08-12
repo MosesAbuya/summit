@@ -292,16 +292,29 @@ include 'includes/header.php';
                             </div>
                             
                             <div style="background: #f1f5f9; border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem;">
-                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Account Details</h4>
-                                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155;">
-                                    <li><strong>Bank Name:</strong> KCB Bank Kenya Ltd</li>
-                                    <li><strong>Account Title:</strong> JITOLEE GOOD FRIENDS</li>
-                                    <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES)</li>
-                                    <li><strong>Branch:</strong> KCB Mortgage Center, Salama House</li>
-                                    <li><strong>SWIFT Code:</strong> KCBLKENX</li>
-                                    <li><strong>Bank Code / Branch Code:</strong> 01 / 289</li>
-                                </ul>
-                                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
+                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Payment Options</h4>
+                                
+                                <div style="margin-bottom: 1.5rem;">
+                                    <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-mobile-screen"></i> M-PESA (For Kenyans)</h5>
+                                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155;">
+                                        <li><strong>Paybill Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">522522</span></li>
+                                        <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span></li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-building-columns"></i> Bank Transfer</h5>
+                                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155;">
+                                        <li><strong>Bank Name:</strong> KCB Bank Kenya Ltd</li>
+                                        <li><strong>Account Title:</strong> JITOLEE GOOD FRIENDS</li>
+                                        <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES)</li>
+                                        <li><strong>Branch:</strong> KCB Mortgage Center, Salama House</li>
+                                        <li><strong>SWIFT Code:</strong> KCBLKENX</li>
+                                        <li><strong>Bank Code / Branch Code:</strong> 01 / 289</li>
+                                    </ul>
+                                </div>
+                                
+                                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
                                     <strong>IMPORTANT:</strong> Use the auto-generated reference number we will email you as the payment narration/memo!
                                 </div>
                             </div>
