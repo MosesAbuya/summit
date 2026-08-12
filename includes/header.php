@@ -125,6 +125,7 @@
                         <li class="nav-item-mega" data-mega="projects"><a href="best_practices">Best Practices</a></li>
                         <li class="nav-item-mega" data-mega="resources"><a href="resources">Resources</a></li>
                         <li><a href="news">News</a></li>
+                        <li><a href="call-for-speakers" style="color: var(--terracotta); font-weight: 600;">Call for Speakers</a></li>
                         <li><a href="contact">Contact</a></li>
                         <li class="mobile-mega-btn"><a href="#" id="mobile-mega-trigger">Explore More <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 0.5rem;"></i></a></li>
                     </ul>

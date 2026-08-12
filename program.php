@@ -59,7 +59,8 @@
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit kicks off at the historic University of Nairobi. This day focuses on bridging student innovation with established corporate pro-bono architectures, building the pipeline of future impact leaders.</p>
+                        <h3 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fa-solid fa-graduation-cap" style="color: var(--terracotta);"></i> Academic & Student Engagement</h3>
+                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit kicks off with an exciting first day focusing on bridging student innovation with established corporate pro-bono architectures, building the pipeline of future impact leaders.</p>
                         <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
                             <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
                             <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>

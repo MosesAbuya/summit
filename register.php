@@ -45,11 +45,7 @@ include 'includes/header.php';
                 <div id="step-1" class="stepper-panel active">
                     <h3 style="font-size: 1.8rem; margin-bottom: 0.75rem; color: #0f172a;">Choose Your Pass</h3>
                     
-                    <!-- Guidance Banner -->
-                    <div style="background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 1px solid #bbf7d0; border-left: 4px solid var(--primary-color); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem;">
-                        <div style="font-weight: 700; color: #166534; margin-bottom: 0.25rem;"><i class="fa-solid fa-circle-info" style="margin-right: 0.5rem;"></i>How to choose the right pass</div>
-                        <div style="color: #334155; font-size: 0.95rem; line-height: 1.5;">If you qualify for more than one rate (e.g. you are from an EAC country <strong>and</strong> a GPBN member), simply <strong>select the lowest-priced pass</strong> that applies to you. Our team will verify eligibility during check-in.</div>
-                    </div>
+
 
                     <!-- GROUP 1: Main Delegate Passes -->
                     <h4 style="font-size: 1.1rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 1rem;"><i class="fa-solid fa-id-badge" style="margin-right: 0.5rem;"></i>Main Delegate Passes</h4>
@@ -66,7 +62,7 @@ include 'includes/header.php';
                     
                     <div class="ticket-list" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;">
                         <?php foreach($packages as $pkg): ?>
-                        <?php if(!in_array($pkg['name'], ['Daily Rate', 'Sponsor a Delegate'])): ?>
+                        <?php if(!in_array($pkg['name'], ['Daily Rate', 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.'])): ?>
                         <?php $elig = $eligibility[$pkg['name']] ?? ['tag' => '', 'color' => '#64748b', 'bg' => '#f1f5f9']; ?>
                         <div class="ticket-row" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 2px 8px rgba(22,101,52,0.08)';" onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
                             <div style="flex: 1;">
@@ -97,7 +93,7 @@ include 'includes/header.php';
                     <h4 style="font-size: 1.1rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 1rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;"><i class="fa-solid fa-plus-circle" style="margin-right: 0.5rem;"></i>Add-Ons & Daily Passes</h4>
                     <div class="ticket-list" style="display: flex; flex-direction: column; gap: 1rem;">
                         <?php foreach($packages as $pkg): ?>
-                        <?php if(in_array($pkg['name'], ['Daily Rate', 'Sponsor a Delegate'])): ?>
+                        <?php if(in_array($pkg['name'], ['Daily Rate', 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.'])): ?>
                         <div class="ticket-row" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 2px 8px rgba(22,101,52,0.08)';" onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
                             <div style="flex: 1;">
                                 <div style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></div>
@@ -387,6 +383,29 @@ include 'includes/header.php';
     .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #334155; font-size: 0.95rem; }
     .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; transition: all 0.2s; background: white; }
     .form-control:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1); }
+    
+    @media (max-width: 768px) {
+        .ticket-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1.5rem !important;
+        }
+        .ticket-row > div:nth-child(2) {
+            text-align: left !important;
+            margin-right: 0 !important;
+        }
+        .ticket-row .ticket-counter {
+            align-self: flex-start !important;
+            width: 100% !important;
+            justify-content: space-between !important;
+        }
+        .ticket-row .qty-btn {
+            flex: 1 !important;
+        }
+        .ticket-row input[type="number"] {
+            flex: 1 !important;
+        }
+    }
 </style>
 
 <script>

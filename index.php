@@ -240,7 +240,7 @@ include 'includes/header.php';
             <p class="carousel-subtitle">Cannot attend? Your financial support can sponsor an African grassroots NGO
                 leader to access the summit fully subsidized.</p>
             <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="register" class="btn btn-primary btn-lg">Sponsor a Delegate</a>
+                <a href="register" class="btn btn-primary btn-lg">Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.</a>
             </div>
         </div>
     </div>
@@ -392,7 +392,7 @@ include 'includes/header.php';
         
         <p style="font-size: 1.25rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin-bottom: 3rem; font-weight: 300; border-left: 4px solid var(--terracotta); padding-left: 1.5rem;">
             After making its transformative impacts on Pro Bono Practitioners and Subsidiaries in the Americas, Europe, and Asia... the Global Pro Bono Summit makes its historic debut in the youthful continent of Africa, in Nairobi, the capital city of Kenya and Africa's premier meeting venue.<br><br>
-            Join us as we center and amplify African voices, drive sustainable pro bono impact, and ignite a continental era of professional volunteerism... in the Americas.
+            Join us as we center and amplify African voices, drive sustainable pro bono impact, and ignite a continental era of professional volunteerism.
         </p>
         
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">

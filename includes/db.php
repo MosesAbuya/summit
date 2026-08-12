@@ -124,7 +124,7 @@ try {
             ['name' => 'Academia/Government/Corporate', 'description' => 'Specialized rate for academia, gov, or corporate', 'usd' => 550, 'kes' => 71500, 'sort' => 4],
             ['name' => 'Subsidised (Students & Youth below 30yrs)', 'description' => 'Requires valid ID at venue', 'usd' => 250, 'kes' => 32500, 'sort' => 5],
             ['name' => 'Daily Rate', 'description' => 'Single day pass', 'usd' => 100, 'kes' => 13000, 'sort' => 6],
-            ['name' => 'Sponsor a Delegate', 'description' => 'Sponsor attendance for a grassroots NGO leader', 'usd' => 1650, 'kes' => 214500, 'sort' => 7],
+            ['name' => 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.', 'description' => 'Sponsor attendance for a grassroots NGO leader', 'usd' => 1650, 'kes' => 214500, 'sort' => 7],
         ];
 
         $insertStmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order) VALUES (?, ?, ?, ?, ?)");
@@ -188,6 +188,12 @@ try {
                 $pkg['price_kes']
             ]);
         }
+    }
+
+    // Auto-update to handle changed text on existing databases
+    try {
+        $pdo->exec("UPDATE ticket_packages SET name = 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.' WHERE name = 'Sponsor a Delegate'");
+    } catch (PDOException $e) {
     }
 } catch (PDOException $e) {
     die("Database Connection failed. Please ensure database.sql is imported: " . $e->getMessage());
