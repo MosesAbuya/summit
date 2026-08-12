@@ -193,7 +193,7 @@ try {
     // Auto-update to handle changed text on existing databases
     try {
         $pdo->exec("UPDATE ticket_packages SET name = 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.' WHERE name = 'Sponsor a Delegate'");
-    }
+    } catch(PDOException $e) {}
 
     // Auto-seed historical reports if missing
     try {
