@@ -38,7 +38,7 @@ include 'includes/header.php';
                         <div style="font-size: 2rem; color: var(--secondary-color);"><i class="fa-solid fa-phone"></i></div>
                         <div>
                             <h4>Phone / WhatsApp</h4>
-                            <p style="color: var(--text-muted); margin: 0;"><a href="tel:+254724408810" style="color: var(--text-muted);">+254 724 408810</a></p>
+                            <p style="color: var(--text-muted); margin: 0;"><a href="tel:+254118408810" style="color: var(--text-muted);">+254 118 408 810</a></p>
                         </div>
                     </div>
                 </div>
