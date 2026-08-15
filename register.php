@@ -287,51 +287,14 @@ include 'includes/header.php';
                             <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #0f172a;">Manual Bank Transfer</h3>
                             <p style="color: #64748b; margin-bottom: 0.5rem; line-height: 1.6;">To complete your order, please transfer the total amount to the bank account below.</p>
                             <div style="background: #eef2ff; border: 1px solid #c7d2fe; padding: 1rem; border-radius: 6px; margin-bottom: 2rem;">
-                                <strong style="color: #4f46e5; display: block; margin-bottom: 0.25rem;">Why are there two upload options?</strong>
-                                <span style="font-size: 0.95rem; color: #334155;">If you have <strong>already completed</strong> the bank transfer, you can enter the transaction code or upload the receipt screenshot below. If you need time to visit the bank or complete the transfer later, you can <strong>skip this step for now</strong> and click "Submit Order". A secure upload link will be emailed to you so you can upload the proof later.</span>
-                            </div>
-                            
                             <div style="background: #f1f5f9; border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem;">
-                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Payment Options</h4>
-                                
-                                <div style="margin-bottom: 1.5rem;">
-                                    <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-mobile-screen"></i> M-PESA (For Kenyans)</h5>
-                                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155;">
-                                        <li><strong>Paybill Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">522522</span></li>
-                                        <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span></li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <h5 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-building-columns"></i> Bank Transfer</h5>
-                                    <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155;">
-                                        <li><strong>Bank Name:</strong> KCB Bank Kenya Ltd</li>
-                                        <li><strong>Account Title:</strong> JITOLEE GOOD FRIENDS</li>
-                                        <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES)</li>
-                                        <li><strong>Branch:</strong> KCB Mortgage Center, Salama House</li>
-                                        <li><strong>SWIFT Code:</strong> KCBLKENX</li>
-                                        <li><strong>Bank Code / Branch Code:</strong> 01 / 289</li>
-                                    </ul>
-                                </div>
-                                
-                                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #cbd5e1;">
-                                    <strong>IMPORTANT:</strong> Use the auto-generated reference number we will email you as the payment narration/memo!
-                                </div>
-                            </div>
-
-                            <div style="border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px;">
-                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 0.5rem; font-weight: 700;">Verify Your Payment</h4>
-                                <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem;">If you have already made the transfer, provide the details below. Otherwise, you can skip this and upload it later.</p>
-                                
-                                <div style="margin-bottom: 1.5rem;">
-                                    <label class="form-label">Transaction Code (Optional)</label>
-                                    <input type="text" name="transaction_code" class="form-control" placeholder="e.g. KCB123456789">
-                                </div>
-                                
-                                <div>
-                                    <label class="form-label">Upload Proof of Payment (Screenshot/PDF) (Optional)</label>
-                                    <input type="file" name="payment_proof" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
-                                </div>
+                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Secure Checkout</h4>
+                                <p style="color: #334155; line-height: 1.6; margin-bottom: 1rem;">
+                                    By clicking the "Pay Securely" button below, you will be redirected to our secure payment partner, <strong>Paystack</strong>, to complete your transaction.
+                                </p>
+                                <p style="color: #334155; line-height: 1.6; margin-bottom: 0;">
+                                    You can pay easily using your preferred method (Card, Mobile Money, etc.) in KES or USD. Once payment is successful, you will be redirected back here for your confirmation.
+                                </p>
                             </div>
                             
                         </div>
@@ -344,7 +307,7 @@ include 'includes/header.php';
                                 <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 1.5rem;">KES <span id="final_total_kes">0.00</span></div>
                                 
                                 <div style="display: flex; gap: 1rem; flex-direction: column;">
-                                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;" id="submitBtn"><i class="fa-solid fa-lock"></i> Submit Order</button>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem; background-color: #09a5db; border-color: #09a5db;" id="submitBtn"><i class="fa-solid fa-lock"></i> Pay Securely with Paystack</button>
                                     <button type="button" class="btn btn-outline" style="width: 100%;" onclick="nextStep(2)">&larr; Back to Details</button>
                                 </div>
                                 <div style="margin-top: 1rem; text-align: center; font-size: 0.8rem; color: #94a3b8;">
@@ -421,6 +384,7 @@ include 'includes/header.php';
     }
 </style>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
     let cart = {};
     let subtotalUsd = 0;
@@ -631,7 +595,46 @@ include 'includes/header.php';
         .then(response => response.json())
         .then(data => {
             document.getElementById('loaderOverlay').style.display = 'none';
-            if(data.success) {
+            if(data.success && data.total_kes > 0) {
+                // Initialize Paystack Inline
+                let handler = PaystackPop.setup({
+                    key: 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90',
+                    email: data.email,
+                    amount: data.total_kes * 100, // in kobo/cents
+                    currency: 'KES',
+                    ref: data.order_ref,
+                    callback: function(response) {
+                        // verify the transaction with backend
+                        document.getElementById('loaderOverlay').style.display = 'flex';
+                        let verifyForm = new FormData();
+                        verifyForm.append('reference', response.reference);
+                        
+                        fetch('ajax_verify_payment.php', {
+                            method: 'POST',
+                            body: verifyForm
+                        })
+                        .then(res => res.json())
+                        .then(verifyData => {
+                            document.getElementById('loaderOverlay').style.display = 'none';
+                            if (verifyData.success) {
+                                document.getElementById('success_order_ref').innerText = data.order_ref;
+                                nextStep(4);
+                            } else {
+                                alert('Payment verification failed: ' + verifyData.message);
+                            }
+                        })
+                        .catch(err => {
+                            document.getElementById('loaderOverlay').style.display = 'none';
+                            alert('An error occurred during verification.');
+                        });
+                    },
+                    onClose: function() {
+                        alert('Payment cancelled. You can try again by clicking Pay Securely.');
+                    }
+                });
+                handler.openIframe();
+            } else if (data.success && data.total_kes <= 0) {
+                // Fallback if total is 0
                 document.getElementById('success_order_ref').innerText = data.order_ref;
                 nextStep(4);
             } else {

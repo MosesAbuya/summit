@@ -193,7 +193,8 @@ try {
     // Auto-update to handle changed text on existing databases
     try {
         $pdo->exec("UPDATE ticket_packages SET name = 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.' WHERE name = 'Sponsor a Delegate'");
-    } catch(PDOException $e) {}
+    } catch (PDOException $e) {
+    }
 
     // Auto-seed historical reports if missing
     try {
@@ -208,15 +209,16 @@ try {
                 ['title' => '2014 Global Pro Bono Summit (San Francisco) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2014-summary.pdf'],
                 ['title' => '2013 Global Pro Bono Summit (New York) Report', 'url' => 'https://globalprobono.org/wp-content/uploads/2018/02/global-pro-bono-summit-2013-summary.pdf']
             ];
-            
+
             $stmt_ins = $pdo->prepare("INSERT INTO resources (title, description, file_url, category, status) VALUES (?, ?, ?, ?, ?)");
-            foreach($reports_to_seed as $r) {
+            foreach ($reports_to_seed as $r) {
                 $status = empty($r['url']) ? 'Coming Soon' : 'Active';
                 $desc = 'Official summary and recap report from the ' . $r['title'];
                 $stmt_ins->execute([$r['title'], $desc, $r['url'], 'Historical Report', $status]);
             }
         }
-    } catch(PDOException $e) {}
+    } catch (PDOException $e) {
+    }
 
 } catch (PDOException $e) {
     die("Database Connection failed. Please ensure database.sql is imported: " . $e->getMessage());

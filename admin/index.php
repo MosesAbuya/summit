@@ -15,6 +15,35 @@ $registrations = $stmt_reg->fetchAll();
 $stmt_orders = $pdo->query("SELECT * FROM ticket_orders ORDER BY created_at DESC");
 $ticket_orders = $stmt_orders->fetchAll();
 
+$stmt_items = $pdo->query("SELECT * FROM ticket_order_items");
+$all_items = $stmt_items->fetchAll();
+$items_by_order = [];
+foreach($all_items as $item) {
+    $items_by_order[$item['order_id']][] = $item;
+}
+foreach($ticket_orders as &$o) {
+    $o['items'] = $items_by_order[$o['id']] ?? [];
+}
+unset($o);
+
+// Calculate metrics
+$total_revenue_usd = 0;
+$total_revenue_kes = 0;
+$total_tickets_sold = 0;
+$confirmed_orders = 0;
+foreach($ticket_orders as $o) {
+    if ($o['payment_status'] === 'confirmed') {
+        $total_revenue_usd += $o['total_usd'];
+        $total_revenue_kes += $o['total_kes'];
+        $confirmed_orders++;
+        foreach($o['items'] as $item) {
+            $total_tickets_sold += $item['quantity'];
+        }
+    }
+}
+$total_orders = count($ticket_orders);
+$success_rate = $total_orders > 0 ? round(($confirmed_orders / $total_orders) * 100) : 0;
+
 $stmt_packages = $pdo->query("SELECT * FROM ticket_packages ORDER BY sort_order ASC");
 $ticket_packages = $stmt_packages->fetchAll();
 
@@ -294,13 +323,54 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
              TAB: TICKET ORDERS
              ============================== -->
         <div id="tab-ticket-orders" class="tab-content hidden">
-            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-ticket text-green-700"></i> Ticket Orders</h2>
-            <div class="bg-white shadow rounded-lg overflow-hidden mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-ticket text-green-700"></i> Ticket Orders</h2>
+                <a href="export_orders.php" target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded shadow flex items-center gap-2 font-semibold">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                </a>
+            </div>
+
+            <!-- Analytics Widgets -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
+                    <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-2">Total Revenue (Confirmed)</h3>
+                    <div class="text-3xl font-black text-slate-800">$<?php echo number_format($total_revenue_usd, 2); ?></div>
+                    <div class="text-sm font-semibold text-slate-500 mt-1">KES <?php echo number_format($total_revenue_kes, 2); ?></div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
+                    <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-2">Total Tickets Sold</h3>
+                    <div class="text-3xl font-black text-slate-800"><?php echo number_format($total_tickets_sold); ?></div>
+                    <div class="text-sm font-semibold text-slate-500 mt-1">Across <?php echo $confirmed_orders; ?> confirmed orders</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
+                    <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-2">Payment Success Rate</h3>
+                    <div class="text-3xl font-black text-slate-800"><?php echo $success_rate; ?>%</div>
+                    <div class="text-sm font-semibold text-slate-500 mt-1"><?php echo $confirmed_orders; ?> of <?php echo $total_orders; ?> total checkouts</div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="bg-white shadow rounded-t-lg p-4 border-b border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex-1 w-full relative">
+                    <i class="fa-solid fa-search absolute left-3 top-3 text-slate-400"></i>
+                    <input type="text" id="orderSearch" onkeyup="filterOrders()" placeholder="Search by name, email, or order ref..." class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                </div>
+                <div class="w-full md:w-64">
+                    <select id="orderStatusFilter" onchange="filterOrders()" class="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        <option value="all">All Statuses</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-white shadow rounded-b-lg overflow-hidden mb-12">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-slate-200">
+                    <table class="min-w-full divide-y divide-slate-200" id="ordersTable">
                         <thead class="bg-slate-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Order Ref</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Date/Time</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Attendee</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Total (USD)</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
@@ -310,11 +380,15 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         <tbody class="bg-white divide-y divide-slate-200">
                             <?php if (count($ticket_orders) > 0): ?>
                                 <?php foreach($ticket_orders as $o): ?>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900"><?php echo htmlspecialchars($o['order_ref']); ?></td>
+                                <tr class="order-row" data-status="<?php echo htmlspecialchars($o['payment_status']); ?>">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 order-ref"><?php echo htmlspecialchars($o['order_ref']); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
+                                        <?php echo date('M d, Y', strtotime($o['created_at'])); ?><br>
+                                        <span class="text-xs text-slate-400"><?php echo date('h:i A', strtotime($o['created_at'])); ?></span>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-bold text-slate-900"><?php echo htmlspecialchars($o['first_name'] . ' ' . $o['last_name']); ?></div>
-                                        <div class="text-sm text-slate-500"><?php echo htmlspecialchars($o['email']); ?></div>
+                                        <div class="text-sm font-bold text-slate-900 order-name"><?php echo htmlspecialchars($o['first_name'] . ' ' . $o['last_name']); ?></div>
+                                        <div class="text-sm text-slate-500 order-email"><?php echo htmlspecialchars($o['email']); ?></div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-700">$<?php echo number_format($o['total_usd'], 2); ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -325,16 +399,15 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                         <?php else: ?>
                                             <span class="px-2 py-1 rounded bg-slate-100 text-slate-800 text-xs font-bold">Pending</span>
                                         <?php endif; ?>
-                                        
-                                        <?php if($o['payment_proof_url']): ?>
-                                            <a href="../<?php echo $o['payment_proof_url']; ?>" target="_blank" class="text-blue-500 ml-2 text-xs hover:underline"><i class="fa-solid fa-file"></i> View Proof</a>
-                                        <?php endif; ?>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm flex gap-3 items-center">
+                                        <button onclick="viewOrderDetails('<?php echo base64_encode(json_encode($o)); ?>')" class="bg-blue-100 text-blue-700 hover:bg-blue-200 px-3 py-1 rounded text-xs font-bold flex items-center gap-1" title="View Details">
+                                            <i class="fa-solid fa-eye"></i> View Info
+                                        </button>
                                         <?php if($o['payment_status'] !== 'confirmed'): ?>
-                                            <button onclick="confirmOrder(<?php echo $o['id']; ?>)" class="text-green-600 hover:text-green-900 mr-2"><i class="fa-solid fa-check"></i> Confirm</button>
+                                            <button onclick="confirmOrder(<?php echo $o['id']; ?>)" class="text-green-600 hover:text-green-900" title="Manual Confirm"><i class="fa-solid fa-check"></i></button>
                                         <?php endif; ?>
-                                        <button onclick="deleteRecord(<?php echo $o['id']; ?>, 'delete_order')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i></button>
+                                        <button onclick="deleteRecord(<?php echo $o['id']; ?>, 'delete_order')" class="text-red-600 hover:text-red-900" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -345,10 +418,152 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     </table>
                 </div>
             </div>
+
+            <!-- Order Details Modal -->
+            <div id="orderModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
+                <div class="min-h-screen px-4 text-center">
+                    <div class="inline-block w-full max-w-4xl my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-lg overflow-hidden">
+                        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice"></i> Order Details - <span id="modalOrderRef"></span></h3>
+                            <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-user text-green-600"></i> Attendee Info</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li><strong>Name:</strong> <span id="modalName"></span></li>
+                                        <li><strong>Email:</strong> <span id="modalEmail"></span></li>
+                                        <li><strong>Phone:</strong> <span id="modalPhone"></span></li>
+                                        <li><strong>Organization:</strong> <span id="modalOrg"></span></li>
+                                        <li><strong>Job Title:</strong> <span id="modalJob"></span></li>
+                                        <li><strong>Country:</strong> <span id="modalCountry"></span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-credit-card text-blue-600"></i> Payment & Transaction</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li><strong>Status:</strong> <span id="modalStatus"></span></li>
+                                        <li><strong>Transaction ID:</strong> <span id="modalTransId"></span></li>
+                                        <li><strong>Confirmed At:</strong> <span id="modalConfirmedAt"></span></li>
+                                        <li><strong>Promo Code:</strong> <span id="modalPromo"></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-clipboard-list text-purple-600"></i> Logistics</h4>
+                                    <ul class="text-sm text-slate-600 space-y-2">
+                                        <li><strong>Dietary Needs:</strong> <span id="modalDiet"></span></li>
+                                        <li><strong>Accessibility:</strong> <span id="modalAccess"></span></li>
+                                        <li><strong>Visa Required:</strong> <span id="modalVisa"></span></li>
+                                        <li><strong>Passport No:</strong> <span id="modalPassport"></span></li>
+                                        <li><strong>Emergency Contact:</strong> <span id="modalEmergName"></span></li>
+                                        <li><strong>Emergency Phone:</strong> <span id="modalEmergPhone"></span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-tags text-orange-600"></i> Order Items</h4>
+                                    <div class="bg-slate-50 border rounded p-3 text-sm">
+                                        <ul id="modalItemsList" class="space-y-2 mb-3"></ul>
+                                        <div class="border-t pt-2 mt-2 font-bold flex justify-between">
+                                            <span>Subtotal:</span>
+                                            <span>$<span id="modalSubUsd"></span> / KES <span id="modalSubKes"></span></span>
+                                        </div>
+                                        <div class="text-green-600 font-bold flex justify-between">
+                                            <span>Discount:</span>
+                                            <span>-$<span id="modalDiscUsd"></span> / -KES <span id="modalDiscKes"></span></span>
+                                        </div>
+                                        <div class="border-t pt-2 mt-2 font-black text-lg flex justify-between text-slate-900">
+                                            <span>Total Paid:</span>
+                                            <span>$<span id="modalTotalUsd"></span> / KES <span id="modalTotalKes"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-right">
+                                <button onclick="closeOrderModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <script>
+            function filterOrders() {
+                const term = document.getElementById('orderSearch').value.toLowerCase();
+                const status = document.getElementById('orderStatusFilter').value;
+                const rows = document.querySelectorAll('#ordersTable tbody tr.order-row');
+                
+                rows.forEach(row => {
+                    const ref = row.querySelector('.order-ref').innerText.toLowerCase();
+                    const name = row.querySelector('.order-name').innerText.toLowerCase();
+                    const email = row.querySelector('.order-email').innerText.toLowerCase();
+                    const rowStatus = row.getAttribute('data-status');
+                    
+                    const matchesSearch = ref.includes(term) || name.includes(term) || email.includes(term);
+                    const matchesStatus = (status === 'all' || rowStatus === status);
+                    
+                    if (matchesSearch && matchesStatus) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            function viewOrderDetails(b64data) {
+                const data = JSON.parse(atob(b64data));
+                
+                document.getElementById('modalOrderRef').innerText = data.order_ref;
+                document.getElementById('modalName').innerText = data.first_name + ' ' + data.last_name;
+                document.getElementById('modalEmail').innerText = data.email || '-';
+                document.getElementById('modalPhone').innerText = data.phone || '-';
+                document.getElementById('modalOrg').innerText = data.organization || '-';
+                document.getElementById('modalJob').innerText = data.job_title || '-';
+                document.getElementById('modalCountry').innerText = data.country || '-';
+                
+                document.getElementById('modalStatus').innerHTML = data.payment_status === 'confirmed' ? '<span class="text-green-600 font-bold">Confirmed</span>' : '<span class="text-slate-500 font-bold">' + data.payment_status.toUpperCase() + '</span>';
+                document.getElementById('modalTransId').innerText = data.transaction_code || '-';
+                document.getElementById('modalConfirmedAt').innerText = data.payment_confirmed_at || '-';
+                document.getElementById('modalPromo').innerText = data.promo_code || '-';
+
+                document.getElementById('modalDiet').innerText = data.dietary_requirements || 'None';
+                document.getElementById('modalAccess').innerText = data.accessibility_needs || 'None';
+                document.getElementById('modalVisa').innerText = data.visa_required == '1' ? 'Yes' : 'No';
+                document.getElementById('modalPassport').innerText = data.passport_number || '-';
+                document.getElementById('modalEmergName').innerText = data.emergency_contact_name || '-';
+                document.getElementById('modalEmergPhone').innerText = data.emergency_contact_phone || '-';
+
+                let itemsHtml = '';
+                if(data.items && data.items.length > 0) {
+                    data.items.forEach(i => {
+                        itemsHtml += `<li class="flex justify-between border-b pb-1"><span>${i.quantity}x ${i.package_name}</span> <span class="font-bold">$${Number(i.subtotal_usd).toFixed(2)}</span></li>`;
+                    });
+                } else {
+                    itemsHtml = '<li>No items found</li>';
+                }
+                document.getElementById('modalItemsList').innerHTML = itemsHtml;
+
+                document.getElementById('modalSubUsd').innerText = Number(data.subtotal_usd).toFixed(2);
+                document.getElementById('modalSubKes').innerText = Number(data.subtotal_kes).toFixed(2);
+                document.getElementById('modalDiscUsd').innerText = Number(data.discount_usd).toFixed(2);
+                document.getElementById('modalDiscKes').innerText = Number(data.discount_kes).toFixed(2);
+                document.getElementById('modalTotalUsd').innerText = Number(data.total_usd).toFixed(2);
+                document.getElementById('modalTotalKes').innerText = Number(data.total_kes).toFixed(2);
+
+                document.getElementById('orderModal').classList.remove('hidden');
+            }
+
+            function closeOrderModal() {
+                document.getElementById('orderModal').classList.add('hidden');
+            }
+
             function confirmOrder(id) {
-                if(!confirm('Are you sure you want to confirm this order? This will send the final confirmation email to the attendee.')) return;
+                if(!confirm('Are you sure you want to manually confirm this order? This will send the final confirmation email to the attendee.')) return;
+
                 fetch('api.php', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},

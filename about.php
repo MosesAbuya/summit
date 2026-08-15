@@ -345,10 +345,10 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
                 <?php
                 $keynotes = [
-                    ["num" => "01", "color" => "var(--terracotta)", "title" => "Inclusive Economic Empowerment and Sustainable Livelihoods", "desc" => "Unlocking Agenda 2063 Prosperity Through Corporate Pro Bono Practice."],
-                    ["num" => "02", "color" => "var(--savannah-sand)", "title" => "Education, Skills Development and Future Leadership", "desc" => "Scaling jobs creation and equity among vulnerable groups."],
-                    ["num" => "03", "color" => "var(--primary-color)", "title" => "Decent Work, Institutional Excellence and Professional Service", "desc" => "Institutionalizing Pro Bono Practice for Africa's SDG Priorities: Climate Resilience, Ending Poverty, and Quality Education."],
-                    ["num" => "04", "color" => "#0ea5e9", "title" => "Climate Action, Environmental Stewardship and Community Resilience", "desc" => "Exporting Resilience to a Polycrisis World through North-South and South-South collaboration."],
+                    ["num" => "01", "color" => "var(--terracotta)", "title" => "Africa’s Multidisciplinary Pro Bono Revolution", "desc" => "Unlocking Agenda 2063 Prosperity Through Corporate Pro Bono Practice."],
+                    ["num" => "02", "color" => "var(--savannah-sand)", "title" => "Youth and Women as Pro Bono Catalysts", "desc" => "Scaling Jobs creation and Equity among vulnerable groups."],
+                    ["num" => "03", "color" => "var(--primary-color)", "title" => "From Expertise to Impact", "desc" => "Institutionalizing Pro Bono Practice for Africa's SDGs Priorities: Climate Resilience, Ending Poverty and Quality Education."],
+                    ["num" => "04", "color" => "#0ea5e9", "title" => "Partnerships for Peace and Prosperity", "desc" => "Exporting Resilience to a Polycrisis World in light of IVY 2026."],
                 ];
                 foreach ($keynotes as $k) {
                     echo "<div style='padding: 2rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; background: #f8fafc; display: flex; flex-direction: column; gap: 1rem;'>
@@ -470,7 +470,7 @@
                             <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">2-page overview · Africa Global Summit on Pro Bono Practice</p>
                         </div>
                     </div>
-                    <a href="assets/Africa Global Summit on Pro Bono Practice - Executive Summary.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
+                    <a href="assets/Executive Summary - Global Pro Bono Summit Africa 2026.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
                         <i class="fa-solid fa-download" style="margin-right: 0.4rem;"></i> Download PDF
                     </a>
                 </div>
@@ -485,7 +485,7 @@
                             <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">7-page full concept · Rationale, Objectives, Thematic Areas & Budget</p>
                         </div>
                     </div>
-                    <a href="assets/Africa Global Summit on Pro Bono Practice - Final Concept Paper.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
+                    <a href="assets/FINAL CONCEPT NOTE - Global Pro Bono Summit Africa 2026.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
                         <i class="fa-solid fa-download" style="margin-right: 0.4rem;"></i> Download PDF
                     </a>
                 </div>
@@ -500,7 +500,7 @@
                             <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">4-page program · Day-by-day sessions, speakers & field visits</p>
                         </div>
                     </div>
-                    <a href="assets/Africa Global Pro Bono Summit 2026 - Official Tentative Program.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
+                    <a href="assets/Program Summary Nairobi, Kenya 24th – 27th November.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
                         <i class="fa-solid fa-download" style="margin-right: 0.4rem;"></i> Download PDF
                     </a>
                 </div>

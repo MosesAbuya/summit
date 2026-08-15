@@ -475,23 +475,23 @@ include 'includes/header.php';
         <div class="tracks-grid">
             <div class="track-card">
                 <div class="track-header" style="color: var(--terracotta); font-weight: 700;">SDG 1 & AU Asp 1</div>
-                <h3 style="font-size: 1.25rem;">Pillar I: Inclusive Economic Empowerment and Sustainable Livelihoods</h3>
-                <p>Pro bono financial advisory, microfinance training, and property rights clinics to break intergenerational poverty cycles.</p>
+                <h3 style="font-size: 1.25rem;">Pillar I: Poverty Reduction</h3>
+                <p>Support microfinance training, property rights clinics, and enterprise mentoring.</p>
             </div>
             <div class="track-card">
                 <div class="track-header" style="color: var(--savannah-sand); font-weight: 700;">SDG 4 & AU Asp 1</div>
-                <h3 style="font-size: 1.25rem;">Pillar II: Education, Skills Development and Future Leadership</h3>
-                <p>Bridging the education gap for out-of-school youth with tech-driven mentorship and digital learning platforms.</p>
+                <h3 style="font-size: 1.25rem;">Pillar II: Education</h3>
+                <p>Provide mentorship, tutoring, and digital learning support for out-of-school youth.</p>
             </div>
             <div class="track-card">
                 <div class="track-header" style="color: var(--primary-color); font-weight: 700;">SDG 8 & AU Asp 1</div>
-                <h3 style="font-size: 1.25rem;">Pillar III: Decent Work, Institutional Excellence and Professional Service</h3>
-                <p>Harnessing the youth bulge through multidisciplinary pro bono for SME growth, employability, and tech/finance skills.</p>
+                <h3 style="font-size: 1.25rem;">Pillar III: Decent Work</h3>
+                <p>Deliver skills workshops and entrepreneurship support for youth and SMEs.</p>
             </div>
             <div class="track-card track-highlight" style="background: var(--deep-ebony);">
                 <div class="track-header" style="color: var(--secondary-color); font-weight: 700;">SDG 13 & AU Asp 7</div>
-                <h3 style="color: white; margin-bottom: 0.5rem; font-size: 1.25rem;">Pillar IV: Climate Action, Environmental Stewardship and Community Resilience</h3>
-                <p style="color: rgba(255,255,255,0.8); margin: 0;">Exporting resilience: Nature-based solutions and expert climate volunteering to protect vulnerable livelihoods.</p>
+                <h3 style="color: white; margin-bottom: 0.5rem; font-size: 1.25rem;">Pillar IV: Climate Action</h3>
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">Support resilience planning, climate-smart agriculture, and adaptation solutions.</p>
             </div>
         </div>
     </div>

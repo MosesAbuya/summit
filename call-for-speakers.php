@@ -23,12 +23,12 @@ include 'includes/header.php';
                         <p style="color: #9a3412; margin: 0; font-size: 0.95rem;">Please note that all speakers and presenters are expected to meet all their attendance and participation costs, including travel, accommodation, and summit registration.</p>
                     </div>
 
-                    <h4 style="margin-bottom: 1rem; color: var(--text-main);">Thematic Areas</h4>
+                    <h4 style="margin-bottom: 1rem; color: var(--text-main);">4.0 Thematic Priorities</h4>
                     <ul style="list-style-type: disc; padding-left: 1.5rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem;">
-                        <li>Bridging Student Innovation with Corporate Pro-Bono</li>
-                        <li>Private Sector Innovations for Social Impact</li>
-                        <li>Digital Transformation & Skill-Based Volunteering</li>
-                        <li>Capacity Building for Grassroots Organizations</li>
+                        <li><strong>Poverty Reduction (SDG 1 & AU Asp. 1):</strong> Support microfinance training, property rights clinics, and enterprise mentoring.</li>
+                        <li><strong>Education (SDG 4 & AU Asp. 1):</strong> Provide mentorship, tutoring, and digital learning support for out-of-school youth.</li>
+                        <li><strong>Decent Work (SDG 8 & AU Asp. 1):</strong> Deliver skills workshops and entrepreneurship support for youth and SMEs.</li>
+                        <li><strong>Climate Action (SDG 13 & AU Asp. 7):</strong> Support resilience planning, climate-smart agriculture, and adaptation solutions.</li>
                     </ul>
 
                     <div class="contact-method" style="display: flex; gap: 1.5rem;">

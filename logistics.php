@@ -46,7 +46,7 @@
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-plane"></i></div>
                         <h3>Airport Transfers</h3>
-                        <p>Complimentary VIP shuttle buses will run continuously from JKIA to Partner Hotels on November 22nd and 23rd. KES 1,600,000 is allocated to handle travel and transport logistics.</p>
+                        <p>Complimentary VIP shuttle buses will run continuously from JKIA to Partner Hotels on November 22nd and 23rd.</p>
                     </div>
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-van-shuttle"></i></div>
