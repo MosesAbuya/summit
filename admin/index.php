@@ -445,6 +445,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <ul class="text-sm text-slate-600 space-y-2">
                                         <li><strong>Status:</strong> <span id="modalStatus"></span></li>
                                         <li><strong>Transaction ID:</strong> <span id="modalTransId"></span></li>
+                                        <li><strong>Payment Proof:</strong> <span id="modalPaymentProof"></span></li>
                                         <li><strong>Confirmed At:</strong> <span id="modalConfirmedAt"></span></li>
                                         <li><strong>Promo Code:</strong> <span id="modalPromo"></span></li>
                                     </ul>
@@ -527,6 +528,13 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 
                 document.getElementById('modalStatus').innerHTML = data.payment_status === 'confirmed' ? '<span class="text-green-600 font-bold">Confirmed</span>' : '<span class="text-slate-500 font-bold">' + data.payment_status.toUpperCase() + '</span>';
                 document.getElementById('modalTransId').innerText = data.transaction_code || '-';
+                
+                if (data.payment_proof_url) {
+                    document.getElementById('modalPaymentProof').innerHTML = `<a href="../${data.payment_proof_url}" target="_blank" class="text-blue-600 hover:underline">View Receipt <i class="fa-solid fa-external-link"></i></a>`;
+                } else {
+                    document.getElementById('modalPaymentProof').innerText = '-';
+                }
+
                 document.getElementById('modalConfirmedAt').innerText = data.payment_confirmed_at || '-';
                 document.getElementById('modalPromo').innerText = data.promo_code || '-';
 

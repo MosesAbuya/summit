@@ -14,8 +14,11 @@
 
         <div class="container footer-container">
             <div class="footer-col brand-col">
-                <div class="logo-text" style="color: white; margin-bottom: 1rem;">
-                    <span class="main-title" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">Global Pro Bono Summit Africa</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <img src="assets/banners/logo.png" alt="Global Summit on pro bono practice Africa Logo" style="height: 60px; width: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">
+                    <div class="logo-text" style="color: white; text-align: left;">
+                        <span class="main-title" style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; line-height: 1.2; display: block;">Global Summit on pro bono practice Africa</span>
+                    </div>
                 </div>
                 <p class="slogan" style="color: var(--secondary-color); font-weight: 600; font-size: 1.1rem; margin-bottom: 1.5rem;">"Professionalism in Service, Impact in Community."</p>
                 <p>Organized jointly by the Global Pro Bono Network and Jitolee Good Friends Foundation.</p>

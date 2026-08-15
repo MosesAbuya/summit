@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $transactionCode = $_POST['transaction_code'] ?? '';
         $promoCode = $_POST['promo_code'] ?? '';
+        $paymentMethod = $_POST['payment_method'] ?? 'paystack';
 
         if (empty($firstName) || empty($lastName) || empty($email) || empty($phone) || empty($country)) {
             echo json_encode(['success' => false, 'message' => 'Missing required attendee details.']);
@@ -59,6 +60,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $paymentStatus = 'pending';
+        $paymentProofUrl = '';
+        
+        // Handle manual payment file upload
+        if ($paymentMethod === 'manual') {
+            if (isset($_FILES['payment_proof']) && $_FILES['payment_proof']['error'] == UPLOAD_ERR_OK) {
+                $uploadDir = 'uploads/receipts/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+                
+                $fileName = time() . '_' . basename($_FILES['payment_proof']['name']);
+                $targetFilePath = $uploadDir . $fileName;
+                
+                if (move_uploaded_file($_FILES['payment_proof']['tmp_name'], $targetFilePath)) {
+                    $paymentProofUrl = $targetFilePath;
+                    $paymentStatus = 'proof_uploaded';
+                }
+            } else if (!empty($transactionCode)) {
+                $paymentStatus = 'proof_uploaded';
+            }
+        }
 
         try {
             // Process Cart
@@ -118,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $pdo->beginTransaction();
             
             $stmt = $pdo->prepare("INSERT INTO ticket_orders (order_ref, first_name, last_name, email, phone, organization, job_title, country, dietary_requirements, accessibility_needs, visa_required, passport_number, emergency_contact_name, emergency_contact_phone, subtotal_usd, discount_usd, total_usd, subtotal_kes, discount_kes, total_kes, promo_code, payment_status, transaction_code, payment_proof_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$orderRef, $firstName, $lastName, $email, $phone, $organization, $jobTitle, $country, $dietary, $accessibility, $visaRequired, $passport, $emergName, $emergPhone, $subtotalUsd, $discountUsd, $totalUsd, $subtotalKes, $discountKes, $totalKes, $promoCode, $paymentStatus, $transactionCode, '']);
+            $stmt->execute([$orderRef, $firstName, $lastName, $email, $phone, $organization, $jobTitle, $country, $dietary, $accessibility, $visaRequired, $passport, $emergName, $emergPhone, $subtotalUsd, $discountUsd, $totalUsd, $subtotalKes, $discountKes, $totalKes, $promoCode, $paymentStatus, $transactionCode, $paymentProofUrl]);
             
             $orderId = $pdo->lastInsertId();
 

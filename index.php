@@ -337,6 +337,11 @@ include 'includes/header.php';
 </script>
 
 <!-- 2. Founder's Welcome -->
+<!-- Full Width Banner 1 -->
+<div style="width: 100%; overflow: hidden;">
+    <img src="assets/banners/banner 1.jpeg" alt="Global Summit Banner 1" style="width: 100%; height: auto; display: block;">
+</div>
+
 <section id="about" class="section section-alt">
     <div class="container">
         <div class="welcome-grid">
@@ -349,6 +354,9 @@ include 'includes/header.php';
                     <strong>'Multidisciplinary Revolution'</strong> grounded in four strategic pillars: Inclusive
                     Economic Empowerment, Education & Skills Development, Decent Work & Institutional Excellence, and
                     Climate Action.</p>
+                
+                <p>Convened in explicit recognition of the United Nations International Year of Volunteers for Sustainable Development (IVY 2026) under Resolution 78/127, the Summit serves as Africa's premier continental platform to translate global volunteer momentum into practical African action.</p>
+
                 <p>The Conference is set to take place from <strong>November 24th to 27th, 2026 in Nairobi,
                         Kenya</strong>. This year's core focus:</p>
 
@@ -400,6 +408,13 @@ include 'includes/header.php';
             
             <a href="about" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white; padding: 1.25rem 2.5rem; font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(5px); transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='rgba(255,255,255,0.1)'; this.style.borderColor='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.3)';">Discover Our Vision</a>
         </div>
+    </div>
+</section>
+
+<!-- Landscape Banner 2 -->
+<section style="background: #f8fafc; padding: 4rem 0;">
+    <div class="container" style="display: flex; justify-content: center;">
+        <img src="assets/banners/banner 2.jpeg" alt="Global Summit Banner 2" style="max-width: 100%; height: auto; border-radius: var(--border-radius-lg); box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
     </div>
 </section>
 

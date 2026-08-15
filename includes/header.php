@@ -105,14 +105,9 @@
         <div class="container header-container">
             <div class="logo-wrapper">
                 <a href="index" class="logo" style="display: flex; align-items: center; gap: 0.75rem;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 17L12 22L22 17" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M2 12L12 17L22 12" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <img src="assets/banners/logo.png" alt="Global Summit on pro bono practice Africa Logo" style="height: 45px; width: auto; object-fit: contain;">
                     <div class="logo-text" style="display: flex; flex-direction: column;">
-                        <span class="main-title" style="font-weight: 700; font-size: 1.25rem; color: var(--text-main); line-height: 1.1;">Summit Africa</span>
-                        <span class="sub-brand" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 500;">By Jitolee Foundation</span>
+                        <span class="main-title" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main); line-height: 1.1; max-width: 250px; white-space: normal;">Global Summit on pro bono practice Africa</span>
                     </div>
                 </a>
             </div>

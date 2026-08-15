@@ -284,17 +284,68 @@ include 'includes/header.php';
                     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
                         
                         <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 2rem;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #0f172a;">Manual Bank Transfer</h3>
-                            <p style="color: #64748b; margin-bottom: 0.5rem; line-height: 1.6;">To complete your order, please transfer the total amount to the bank account below.</p>
-                            <div style="background: #eef2ff; border: 1px solid #c7d2fe; padding: 1rem; border-radius: 6px; margin-bottom: 2rem;">
-                            <div style="background: #f1f5f9; border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 0 8px 8px 0; margin-bottom: 2rem;">
-                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Secure Checkout</h4>
-                                <p style="color: #334155; line-height: 1.6; margin-bottom: 1rem;">
-                                    By clicking the "Pay Securely" button below, you will be redirected to our secure payment partner, <strong>Paystack</strong>, to complete your transaction.
-                                </p>
-                                <p style="color: #334155; line-height: 1.6; margin-bottom: 0;">
-                                    You can pay easily using your preferred method (Card, Mobile Money, etc.) in KES or USD. Once payment is successful, you will be redirected back here for your confirmation.
-                                </p>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #0f172a;">Select Payment Method</h3>
+                            
+                            <!-- Payment Toggle Options -->
+                            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; background: #f8fafc;" id="label_paystack" onclick="togglePaymentMethod('paystack')">
+                                    <input type="radio" name="payment_method" value="paystack" checked style="margin-top: 0.25rem;">
+                                    <div>
+                                        <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 0.5rem;">Pay Online via Paystack</div>
+                                        <div style="color: #64748b; font-size: 0.95rem; line-height: 1.5;">Instant processing. Supported options: <strong>Credit/Debit Card, Mobile Money (M-PESA), Apple Pay</strong>.</div>
+                                    </div>
+                                </label>
+                                
+                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; background: white;" id="label_manual" onclick="togglePaymentMethod('manual')">
+                                    <input type="radio" name="payment_method" value="manual" style="margin-top: 0.25rem;">
+                                    <div>
+                                        <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 0.5rem;">Direct Bank Transfer / Manual M-PESA</div>
+                                        <div style="color: #64748b; font-size: 0.95rem; line-height: 1.5;">Transfer funds directly to our bank account or via M-PESA Paybill.</div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <!-- Paystack Details -->
+                            <div id="section_paystack">
+                                <div style="background: #f1f5f9; border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 0 8px 8px 0;">
+                                    <p style="color: #334155; line-height: 1.6; margin-bottom: 1rem;">
+                                        By clicking the "Pay Securely" button below, our secure payment partner, <strong>Paystack</strong>, will process your transaction.
+                                    </p>
+                                    <p style="color: #334155; line-height: 1.6; margin-bottom: 0;">
+                                        Once payment is successful, you will automatically receive your confirmation.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Manual Payment Details -->
+                            <div id="section_manual" style="display: none;">
+                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">Bank Details</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                                    <li><strong>Bank Name:</strong> KCB Bank Kenya Ltd</li>
+                                    <li><strong>Account Title:</strong> JITOLEE GOOD FRIENDS</li>
+                                    <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES)</li>
+                                    <li><strong>Branch:</strong> KCB Mortgage Center, Salama House</li>
+                                    <li><strong>SWIFT Code:</strong> KCBLKENX</li>
+                                    <li><strong>Bank Code / Branch Code:</strong> 01 / 289</li>
+                                </ul>
+                                
+                                <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">M-PESA Details</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
+                                    <li><strong>Paybill Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: #10b981;">522522</span></li>
+                                    <li><strong>Account Number:</strong> 1325956678</li>
+                                </ul>
+
+                                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem;">
+                                    <h4 style="font-size: 1.05rem; margin-bottom: 1rem;">Payment Verification</h4>
+                                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                                        <label class="form-label">Transaction Code / Reference Number</label>
+                                        <input type="text" name="transaction_code" id="transaction_code" class="form-control" placeholder="e.g. QXY1234567">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Upload Receipt / Proof of Payment (Optional)</label>
+                                        <input type="file" name="payment_proof" id="payment_proof" class="form-control" accept="image/*,.pdf">
+                                    </div>
+                                </div>
                             </div>
                             
                         </div>
@@ -389,6 +440,28 @@ include 'includes/header.php';
     let cart = {};
     let subtotalUsd = 0;
     let subtotalKes = 0;
+    
+    function togglePaymentMethod(method) {
+        document.getElementById('section_paystack').style.display = method === 'paystack' ? 'block' : 'none';
+        document.getElementById('section_manual').style.display = method === 'manual' ? 'block' : 'none';
+        
+        document.getElementById('label_paystack').style.borderColor = method === 'paystack' ? 'var(--primary-color)' : '#cbd5e1';
+        document.getElementById('label_paystack').style.background = method === 'paystack' ? '#f8fafc' : 'white';
+        
+        document.getElementById('label_manual').style.borderColor = method === 'manual' ? 'var(--primary-color)' : '#cbd5e1';
+        document.getElementById('label_manual').style.background = method === 'manual' ? '#f8fafc' : 'white';
+        
+        const btn = document.getElementById('submitBtn');
+        if (method === 'paystack') {
+            btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pay Securely with Paystack';
+            btn.style.backgroundColor = '#09a5db';
+            btn.style.borderColor = '#09a5db';
+        } else {
+            btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Order & Details';
+            btn.style.backgroundColor = 'var(--primary-color)';
+            btn.style.borderColor = 'var(--primary-color)';
+        }
+    }
     
     function updateQty(id, delta) {
         const input = document.getElementById('qty_' + id);
@@ -586,7 +659,7 @@ include 'includes/header.php';
         formData.append('subtotal_usd', subtotalUsd);
         formData.append('subtotal_kes', subtotalKes);
         
-        // the discount values are already in hidden inputs inside the form
+        const paymentMethod = formData.get('payment_method');
         
         fetch('ajax_ticket_order.php', {
             method: 'POST',
@@ -595,7 +668,7 @@ include 'includes/header.php';
         .then(response => response.json())
         .then(data => {
             document.getElementById('loaderOverlay').style.display = 'none';
-            if(data.success && data.total_kes > 0) {
+            if(data.success && data.total_kes > 0 && paymentMethod === 'paystack') {
                 // Initialize Paystack Inline
                 let handler = PaystackPop.setup({
                     key: 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90',
@@ -633,8 +706,8 @@ include 'includes/header.php';
                     }
                 });
                 handler.openIframe();
-            } else if (data.success && data.total_kes <= 0) {
-                // Fallback if total is 0
+            } else if (data.success) {
+                // Fallback for manual payment or free total (100% discount)
                 document.getElementById('success_order_ref').innerText = data.order_ref;
                 nextStep(4);
             } else {
