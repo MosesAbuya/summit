@@ -89,7 +89,7 @@
         <style>
             .main-header .main-title { color: white !important; }
             .main-header .sub-brand { color: rgba(255,255,255,0.8) !important; }
-            .main-nav ul li a { color: white !important; font-weight: 500; font-size: 0.95rem; }
+            .main-nav ul li a { color: white !important; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
             .main-nav ul li a:hover { color: var(--secondary-color) !important; text-shadow: 0 0 10px rgba(234,179,8,0.5); }
             /* Force the carousel to occupy full viewport now that header floats */
             .hero-carousel { height: 100vh !important; }
@@ -107,7 +107,7 @@
                 <a href="index" class="logo" style="display: flex; align-items: center; gap: 0.75rem;">
                     <img src="assets/banners/logo.png" alt="Global Summit on pro bono practice Africa Logo" style="height: 45px; width: auto; object-fit: contain;">
                     <div class="logo-text" style="display: flex; flex-direction: column;">
-                        <span class="main-title" style="font-weight: 700; font-size: 1.1rem; color: var(--text-main); line-height: 1.1; max-width: 250px; white-space: normal;">Global Summit on pro bono practice Africa</span>
+                        <span class="main-title" style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); line-height: 1.2; max-width: 180px; white-space: normal;">Global Summit on pro bono practice Africa</span>
                     </div>
                 </a>
             </div>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 <div class="header-cta">
-                    <a href="register" class="btn btn-secondary">Register as Delegate</a>
+                    <a href="register" class="btn btn-secondary" style="white-space: nowrap;">Register as Delegate</a>
                 </div>
             </div>
             <button class="mobile-toggle" aria-label="Toggle Navigation">
