@@ -95,6 +95,11 @@
             .hero-carousel { height: 100vh !important; }
             /* Ensure page headers (breadcrumbs) don't collide with the fixed nav */
             .page-header { padding-top: 10rem !important; padding-bottom: 4rem !important; }
+            @media (max-width: 768px) {
+                .logo-title-top { font-size: 0.85rem !important; }
+                .logo-title-bottom { font-size: 0.65rem !important; }
+                .logo img { height: 38px !important; }
+            }
         </style>
         <div class="top-bar bg-dark text-light py-1" style="background-color: transparent; color: white; padding: 0.5rem 0; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
             <div class="container" style="display: flex; justify-content: space-between;">
@@ -107,7 +112,8 @@
                 <a href="index" class="logo" style="display: flex; align-items: center; gap: 0.75rem;">
                     <img src="assets/banners/logo.png" alt="Global Summit on pro bono practice Africa Logo" style="height: 45px; width: auto; object-fit: contain;">
                     <div class="logo-text" style="display: flex; flex-direction: column;">
-                        <span class="main-title" style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); line-height: 1.2; max-width: 180px; white-space: normal;">Global Summit on pro bono practice Africa</span>
+                        <span class="main-title logo-title-top" style="font-weight: 700; font-size: 0.95rem; color: var(--text-main); line-height: 1.1; white-space: nowrap;">Global Summit</span>
+                        <span class="main-title logo-title-bottom" style="font-weight: 700; font-size: 0.7rem; color: var(--kente-gold); line-height: 1.1; white-space: nowrap;">on Pro Bono Practice Africa</span>
                     </div>
                 </a>
             </div>

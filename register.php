@@ -376,15 +376,15 @@ include 'includes/header.php';
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h2 style="font-size: 2.5rem; color: #0f172a; margin-bottom: 1rem;">Booking Received!</h2>
-                    <p style="font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto 2rem;">Your order has been successfully placed. An email confirmation has been sent to you along with the bank account details.</p>
+                    <p id="success_subtitle" style="font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto 2rem;">Your order has been successfully placed. An email confirmation has been sent to you along with the bank account details.</p>
                     
                     <div style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 1.5rem; max-width: 400px; margin: 0 auto 2rem;">
                         <div style="font-size: 0.9rem; color: #64748b; text-transform: uppercase; font-weight: 600; margin-bottom: 0.5rem;">Order Reference</div>
                         <div id="success_order_ref" style="font-size: 1.8rem; font-weight: 800; color: var(--primary-color); letter-spacing: 2px;">GPBS-XXXXXX</div>
                     </div>
 
-                    <h4 style="font-size: 1.2rem; color: #0f172a; margin-bottom: 1rem;">Next Steps:</h4>
-                    <ol style="text-align: left; max-width: 500px; margin: 0 auto 3rem; color: #334155; line-height: 1.8; font-size: 1.05rem;">
+                    <h4 id="success_next_steps_title" style="font-size: 1.2rem; color: #0f172a; margin-bottom: 1rem;">Next Steps:</h4>
+                    <ol id="success_next_steps_list" style="text-align: left; max-width: 500px; margin: 0 auto 3rem; color: #334155; line-height: 1.8; font-size: 1.05rem;">
                         <li>Check your email for the order confirmation.</li>
                         <li>Make the bank transfer using the order reference above as the narration.</li>
                         <li>Upload your proof of payment via the link in your email (if you haven't already).</li>
@@ -691,6 +691,9 @@ include 'includes/header.php';
                             document.getElementById('loaderOverlay').style.display = 'none';
                             if (verifyData.success) {
                                 document.getElementById('success_order_ref').innerText = data.order_ref;
+                                document.getElementById('success_subtitle').innerText = "Your payment was successful and your order has been placed. An email confirmation with your e-ticket has been sent to you.";
+                                document.getElementById('success_next_steps_title').innerText = "What's Next?";
+                                document.getElementById('success_next_steps_list').innerHTML = "<li>Check your email for the final confirmation and e-ticket.</li><li>Prepare for the summit!</li>";
                                 nextStep(4);
                             } else {
                                 alert('Payment verification failed: ' + verifyData.message);
@@ -709,6 +712,15 @@ include 'includes/header.php';
             } else if (data.success) {
                 // Fallback for manual payment or free total (100% discount)
                 document.getElementById('success_order_ref').innerText = data.order_ref;
+                if (data.total_kes <= 0) {
+                    document.getElementById('success_subtitle').innerText = "Your order has been successfully placed. An email confirmation with your e-ticket has been sent to you.";
+                    document.getElementById('success_next_steps_title').innerText = "What's Next?";
+                    document.getElementById('success_next_steps_list').innerHTML = "<li>Check your email for the final confirmation and e-ticket.</li><li>Prepare for the summit!</li>";
+                } else {
+                    document.getElementById('success_subtitle').innerText = "Your order has been successfully placed. An email confirmation has been sent to you along with the bank account details.";
+                    document.getElementById('success_next_steps_title').innerText = "Next Steps:";
+                    document.getElementById('success_next_steps_list').innerHTML = "<li>Check your email for the order confirmation.</li><li>Make the bank transfer using the order reference above as the narration.</li><li>Upload your proof of payment via the link in your email (if you haven't already).</li><li>Receive your final e-ticket once our team verifies the payment.</li>";
+                }
                 nextStep(4);
             } else {
                 alert('Error: ' + data.message);

@@ -47,25 +47,60 @@
             
             <p style="text-align: center; font-size: 1.1rem; color: var(--text-main); margin-bottom: 2rem;">Explore the completely interactive schedule. Click on any day to expand its full itinerary, sessions, and keynote speaker details.</p>
 
-            <div class="program-accordion">
+                        <div class="program-accordion">
                 <!-- Day 1 -->
                 <div class="accordion-item active" id="day1">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">Day 1 • November 24, 2026</div>
+                            <div class="accordion-day">DAY ONE: 24th Nov 2026</div>
                             <h3 class="accordion-title">Vision Setting & Thematic Alignments</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
+                            <div class="accordion-venue">Africa's Strategic Framework for the International Year of Volunteers (IVY 2026)</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <h3 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;"><i class="fa-solid fa-graduation-cap" style="color: var(--terracotta);"></i> Academic & Student Engagement</h3>
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit kicks off with an exciting first day focusing on bridging student innovation with established corporate pro-bono architectures, building the pipeline of future impact leaders.</p>
-                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
-                        </div>
+                        <ul class="timeline-list" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            <li class="timeline-item">
+                                <span class="time-badge">1:00 PM - 2:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Delegate Registration & Welcoming</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Arrival, security clearing, badge distribution, and IVY 2026 introductory toolkits.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">2:00 PM - 2:40 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Official Opening & Speeches</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Welcome: Global Pro Bono Network & Jitolee Good Friends. Opening Address by Dignitaries.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">2:40 PM - 3:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Keynotes: SDGs 1 & 4</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">[SDG 1] Poverty Eradication via Financial & Legal Advisory. [SDG 4] Tech Mentorship for Out-of-School Youth.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">3:00 PM - 3:45 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">High-Level Panel: SDGs 1 & 4</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Cross-sector alignment of corporate and academic volunteer structures (4 Leaders + Q&A).</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">3:45 PM - 4:10 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Networking Tea Break</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Informal networking across delegates and international partners.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">4:10 PM - 4:30 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Keynotes: SDGs 8 & 13</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">[SDG 8] Pro Bono for SME Growth & Employability. [SDG 13] Climate Volunteering & Nature-Based Solutions.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">4:30 PM - 5:15 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">High-Level Panel: SDGs 8 & 13</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Connecting technical expertise with local innovations for youth job growth and climate resilience (+ Q&A).</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">6:30 PM - 9:30 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Welcoming & Opening Dinner</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Hosted by Organizers & Partners. Cultural East African showcase and North-South partnership networking.</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -73,19 +108,45 @@
                 <div class="accordion-item" id="day2">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">Day 2 • November 25, 2026</div>
-                            <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar I & II)</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
+                            <div class="accordion-day">DAY TWO: 25th Nov 2026</div>
+                            <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 1 & 4)</h3>
+                            <div class="accordion-venue">Translating Global Volunteer Momentum into Practical African Action</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">A deep dive into regulatory frameworks and direct engagement on poverty reduction and quality education.</p>
-                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
-                        </div>
+                        <ul class="timeline-list" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            <li class="timeline-item">
+                                <span class="time-badge">8:00 AM - 9:30 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Deep Dive 1: SDG 1 (Extreme Poverty)</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Deploying microfinance, legal property clinics, and funding pipelines for women/youth enterprises.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">9:30 AM - 10:00 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Mid-Morning Tea Break</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Workgroup networking in the exhibition hall.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">10:00 AM - 11:30 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Deep Dive 2: SDG 4 (Quality Education)</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Scaling digital learning platforms and university tutoring to boost enrollment in pilot zones.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">11:30 AM - 1:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Parallel Break-Out Blueprints</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Track A: Food Security Advisory | Track B: Youth Tech Mentorship | Track C: Governance & Policy Frameworks.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">1:00 PM - 2:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Luncheon</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Networking lunch prior to site visits.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">2:00 PM - 5:30 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Experiential Field Visits</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Option 1 (Corporate): Employee Volunteering.<br>Option 2 (Academia): Community Clinics & Service Learning.</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -93,19 +154,45 @@
                 <div class="accordion-item" id="day3">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">Day 3 • November 26, 2026</div>
-                            <h3 class="accordion-title">Deep Dives & Institutional Practice (Pillar III & IV)</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
+                            <div class="accordion-day">DAY THREE: 26th Nov 2026</div>
+                            <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 8 & 13)</h3>
+                            <div class="accordion-venue">Building Institutional Resilience and Strategic Cross-Sector Synergy</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">Focusing on decent work, economic growth, and climate action. Featuring high-level global networking.</p>
-                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
-                        </div>
+                        <ul class="timeline-list" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            <li class="timeline-item">
+                                <span class="time-badge">8:00 AM - 9:30 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Deep Dive 3: SDG 8 (Decent Work)</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Corporate SME mentorship, finance/tech training, and employer-recognized certifications.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">9:30 AM - 10:00 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Mid-Morning Tea Break</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Reviewing blueprint progress on digital tracking dashboard.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">10:00 AM - 11:30 AM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Deep Dive 4: SDG 13 (Climate Action)</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Deploying expert agronomists/engineers for drought resilience and UNEA-7 nature-based solutions.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">11:30 AM - 1:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Parallel Break-Out Blueprints</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Track A: Tech & Agri Capacity | Track B: Community Adaptation | Track C: Gender & Social Inclusion.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">1:00 PM - 2:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Luncheon</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Networking lunch prior to site visits.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">2:00 PM - 5:30 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Experiential Field Visits</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Option 1 (Government/UN Agency): Policy Alignments.<br>Option 2 (Development Partner): Community/Humanitarian Volunteering.</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -113,19 +200,40 @@
                 <div class="accordion-item" id="day4">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">Day 4 • November 27, 2026</div>
-                            <h3 class="accordion-title">Ecological Stewardship & Accord Ratification</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Venue to be confirmed</div>
+                            <div class="accordion-day">DAY FOUR: 27th Nov 2026</div>
+                            <h3 class="accordion-title">Ecological Stewardship, Accord Ratification & Gala Celebration</h3>
+                            <div class="accordion-venue">Locking Continental Commitments and Carrying IVY 2026 Legacy Forward</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit concludes with an elegant evening of celebration and reflection. We honor the outstanding corporations, foundations, and individuals driving impactful pro-bono projects across the continent.</p>
-                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Program details, time slots, and speakers are to be determined.</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
-                        </div>
+                        <ul class="timeline-list" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            <li class="timeline-item">
+                                <span class="time-badge">6:00 AM - 12:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Ecological Immersive Experience</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Game drive at Nairobi National Park followed by Corporate Tree Planting Ceremony (SDG 13).</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">12:00 PM - 3:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Mid-Day Intermission</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Free time to prepare for formal evening closing plenary.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">3:00 PM - 4:30 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Closing Plenary & Ratification</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Signing of the 'Nairobi Pro Bono Accord/Declaration' by Government, Corporate, Academic, and Development Partner leaders.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">4:30 PM - 6:00 PM</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Africa Pro Bono Awards Ceremony</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Recognizing outstanding ESG leadership, academic service-learning, and grassroots CSOs.</p>
+                            </li>
+                            <li class="timeline-item">
+                                <span class="time-badge">6:00 PM - Late</span>
+                                <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 0.25rem;">Grand Gala Closing Dinner</h4>
+                                <p style="color: var(--text-main); line-height: 1.5; margin: 0;">Formal dinner, live African band performance, cultural dance troupes, and toolkit distribution.</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 

@@ -487,7 +487,6 @@ include 'includes/header.php';
         </div>
 
         <div class="tracks-grid">
-        <div class="tracks-grid">
             <div class="track-card">
                 <div class="track-header" style="color: var(--terracotta); font-weight: 700;">SDG 1 & AU Asp 1</div>
                 <h3 style="font-size: 1.25rem;">Pillar I: Poverty Reduction</h3>
@@ -496,7 +495,7 @@ include 'includes/header.php';
             <div class="track-card">
                 <div class="track-header" style="color: var(--savannah-sand); font-weight: 700;">SDG 4 & AU Asp 1</div>
                 <h3 style="font-size: 1.25rem;">Pillar II: Education</h3>
-                <p>Provide mentorship, tutoring, and digital learning support for out-of-school youth.</p>
+                <p>Provide mentorship, tutoring, and digital learning support for both in and out-of-school youth and children.</p>
             </div>
             <div class="track-card">
                 <div class="track-header" style="color: var(--primary-color); font-weight: 700;">SDG 8 & AU Asp 1</div>

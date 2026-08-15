@@ -432,7 +432,7 @@
                     <div style="padding: 2rem;">
                         <span class="badge" style="background: rgba(22,101,52,0.1); color: var(--primary-color); margin-bottom: 1rem; display: inline-block;">Founding Organization</span>
                         <h3 style="margin-bottom: 0.5rem;">Jitolee Good Friends Foundation</h3>
-                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">A Nairobi-based foundation championing volunteerism and pro bono practice as a cornerstone of African development. Founded by Fredrick Sadia, Jitolee ("Self-Reliance" in Swahili) brings together professionals, communities, and institutions committed to building a prosperous, people-driven Africa.</p>
+                        <p style="color: var(--text-main); font-size: 0.95rem; line-height: 1.7;">A Nairobi-based foundation championing volunteerism and pro bono practice as a cornerstone of African development. Founded by Fredrick Sadia, Jitolee Swahili word for "to volunteer" amplified by Kenya's clarion call Harambee , meaning "pulling together" brings together professionals, communities, and institutions committed to building a prosperous, people-driven Africa.</p>
                     </div>
                 </div>
                 <div style="background: white; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; overflow: hidden;">
