@@ -1,13 +1,13 @@
 <?php
-$host = 'localhost';
-$dbname = 'summit';
-$username = 'root'; // Adjust to environment
-$password = ''; // Adjust to environment
-
 // $host = 'localhost';
-// $dbname = 'faridagi_summit';
-// $username = 'faridagi_summit'; // Adjust to environment
-// $password = 'Summit@2026'; // Adjust to environment
+// $dbname = 'summit';
+// $username = 'root'; // Adjust to environment
+// $password = ''; // Adjust to environment
+
+$host = 'localhost';
+$dbname = 'faridagi_summit';
+$username = 'faridagi_summit'; // Adjust to environment
+$password = 'Summit@2026'; // Adjust to environment
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
