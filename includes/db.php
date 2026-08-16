@@ -112,7 +112,28 @@ try {
             subtotal_kes DECIMAL(10,2) NOT NULL,
             FOREIGN KEY (order_id) REFERENCES ticket_orders(id) ON DELETE CASCADE
         );
+        CREATE TABLE IF NOT EXISTS settings (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            setting_key VARCHAR(100) UNIQUE NOT NULL,
+            setting_value TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
     ");
+
+    // Seed default settings if empty
+    $pdo->exec("INSERT IGNORE INTO settings (setting_key, setting_value) VALUES 
+        ('paystack_public_key', 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90'),
+        ('paystack_secret_key', 'sk_test_0a76085eeda2c3f51c5c3dd7f4027c9328737be3')
+    ");
+
+    // Fetch all app settings globally
+    $app_settings = [];
+    try {
+        $stmt_settings = $pdo->query("SELECT setting_key, setting_value FROM settings");
+        while($row = $stmt_settings->fetch()) {
+            $app_settings[$row['setting_key']] = $row['setting_value'];
+        }
+    } catch(PDOException $e) {}
 
     // Seed packages and migrate data if not already done
     $stmt = $pdo->query("SELECT COUNT(*) FROM ticket_packages");

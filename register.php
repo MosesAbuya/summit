@@ -671,7 +671,7 @@ include 'includes/header.php';
             if(data.success && data.total_kes > 0 && paymentMethod === 'paystack') {
                 // Initialize Paystack Inline
                 let handler = PaystackPop.setup({
-                    key: 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90',
+                    key: '<?php echo htmlspecialchars($app_settings["paystack_public_key"] ?? ""); ?>',
                     email: data.email,
                     amount: data.total_kes * 100, // in kobo/cents
                     currency: 'KES',

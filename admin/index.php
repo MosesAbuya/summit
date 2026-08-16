@@ -216,6 +216,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 <button onclick="switchTab('tab-news', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-regular fa-newspaper w-5"></i> News</button>
                 <button onclick="switchTab('tab-resources', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-folder-open w-5"></i> Resources</button>
                 <button onclick="switchTab('tab-mailer', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-envelope-open-text w-5"></i> Mailer Settings</button>
+                <button onclick="switchTab('tab-settings', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-cogs w-5"></i> System Settings</button>
             </nav>
         </div>
         <div class="p-4 border-t border-green-800">
@@ -1182,6 +1183,35 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         <?php endif; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- ==============================
+             TAB: SYSTEM SETTINGS
+             ============================== -->
+        <div id="tab-settings" class="tab-content hidden">
+            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-cogs text-green-700"></i> System Settings</h2>
+            
+            <div class="bg-white shadow rounded-lg overflow-hidden p-6 mb-12">
+                <h3 class="text-lg font-bold mb-4 text-slate-800">Paystack Integration Settings</h3>
+                <form class="ajax-form" method="POST" action="api.php">
+                    <input type="hidden" name="action" value="save_settings">
+                    <div class="grid grid-cols-1 gap-6 max-w-2xl">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Paystack Public Key</label>
+                            <input type="text" name="paystack_public_key" value="<?php echo htmlspecialchars($app_settings['paystack_public_key'] ?? ''); ?>" class="w-full border-slate-300 rounded-md shadow-sm p-2 border focus:border-green-500 focus:ring focus:ring-green-200" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1">Paystack Secret Key</label>
+                            <input type="password" name="paystack_secret_key" value="<?php echo htmlspecialchars($app_settings['paystack_secret_key'] ?? ''); ?>" class="w-full border-slate-300 rounded-md shadow-sm p-2 border focus:border-green-500 focus:ring focus:ring-green-200" required>
+                        </div>
+                        <div>
+                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow transition-colors">
+                                <i class="fa-solid fa-save"></i> Save Settings
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 

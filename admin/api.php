@@ -59,6 +59,18 @@ try {
         exit;
     }
     
+    if ($action === 'save_settings') {
+        $pub = $_POST['paystack_public_key'] ?? '';
+        $sec = $_POST['paystack_secret_key'] ?? '';
+        
+        $stmt = $pdo->prepare("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?) ON DUPLICATE KEY UPDATE setting_value=VALUES(setting_value)");
+        $stmt->execute(['paystack_public_key', $pub]);
+        $stmt->execute(['paystack_secret_key', $sec]);
+        
+        echo json_encode(['success' => true, 'message' => "Settings updated successfully!"]);
+        exit;
+    }
+    
     if ($action === 'add_news') {
         $title = $_POST['title'];
         $excerpt = $_POST['excerpt'];

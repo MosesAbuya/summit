@@ -18,7 +18,7 @@ if (empty($reference)) {
     exit;
 }
 
-$paystackSecretKey = 'sk_test_0a76085eeda2c3f51c5c3dd7f4027c9328737be3';
+$paystackSecretKey = $app_settings['paystack_secret_key'] ?? '';
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://api.paystack.co/transaction/verify/" . rawurlencode($reference));
