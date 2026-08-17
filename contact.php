@@ -18,19 +18,12 @@ include 'includes/header.php';
                     <h2 style="margin-bottom: 1.5rem; color: var(--primary-color);">Get In Touch</h2>
                     <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.1rem;">For delegate tickets or sponsorship passes, please visit our dedicated <a href="register" style="color: var(--secondary-color); font-weight: 600; text-decoration: underline;">Registration Portal</a>.</p>
                     
-                    <div class="contact-method" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
-                        <div style="font-size: 2rem; color: var(--secondary-color);"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <h4>Global Headquarters</h4>
-                            <p style="color: var(--text-muted); margin: 0;">Jitolee Good Friends Foundation<br>14th Floor, Impact Tower<br>Nairobi, Kenya</p>
-                        </div>
-                    </div>
-                    
+
                     <div class="contact-method" style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
                         <div style="font-size: 2rem; color: var(--secondary-color);"><i class="fa-regular fa-envelope"></i></div>
                         <div>
                             <h4>Email Desks</h4>
-                            <p style="color: var(--text-muted); margin: 0;">General: info@jitoleegoodfriendsfoundation.org<br>Logistics: logistics@summitafrica.org</p>
+                            <p style="color: var(--text-muted); margin: 0;">General: info@globalsummitafrica.org<br>Logistics: logistics@globalsummitafrica.org</p>
                         </div>
                     </div>
                     
