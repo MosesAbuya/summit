@@ -35,7 +35,7 @@ include 'includes/header.php';
                         <div style="font-size: 2rem; color: var(--secondary-color);"><i class="fa-regular fa-envelope"></i></div>
                         <div>
                             <h4>Questions?</h4>
-                            <p style="color: var(--text-muted); margin: 0;">program@summitafrica.org</p>
+                            <p style="color: var(--text-muted); margin: 0;">info@globalsummitafrica.org</p>
                         </div>
                     </div>
                 </div>

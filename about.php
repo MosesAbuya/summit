@@ -475,20 +475,6 @@
                     </a>
                 </div>
 
-                <div class="doc-download-card">
-                    <div style="display: flex; align-items: center; gap: 1.5rem;">
-                        <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(22,101,52,0.2); border: 1px solid rgba(22,101,52,0.4); display: flex; align-items: center; justify-content: center; font-size: 1.75rem; color: #34d399; flex-shrink: 0;">
-                            <i class="fa-solid fa-file-pdf"></i>
-                        </div>
-                        <div>
-                            <h4 style="color: white; margin: 0 0 0.25rem; font-size: 1.1rem;">Final Concept Paper</h4>
-                            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin: 0;">7-page full concept · Rationale, Objectives, Thematic Areas & Budget</p>
-                        </div>
-                    </div>
-                    <a href="assets/FINAL CONCEPT NOTE - Global Pro Bono Summit Africa 2026.pdf" download class="btn btn-secondary" style="flex-shrink: 0; white-space: nowrap;">
-                        <i class="fa-solid fa-download" style="margin-right: 0.4rem;"></i> Download PDF
-                    </a>
-                </div>
 
                 <div class="doc-download-card">
                     <div style="display: flex; align-items: center; gap: 1.5rem;">
