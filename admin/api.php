@@ -45,16 +45,19 @@ try {
         $from_email = $_POST['from_email'];
         $from_name = $_POST['from_name'];
         
-        if ($smtp_pass) {
-            $stmt = $pdo->prepare("INSERT INTO mailer_settings (form_type, company_email, smtp_host, smtp_port, smtp_user, smtp_pass, from_email, from_name) 
-                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
-                                   ON DUPLICATE KEY UPDATE company_email=?, smtp_host=?, smtp_port=?, smtp_user=?, smtp_pass=?, from_email=?, from_name=?");
-            $stmt->execute([$form_type, $company_email, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $from_email, $from_name,
-                                        $company_email, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $from_email, $from_name]);
-        } else {
-            $stmt = $pdo->prepare("UPDATE mailer_settings SET company_email=?, smtp_host=?, smtp_port=?, smtp_user=?, from_email=?, from_name=? WHERE form_type=?");
-            $stmt->execute([$company_email, $smtp_host, $smtp_port, $smtp_user, $from_email, $from_name, $form_type]);
-        }
+        $stmt = $pdo->prepare("
+            INSERT INTO mailer_settings (form_type, company_email, smtp_host, smtp_port, smtp_user, smtp_pass, from_email, from_name) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
+            ON DUPLICATE KEY UPDATE 
+                company_email=VALUES(company_email), 
+                smtp_host=VALUES(smtp_host), 
+                smtp_port=VALUES(smtp_port), 
+                smtp_user=VALUES(smtp_user), 
+                smtp_pass=COALESCE(VALUES(smtp_pass), mailer_settings.smtp_pass), 
+                from_email=VALUES(from_email), 
+                from_name=VALUES(from_name)
+        ");
+        $stmt->execute([$form_type, $company_email, $smtp_host, $smtp_port, $smtp_user, $smtp_pass, $from_email, $from_name]);
         echo json_encode(['success' => true, 'message' => "Mailer settings for " . ucfirst($form_type) . " updated successfully!"]);
         exit;
     }

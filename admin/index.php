@@ -1003,7 +1003,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     <h3 class="text-lg font-bold text-slate-800 mb-1">General / Contact Form</h3>
                     <p class="text-sm text-slate-500 mb-6">Default settings used by the general contact form.</p>
                     
-                    <form class="ajax-form" enctype="multipart/form-data">
+                    <form class="ajax-form no-reset" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_mailer_settings">
                         <input type="hidden" name="form_type" value="contact">
                         
@@ -1052,7 +1052,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     <h3 class="text-lg font-bold text-slate-800 mb-1">Registration Form</h3>
                     <p class="text-sm text-slate-500 mb-6">Settings used for delegate and sponsorship registrations.</p>
                     
-                    <form class="ajax-form" enctype="multipart/form-data">
+                    <form class="ajax-form no-reset" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="save_mailer_settings">
                         <input type="hidden" name="form_type" value="registration">
                         
@@ -1194,7 +1194,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             
             <div class="bg-white shadow rounded-lg overflow-hidden p-6 mb-12">
                 <h3 class="text-lg font-bold mb-4 text-slate-800">Paystack Integration Settings</h3>
-                <form class="ajax-form" method="POST" action="api.php">
+                <form class="ajax-form no-reset" method="POST" action="api.php">
                     <input type="hidden" name="action" value="save_settings">
                     <div class="grid grid-cols-1 gap-6 max-w-2xl">
                         <div>
@@ -1273,7 +1273,9 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     
                     if (data.success) {
                         showToast(data.message, 'success');
-                        form.reset();
+                        if (!form.classList.contains('no-reset')) {
+                            form.reset();
+                        }
                         // Find which tab we are in
                         const tab = form.closest('.tab-content');
                         if (tab) {
