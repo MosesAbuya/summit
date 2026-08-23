@@ -406,7 +406,7 @@ try {
     }
 
     if ($action === 'delete_enquiry') {
-        $stmt = $pdo->prepare("DELETE FROM contact_messages WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM enquiries WHERE id = ?");
         $stmt->execute([$_POST['id']]);
         echo json_encode(['success' => true, 'message' => "Enquiry deleted."]);
         exit;
