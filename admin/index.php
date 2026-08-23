@@ -292,7 +292,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Sender</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Subject</th>
-                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Message Payload</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-200">
@@ -305,7 +305,10 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                         <div class="text-sm"><a href="mailto:<?php echo htmlspecialchars($e['email']); ?>" class="text-green-600 hover:text-green-900 font-medium"><?php echo htmlspecialchars($e['email']); ?></a></div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold"><?php echo htmlspecialchars($e['subject']); ?></td>
-                                    <td class="px-6 py-4 text-sm text-slate-700 max-w-xl"><?php echo nl2br(htmlspecialchars($e['message'])); ?></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button onclick="viewEnquiryMessage(this)" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold border border-blue-200">Read Full Message</button>
+                                        <div class="hidden"><?php echo htmlspecialchars($e['message']); ?></div>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -408,7 +411,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                         <?php if($o['payment_status'] !== 'confirmed'): ?>
                                             <button onclick="confirmOrder(<?php echo $o['id']; ?>)" class="text-green-600 hover:text-green-900" title="Manual Confirm"><i class="fa-solid fa-check"></i></button>
                                         <?php endif; ?>
-                                        <button onclick="deleteRecord(<?php echo $o['id']; ?>, 'delete_order')" class="text-red-600 hover:text-red-900" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                        <button onclick="ajaxDelete('delete_order', 'id', <?php echo $o['id']; ?>, this.closest('tr'), 'tab-delegates')" class="text-red-600 hover:text-red-900" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -492,6 +495,24 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     </div>
                 </div>
             </div>
+
+            <!-- Enquiry Modal -->
+            <div id="enquiryModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
+                <div class="min-h-screen px-4 text-center flex items-center justify-center">
+                    <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full">
+                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Message Payload</h3>
+                            <button onclick="closeEnquiryModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
+                        </div>
+                        <div class="px-6 py-6">
+                            <p id="enquiryModalMessage" class="text-slate-700 whitespace-pre-wrap text-base leading-relaxed"></p>
+                        </div>
+                        <div class="bg-slate-50 px-4 py-3 border-t border-slate-200 text-right">
+                            <button onclick="closeEnquiryModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <script>
             function filterOrders() {
@@ -568,6 +589,16 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
 
             function closeOrderModal() {
                 document.getElementById('orderModal').classList.add('hidden');
+            }
+
+            function viewEnquiryMessage(btn) {
+                const message = btn.nextElementSibling.innerText;
+                document.getElementById('enquiryModalMessage').innerText = message;
+                document.getElementById('enquiryModal').classList.remove('hidden');
+            }
+
+            function closeEnquiryModal() {
+                document.getElementById('enquiryModal').classList.add('hidden');
             }
 
             function confirmOrder(id) {
