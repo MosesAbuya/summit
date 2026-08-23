@@ -405,6 +405,20 @@ try {
         exit;
     }
 
+    if ($action === 'delete_enquiry') {
+        $stmt = $pdo->prepare("DELETE FROM contact_messages WHERE id = ?");
+        $stmt->execute([$_POST['id']]);
+        echo json_encode(['success' => true, 'message' => "Enquiry deleted."]);
+        exit;
+    }
+
+    if ($action === 'delete_registration') {
+        $stmt = $pdo->prepare("DELETE FROM registrations WHERE id = ?");
+        $stmt->execute([$_POST['id']]);
+        echo json_encode(['success' => true, 'message' => "Registration deleted."]);
+        exit;
+    }
+
     echo json_encode(['success' => false, 'message' => 'Unknown action']);
 
 } catch (PDOException $e) {

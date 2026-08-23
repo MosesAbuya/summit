@@ -91,6 +91,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
     <!-- Use Tailwind via CDN for quick, clean admin panel -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>
         // Make all textareas rich-text
@@ -207,6 +208,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         <div class="p-4 flex-1 overflow-y-auto">
             <nav class="flex flex-col gap-2">
                 <button onclick="switchTab('tab-submissions', this)" class="sidebar-btn bg-green-800 border-l-4 border-green-400 flex items-center gap-3 px-4 py-3 rounded-md text-left transition"><i class="fa-solid fa-inbox w-5"></i> Registrations</button>
+                <button onclick="switchTab('tab-enquiries', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-envelope w-5"></i> Enquiries</button>
                 <button onclick="switchTab('tab-ticket-orders', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-ticket w-5"></i> Ticket Orders</button>
                 <button onclick="switchTab('tab-ticket-packages', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-box w-5"></i> Ticket Packages</button>
                 <button onclick="switchTab('tab-promo-codes', this)" class="sidebar-btn text-green-100 flex items-center gap-3 px-4 py-3 rounded-md text-left hover:bg-green-800 transition"><i class="fa-solid fa-tag w-5"></i> Promo Codes</button>
@@ -246,6 +248,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Reg Type</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Track & Pledge</th>
                                 <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-200">
@@ -273,6 +276,9 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full bg-yellow-100 text-yellow-800"><?php echo htmlspecialchars($r['status']); ?></span>
                                     </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button onclick="ajaxDelete('delete_registration', 'id', <?php echo $r['id']; ?>, this.closest('tr'), 'tab-submissions')" class="text-red-600 hover:text-red-900" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
                                 </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>
@@ -282,8 +288,16 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     </table>
                 </div>
             </div>
+        </div>
 
-            <h2 class="text-2xl font-bold mb-4 text-slate-900 flex items-center gap-2"><i class="fa-solid fa-inbox text-green-700"></i> Headquarters Enquiries</h2>
+        <!-- ==============================
+             ENQUIRIES TAB
+        =============================== -->
+        <div id="tab-enquiries" class="tab-content hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-envelope text-green-700"></i> Headquarters Enquiries</h2>
+            </div>
+
             <div class="bg-white shadow rounded-lg overflow-hidden mb-12">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-slate-200">
@@ -306,8 +320,9 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold"><?php echo htmlspecialchars($e['subject']); ?></td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <button onclick="viewEnquiryMessage(this)" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold border border-blue-200">Read Full Message</button>
+                                        <button onclick="viewEnquiryMessage(this)" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold border border-blue-200 mr-2">Read Full Message</button>
                                         <div class="hidden"><?php echo htmlspecialchars($e['message']); ?></div>
+                                        <button onclick="ajaxDelete('delete_enquiry', 'id', <?php echo $e['id']; ?>, this.closest('tr'), 'tab-enquiries')" class="text-red-600 hover:text-red-900" title="Delete"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -423,96 +438,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 </div>
             </div>
 
-            <!-- Order Details Modal -->
-            <div id="orderModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
-                <div class="min-h-screen px-4 text-center">
-                    <div class="inline-block w-full max-w-4xl my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-lg overflow-hidden">
-                        <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice"></i> Order Details - <span id="modalOrderRef"></span></h3>
-                            <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
-                        </div>
-                        <div class="p-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-user text-green-600"></i> Attendee Info</h4>
-                                    <ul class="text-sm text-slate-600 space-y-2">
-                                        <li><strong>Name:</strong> <span id="modalName"></span></li>
-                                        <li><strong>Email:</strong> <span id="modalEmail"></span></li>
-                                        <li><strong>Phone:</strong> <span id="modalPhone"></span></li>
-                                        <li><strong>Organization:</strong> <span id="modalOrg"></span></li>
-                                        <li><strong>Job Title:</strong> <span id="modalJob"></span></li>
-                                        <li><strong>Country:</strong> <span id="modalCountry"></span></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-credit-card text-blue-600"></i> Payment & Transaction</h4>
-                                    <ul class="text-sm text-slate-600 space-y-2">
-                                        <li><strong>Status:</strong> <span id="modalStatus"></span></li>
-                                        <li><strong>Transaction ID:</strong> <span id="modalTransId"></span></li>
-                                        <li><strong>Payment Proof:</strong> <span id="modalPaymentProof"></span></li>
-                                        <li><strong>Confirmed At:</strong> <span id="modalConfirmedAt"></span></li>
-                                        <li><strong>Promo Code:</strong> <span id="modalPromo"></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                <div>
-                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-clipboard-list text-purple-600"></i> Logistics</h4>
-                                    <ul class="text-sm text-slate-600 space-y-2">
-                                        <li><strong>Dietary Needs:</strong> <span id="modalDiet"></span></li>
-                                        <li><strong>Accessibility:</strong> <span id="modalAccess"></span></li>
-                                        <li><strong>Visa Required:</strong> <span id="modalVisa"></span></li>
-                                        <li><strong>Passport No:</strong> <span id="modalPassport"></span></li>
-                                        <li><strong>Emergency Contact:</strong> <span id="modalEmergName"></span></li>
-                                        <li><strong>Emergency Phone:</strong> <span id="modalEmergPhone"></span></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-tags text-orange-600"></i> Order Items</h4>
-                                    <div class="bg-slate-50 border rounded p-3 text-sm">
-                                        <ul id="modalItemsList" class="space-y-2 mb-3"></ul>
-                                        <div class="border-t pt-2 mt-2 font-bold flex justify-between">
-                                            <span>Subtotal:</span>
-                                            <span>$<span id="modalSubUsd"></span> / KES <span id="modalSubKes"></span></span>
-                                        </div>
-                                        <div class="text-green-600 font-bold flex justify-between">
-                                            <span>Discount:</span>
-                                            <span>-$<span id="modalDiscUsd"></span> / -KES <span id="modalDiscKes"></span></span>
-                                        </div>
-                                        <div class="border-t pt-2 mt-2 font-black text-lg flex justify-between text-slate-900">
-                                            <span>Total Paid:</span>
-                                            <span>$<span id="modalTotalUsd"></span> / KES <span id="modalTotalKes"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="text-right">
-                                <button onclick="closeOrderModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Enquiry Modal -->
-            <div id="enquiryModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
-                <div class="min-h-screen px-4 text-center flex items-center justify-center">
-                    <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full">
-                        <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
-                            <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Message Payload</h3>
-                            <button onclick="closeEnquiryModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
-                        </div>
-                        <div class="px-6 py-6">
-                            <p id="enquiryModalMessage" class="text-slate-700 whitespace-pre-wrap text-base leading-relaxed"></p>
-                        </div>
-                        <div class="bg-slate-50 px-4 py-3 border-t border-slate-200 text-right">
-                            <button onclick="closeEnquiryModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             <script>
             function filterOrders() {
@@ -601,8 +527,17 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                 document.getElementById('enquiryModal').classList.add('hidden');
             }
 
-            function confirmOrder(id) {
-                if(!confirm('Are you sure you want to manually confirm this order? This will send the final confirmation email to the attendee.')) return;
+            async function confirmOrder(id) {
+                const result = await Swal.fire({
+                    title: 'Confirm Order?',
+                    text: 'This will send the final confirmation email to the attendee.',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#166534',
+                    cancelButtonColor: '#d1d5db',
+                    confirmButtonText: 'Yes, confirm it!'
+                });
+                if(!result.isConfirmed) return;
 
                 fetch('api.php', {
                     method: 'POST',
@@ -1247,6 +1182,97 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         </div>
 
     </main>
+    
+    <!-- Order Details Modal -->
+    <div id="orderModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 text-center">
+            <div class="inline-block w-full max-w-4xl my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-file-invoice"></i> Order Details - <span id="modalOrderRef"></span></h3>
+                    <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-user text-green-600"></i> Attendee Info</h4>
+                            <ul class="text-sm text-slate-600 space-y-2">
+                                <li><strong>Name:</strong> <span id="modalName"></span></li>
+                                <li><strong>Email:</strong> <span id="modalEmail"></span></li>
+                                <li><strong>Phone:</strong> <span id="modalPhone"></span></li>
+                                <li><strong>Organization:</strong> <span id="modalOrg"></span></li>
+                                <li><strong>Job Title:</strong> <span id="modalJob"></span></li>
+                                <li><strong>Country:</strong> <span id="modalCountry"></span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-credit-card text-blue-600"></i> Payment & Transaction</h4>
+                            <ul class="text-sm text-slate-600 space-y-2">
+                                <li><strong>Status:</strong> <span id="modalStatus"></span></li>
+                                <li><strong>Transaction ID:</strong> <span id="modalTransId"></span></li>
+                                <li><strong>Payment Proof:</strong> <span id="modalPaymentProof"></span></li>
+                                <li><strong>Confirmed At:</strong> <span id="modalConfirmedAt"></span></li>
+                                <li><strong>Promo Code:</strong> <span id="modalPromo"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-clipboard-list text-purple-600"></i> Logistics</h4>
+                            <ul class="text-sm text-slate-600 space-y-2">
+                                <li><strong>Dietary Needs:</strong> <span id="modalDiet"></span></li>
+                                <li><strong>Accessibility:</strong> <span id="modalAccess"></span></li>
+                                <li><strong>Visa Required:</strong> <span id="modalVisa"></span></li>
+                                <li><strong>Passport No:</strong> <span id="modalPassport"></span></li>
+                                <li><strong>Emergency Contact:</strong> <span id="modalEmergName"></span></li>
+                                <li><strong>Emergency Phone:</strong> <span id="modalEmergPhone"></span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 mb-3 border-b pb-2"><i class="fa-solid fa-tags text-orange-600"></i> Order Items</h4>
+                            <div class="bg-slate-50 border rounded p-3 text-sm">
+                                <ul id="modalItemsList" class="space-y-2 mb-3"></ul>
+                                <div class="border-t pt-2 mt-2 font-bold flex justify-between">
+                                    <span>Subtotal:</span>
+                                    <span>$<span id="modalSubUsd"></span> / KES <span id="modalSubKes"></span></span>
+                                </div>
+                                <div class="text-green-600 font-bold flex justify-between">
+                                    <span>Discount:</span>
+                                    <span>-$<span id="modalDiscUsd"></span> / -KES <span id="modalDiscKes"></span></span>
+                                </div>
+                                <div class="border-t pt-2 mt-2 font-black text-lg flex justify-between text-slate-900">
+                                    <span>Total Paid:</span>
+                                    <span>$<span id="modalTotalUsd"></span> / KES <span id="modalTotalKes"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right">
+                        <button onclick="closeOrderModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enquiry Modal -->
+    <div id="enquiryModal" class="fixed inset-0 bg-slate-900 bg-opacity-50 hidden z-50 overflow-y-auto">
+        <div class="min-h-screen px-4 text-center flex items-center justify-center">
+            <div class="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full">
+                <div class="bg-slate-50 px-4 py-3 border-b border-slate-200 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Message Payload</h3>
+                    <button onclick="closeEnquiryModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fa-solid fa-times"></i></button>
+                </div>
+                <div class="px-6 py-6">
+                    <p id="enquiryModalMessage" class="text-slate-700 whitespace-pre-wrap text-base leading-relaxed"></p>
+                </div>
+                <div class="bg-slate-50 px-4 py-3 border-t border-slate-200 text-right">
+                    <button onclick="closeEnquiryModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded font-semibold">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         function showToast(message, type='success') {
             const container = document.getElementById('toast-container');
@@ -1325,7 +1351,16 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
         });
 
         async function ajaxDelete(action, idKey, idVal, rowElement, tabId) {
-            if(!confirm('Are you sure you want to delete this record?')) return;
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            });
+            if(!result.isConfirmed) return;
             
             const formData = new FormData();
             formData.append('action', action);
