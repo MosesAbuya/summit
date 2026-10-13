@@ -1,13 +1,31 @@
 <?php
-// $host = 'localhost';
-// $dbname = 'summit';
-// $username = 'root'; // Adjust to environment
-// $password = ''; // Adjust to environment
+$host_header = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '';
+$is_localhost = false;
 
-$host = 'localhost';
-$dbname = 'faridagi_summit';
-$username = 'faridagi_summit'; // Adjust to environment
-$password = 'Summit@2026'; // Adjust to environment
+if (!empty($host_header)) {
+    if (strpos($host_header, 'localhost') !== false || strpos($host_header, '127.0.0.1') !== false || strpos($host_header, '::1') !== false) {
+        $is_localhost = true;
+    }
+} else {
+    // Fallback for CLI or local development when HTTP headers are absent
+    if (php_sapi_name() === 'cli' || strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        $is_localhost = true;
+    }
+}
+
+if ($is_localhost) {
+    // Local development credentials
+    $host = 'localhost';
+    $dbname = 'summit';
+    $username = 'root';
+    $password = '';
+} else {
+    // Live / Production server credentials
+    $host = 'localhost';
+    $dbname = 'faridagi_summit';
+    $username = 'faridagi_summit';
+    $password = 'Summit@2026';
+}
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -22,6 +40,7 @@ try {
             description TEXT,
             image_url VARCHAR(255),
             is_major TINYINT(1) DEFAULT 0,
+            website_url VARCHAR(255),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         CREATE TABLE IF NOT EXISTS speakers (
@@ -119,6 +138,13 @@ try {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     ");
+
+    // Ensure website_url column exists in partners table on existing databases
+    try {
+        $pdo->exec("ALTER TABLE partners ADD COLUMN website_url VARCHAR(255) NULL AFTER is_major");
+    } catch (Exception $e) {
+        // Column already exists or alter skipped
+    }
 
     // Seed default settings if empty
     $pdo->exec("INSERT IGNORE INTO settings (setting_key, setting_value) VALUES 

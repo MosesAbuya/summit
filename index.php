@@ -9,13 +9,9 @@ $latest_news = $stmt->fetchAll();
 $stmt = $pdo->query("SELECT * FROM speakers ORDER BY id ASC");
 $speakers = $stmt->fetchAll();
 
-// Fetch Major Partners
-$stmt = $pdo->query("SELECT * FROM partners WHERE is_major = 1 ORDER BY id ASC");
-$major_partners = $stmt->fetchAll();
-
-// Fetch Ecosystem Partners
-$stmt = $pdo->query("SELECT * FROM partners WHERE is_major = 0 ORDER BY id ASC");
-$ecosystem_partners = $stmt->fetchAll();
+// Fetch All Partners (Displayed in Major Partners section)
+$stmt = $pdo->query("SELECT * FROM partners ORDER BY is_major DESC, id ASC");
+$partners = $stmt->fetchAll();
 
 include 'includes/header.php';
 ?>
@@ -195,7 +191,7 @@ include 'includes/header.php';
 
     <!-- Slide 1 -->
     <div class="carousel-slide active" data-index="0">
-        <img class="carousel-bg" src="assets/hero_slide_1_v3.jpg" alt="Summit Main">
+        <img class="carousel-bg" src="assets/past-summit/231130-101322.jpg" alt="Summit Main">
         <div class="carousel-content">
             <span
                 style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Nov
@@ -213,7 +209,7 @@ include 'includes/header.php';
 
     <!-- Slide 2 -->
     <div class="carousel-slide" data-index="1">
-        <img class="carousel-bg" src="assets/hero_slide_2.png" alt="Partner">
+        <img class="carousel-bg" src="assets/past-summit/231201-101415.jpg" alt="Partner">
         <div class="carousel-content">
             <span
                 style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(234,179,8,0.2); border-radius: 30px; border: 1px solid rgba(234,179,8,0.5); backdrop-filter: blur(10px); color: var(--secondary-color); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Strategic
@@ -231,7 +227,7 @@ include 'includes/header.php';
 
     <!-- Slide 3 -->
     <div class="carousel-slide" data-index="2">
-        <img class="carousel-bg" src="assets/hero_slide_3.png" alt="Support">
+        <img class="carousel-bg" src="assets/past-summit/231201-135335.jpg" alt="Support">
         <div class="carousel-content">
             <span
                 style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Empower
@@ -247,7 +243,7 @@ include 'includes/header.php';
 
     <!-- Slide 4 -->
     <div class="carousel-slide" data-index="3">
-        <img class="carousel-bg" src="assets/hero_slide_4.png" alt="Gala">
+        <img class="carousel-bg" src="assets/past-summit/231201-205336.jpg" alt="Gala">
         <div class="carousel-content">
             <span
                 style="display: inline-block; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.1); border-radius: 30px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem;">Day
@@ -263,19 +259,19 @@ include 'includes/header.php';
 
     <div class="carousel-thumbnails">
         <div class="thumb active" data-target="0">
-            <img src="assets/hero_slide_1_v3.jpg">
+            <img src="assets/past-summit/231130-101322.jpg">
             <div class="thumb-label">The Summit</div>
         </div>
         <div class="thumb" data-target="1">
-            <img src="assets/hero_slide_2.png">
+            <img src="assets/past-summit/231201-101415.jpg">
             <div class="thumb-label">Partner</div>
         </div>
         <div class="thumb" data-target="2">
-            <img src="assets/hero_slide_3.png">
+            <img src="assets/past-summit/231201-135335.jpg">
             <div class="thumb-label">Support</div>
         </div>
         <div class="thumb" data-target="3">
-            <img src="assets/hero_slide_4.png">
+            <img src="assets/past-summit/231201-205336.jpg">
             <div class="thumb-label">Gala Dinner</div>
         </div>
     </div>
@@ -516,48 +512,44 @@ include 'includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <span class="section-eyebrow">The Summit Experience</span>
-            <h2>4 Days. 4 Landmark Venues.</h2>
+            <h2>4-Day Summit Agenda</h2>
             <span class="african-divider-sm center"></span>
-            <p class="subtitle mt-1">An immersive journey through Nairobi's most iconic institutions.</p>
+            <p class="subtitle mt-1">An immersive journey of multidisciplinary impact, policy dialogue, and celebration in Nairobi, Kenya.</p>
         </div>
         
         <div class="venue-grid mt-4">
-            <div class="venue-card" style="background-image: url('assets/venues/kicc.jpg');">
+            <div class="venue-card" style="background-image: url('assets/experiences/nairobi_skyline_upperhill_opt.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 1</span>
-                    <h3>Venue to be confirmed</h3>
-                    <p class="venue-event">Future Leaders & Academia</p>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Future Leaders & Academia</h3>
                     <p class="venue-desc">Kicking off the summit, bridging the gap between student innovation and corporate pro-bono architectures.</p>
                     <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/strath.jpg');">
+            <div class="venue-card" style="background-image: url('assets/experiences/lion.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
-                    <h3>Venue to be confirmed</h3>
-                    <p class="venue-event">Policy, Compliance & ESG</p>
-                    <p class="venue-desc">A deep dive into regulatory frameworks and corporate governance and policy.</p>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Policy, Compliance & ESG</h3>
+                    <p class="venue-desc">A deep dive into regulatory frameworks, corporate governance, and pan-African policy alignments.</p>
                     <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/venues/placeholder_venue_3.jpg');">
+            <div class="venue-card" style="background-image: url('assets/experiences/elephant.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 3</span>
-                    <h3>Venue to be confirmed</h3>
-                    <p class="venue-event">Global Networking & Main Summit</p>
-                    <p class="venue-desc">The primary institutional gathering featuring global keynotes and strategy sessions.</p>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Global Networking & Main Summit</h3>
+                    <p class="venue-desc">The primary institutional gathering featuring global keynotes, break-out labs, and strategic MoUs.</p>
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
-            <div class="venue-card" style="background-image: url('assets/venues/placeholder_gala.jpg');">
+            <div class="venue-card" style="background-image: url('assets/experiences/nairobi_skyline_west.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
                     <span class="venue-day">Day 4</span>
-                    <h3>Venue to be confirmed</h3>
-                    <p class="venue-event">Gala Dinner & Impact Awards</p>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Gala Dinner & Impact Awards</h3>
                     <p class="venue-desc">Closing the summit with an elegant evening of celebration, recognizing outstanding pro-bono contributions across Africa.</p>
                     <a href="program#day4" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
@@ -799,54 +791,30 @@ function closeVideoModal() {
         <span class="section-eyebrow">Supported By</span>
         <h2>Major Partners</h2>
         <span class="african-divider-sm center"></span>
-        <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: center;">
-            <?php if (count($major_partners) > 0): ?>
-                    <?php foreach ($major_partners as $partner): ?>
-                            <div class="partner-card" style="background: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                                <?php if ($partner['image_url']): ?>
-                                        <img src="<?php echo htmlspecialchars($partner['image_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
-                                <?php else: ?>
-                                        <h4 style="color: var(--primary-color); margin: 0;"><?php echo htmlspecialchars($partner['name']); ?></h4>
-                                <?php endif; ?>
-                                <?php if ($partner['description']): ?>
-                                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><?php echo htmlspecialchars($partner['description']); ?></p>
-                                <?php endif; ?>
-                            </div>
-                    <?php endforeach; ?>
+        <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: stretch;">
+            <?php if (count($partners) > 0): ?>
+                <?php foreach ($partners as $partner): 
+                    $has_url = !empty($partner['website_url']) && trim($partner['website_url']) !== '';
+                    $partner_link = $has_url ? htmlspecialchars(trim($partner['website_url'])) : '#';
+                    $target_attr = $has_url ? 'target="_blank" rel="noopener noreferrer"' : '';
+                ?>
+                    <a href="<?php echo $partner_link; ?>" <?php echo $target_attr; ?> class="partner-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; padding: 2rem 1.5rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: all 0.3s ease; height: 100%; border: 1px solid rgba(0,0,0,0.04);">
+                        <div style="height: 90px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;">
+                            <?php if (!empty($partner['image_url'])): ?>
+                                <img src="<?php echo htmlspecialchars($partner['image_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 85px; object-fit: contain;">
+                            <?php else: ?>
+                                <i class="fa-solid fa-handshake" style="font-size: 2.75rem; color: var(--primary-color);"></i>
+                            <?php endif; ?>
+                        </div>
+                        <h4 style="color: var(--primary-color); margin: 0; font-size: 1.05rem; font-weight: 700; text-align: center;"><?php echo htmlspecialchars($partner['name']); ?></h4>
+                    </a>
+                <?php endforeach; ?>
             <?php else: ?>
-                    <p style="color: var(--text-muted); grid-column: 1 / -1;">Our partners will be announced soon.</p>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-<!-- 11. Partners & Global Network -->
-<section id="partners" class="section bg-white border-y">
-    <div class="container text-center">
-        <span class="section-eyebrow">The Ecosystem</span>
-        <h2>Partners & Global Network</h2>
-        <span class="african-divider-sm center"></span>
-        
-        <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: center;">
-            <?php if (count($ecosystem_partners) > 0): ?>
-                    <?php foreach ($ecosystem_partners as $partner): ?>
-                            <div class="partner-card" style="background: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                                <?php if ($partner['image_url']): ?>
-                                        <img src="<?php echo htmlspecialchars($partner['image_url']); ?>" alt="<?php echo htmlspecialchars($partner['name']); ?>" style="max-width: 100%; max-height: 100px; object-fit: contain;">
-                                <?php else: ?>
-                                        <h4 style="color: var(--primary-color); margin: 0;"><?php echo htmlspecialchars($partner['name']); ?></h4>
-                                <?php endif; ?>
-                                <?php if ($partner['description']): ?>
-                                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><?php echo htmlspecialchars($partner['description']); ?></p>
-                                <?php endif; ?>
-                            </div>
-                    <?php endforeach; ?>
-            <?php else: ?>
-                    <p style="color: var(--text-muted); grid-column: 1 / -1;">Our global network will be updated soon.</p>
+                <p style="color: var(--text-muted); grid-column: 1 / -1;">Our partners will be announced soon.</p>
             <?php endif; ?>
         </div>
 
-        <div class="gpbn-cta" style="margin-top: 4rem; padding: 4rem 2rem; background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)), url('assets/gpbn_cta_bg.jpg') center/cover; border-radius: var(--border-radius-lg); text-align: center; color: white; box-shadow: var(--shadow-lg);">
+        <div class="gpbn-cta" style="margin-top: 4.5rem; padding: 4rem 2rem; background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.95)), url('assets/gpbn_cta_bg.jpg') center/cover; border-radius: var(--border-radius-lg); text-align: center; color: white; box-shadow: var(--shadow-lg);">
             <img src="assets/globalprobono.png" alt="Global Pro Bono Network" style="max-height: 90px; margin: 0 auto 1.5rem; filter: brightness(0) invert(1);">
             <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white; font-family: var(--font-heading);">A Proud Member of the Global Pro Bono Network</h3>
             <p style="font-size: 1.15rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.6;">Connecting with visionary leaders worldwide to drive sustainable impact and empower communities across continents through professional volunteerism.</p>

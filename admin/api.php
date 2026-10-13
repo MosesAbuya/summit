@@ -94,7 +94,7 @@ try {
     }
 
     
-    if ($action === 'edit_news') {
+    if ($action === 'edit_news' || $action === 'update_news') {
         $id = $_POST['id'];
         $title = $_POST['title'];
         $excerpt = $_POST['excerpt'];
@@ -120,35 +120,32 @@ try {
         exit;
     }
     
-    if ($action === 'add_partner') {
+    if ($action === 'add_partner' || $action === 'edit_partner' || $action === 'update_partner') {
+        $id = !empty($_POST['id']) ? (int)$_POST['id'] : null;
+        $name = $_POST['name'] ?? '';
+        $description = $_POST['description'] ?? '';
+        $website_url = !empty($_POST['website_url']) ? trim($_POST['website_url']) : null;
+        $is_major = isset($_POST['is_major']) && ($_POST['is_major'] === '1' || $_POST['is_major'] === 1 || $_POST['is_major'] === 'on') ? 1 : 0;
         $image_url = handleFileUpload('image_file', '../assets/partners/');
-        $is_major = isset($_POST['is_major']) && $_POST['is_major'] === '1' ? 1 : 0;
-        $stmt = $pdo->prepare("INSERT INTO partners (name, description, image_url, is_major) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$_POST['name'], $_POST['description'], $image_url, $is_major]);
-        
-        $id = $pdo->lastInsertId();
-        $stmt_fetch = $pdo->prepare("SELECT * FROM partners WHERE id = ?");
-        $stmt_fetch->execute([$id]);
-        $record = $stmt_fetch->fetch(PDO::FETCH_ASSOC);
-        echo json_encode(['success' => true, 'message' => "Partner added successfully!", 'data' => $record]);
-        exit;
-    }
-    
-    if ($action === 'edit_partner') {
-        $id = $_POST['id'];
-        $name = $_POST['name'];
-        $description = $_POST['description'];
-        $is_major = isset($_POST['is_major']) && $_POST['is_major'] === '1' ? 1 : 0;
-        $image_url = handleFileUpload('image_file', '../assets/partners/');
-        
-        if ($image_url) {
-            $stmt = $pdo->prepare("UPDATE partners SET name=?, description=?, is_major=?, image_url=? WHERE id=?");
-            $stmt->execute([$name, $description, $is_major, $image_url, $id]);
+
+        if ($id) {
+            if ($image_url) {
+                $stmt = $pdo->prepare("UPDATE partners SET name=?, description=?, is_major=?, image_url=?, website_url=? WHERE id=?");
+                $stmt->execute([$name, $description, $is_major, $image_url, $website_url, $id]);
+            } else {
+                $stmt = $pdo->prepare("UPDATE partners SET name=?, description=?, is_major=?, website_url=? WHERE id=?");
+                $stmt->execute([$name, $description, $is_major, $website_url, $id]);
+            }
+            echo json_encode(['success' => true, 'message' => "Partner updated successfully!"]);
         } else {
-            $stmt = $pdo->prepare("UPDATE partners SET name=?, description=?, is_major=? WHERE id=?");
-            $stmt->execute([$name, $description, $is_major, $id]);
+            $stmt = $pdo->prepare("INSERT INTO partners (name, description, image_url, is_major, website_url) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $description, $image_url, $is_major, $website_url]);
+            $new_id = $pdo->lastInsertId();
+            $stmt_fetch = $pdo->prepare("SELECT * FROM partners WHERE id = ?");
+            $stmt_fetch->execute([$new_id]);
+            $record = $stmt_fetch->fetch(PDO::FETCH_ASSOC);
+            echo json_encode(['success' => true, 'message' => "Partner added successfully!", 'data' => $record]);
         }
-        echo json_encode(['success' => true, 'message' => "Partner updated successfully!"]);
         exit;
     }
 
@@ -173,7 +170,7 @@ try {
         exit;
     }
     
-    if ($action === 'edit_speaker') {
+    if ($action === 'edit_speaker' || $action === 'update_speaker') {
         $id = $_POST['id'];
         $name = $_POST['name'];
         $title = $_POST['title'];
@@ -214,7 +211,7 @@ try {
         exit;
     }
     
-    if ($action === 'edit_accommodation') {
+    if ($action === 'edit_accommodation' || $action === 'update_accommodation') {
         $id = $_POST['id'];
         $hotel_name = $_POST['hotel_name'];
         $description = $_POST['description'];
@@ -252,7 +249,7 @@ try {
         exit;
     }
     
-    if ($action === 'edit_resource') {
+    if ($action === 'edit_resource' || $action === 'update_resource') {
         $id = $_POST['id'];
         $title = $_POST['title'];
         $description = $_POST['description'];

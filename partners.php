@@ -32,12 +32,17 @@ include 'includes/header.php';
                 <div class="tier" style="margin-bottom: 4rem;">
                     <h4 class="tier-name" style="color: #0f172a; font-size: 1.8rem; margin-bottom: 1.5rem;">Diamond & Platinum Partners</h4>
                     <div class="tier-logos" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                        <?php foreach($major_partners as $p): ?>
-                            <?php if(!empty($p['image_url'])): ?>
-                                <img src="<?php echo htmlspecialchars($p['image_url']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" style="max-height: 120px; max-width: 280px; object-fit: contain;">
-                            <?php else: ?>
-                                <div class="logo-box" style="width: 280px; height: 120px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #64748b; background: white; border-radius: var(--border-radius-md); box-shadow: var(--box-shadow);"><?php echo htmlspecialchars($p['name']); ?></div>
-                            <?php endif; ?>
+                        <?php foreach($major_partners as $p): 
+                            $p_url = !empty($p['website_url']) ? htmlspecialchars(trim($p['website_url'])) : '#';
+                            $p_target = !empty($p['website_url']) ? 'target="_blank" rel="noopener noreferrer"' : '';
+                        ?>
+                            <a href="<?php echo $p_url; ?>" <?php echo $p_target; ?> style="text-decoration: none; display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                <?php if(!empty($p['image_url'])): ?>
+                                    <img src="<?php echo htmlspecialchars($p['image_url']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" style="max-height: 120px; max-width: 280px; object-fit: contain;">
+                                <?php else: ?>
+                                    <div class="logo-box" style="width: 280px; height: 120px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 700; color: #64748b; background: white; border-radius: var(--border-radius-md); box-shadow: var(--box-shadow);"><?php echo htmlspecialchars($p['name']); ?></div>
+                                <?php endif; ?>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -47,12 +52,17 @@ include 'includes/header.php';
                 <div class="tier" style="margin-bottom: 4rem;">
                     <h4 class="tier-name" style="color: #0f172a; font-size: 1.5rem; margin-bottom: 1.5rem;">Gold, Silver & Bronze Partners</h4>
                     <div class="tier-logos small" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-                        <?php foreach($minor_partners as $p): ?>
-                            <?php if(!empty($p['image_url'])): ?>
-                                <img src="<?php echo htmlspecialchars($p['image_url']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" style="max-height: 100px; max-width: 200px; object-fit: contain;">
-                            <?php else: ?>
-                                <div class="logo-box" style="width: 200px; height: 100px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; color: #94a3b8; background: white; border-radius: var(--border-radius-md);"><?php echo htmlspecialchars($p['name']); ?></div>
-                            <?php endif; ?>
+                        <?php foreach($minor_partners as $p): 
+                            $p_url = !empty($p['website_url']) ? htmlspecialchars(trim($p['website_url'])) : '#';
+                            $p_target = !empty($p['website_url']) ? 'target="_blank" rel="noopener noreferrer"' : '';
+                        ?>
+                            <a href="<?php echo $p_url; ?>" <?php echo $p_target; ?> style="text-decoration: none; display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                <?php if(!empty($p['image_url'])): ?>
+                                    <img src="<?php echo htmlspecialchars($p['image_url']); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" style="max-height: 100px; max-width: 200px; object-fit: contain;">
+                                <?php else: ?>
+                                    <div class="logo-box" style="width: 200px; height: 100px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 600; color: #94a3b8; background: white; border-radius: var(--border-radius-md);"><?php echo htmlspecialchars($p['name']); ?></div>
+                                <?php endif; ?>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>

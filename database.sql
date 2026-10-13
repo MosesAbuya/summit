@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS partners (
     description TEXT,
     image_url VARCHAR(255),
     is_major TINYINT(1) DEFAULT 0,
+    website_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -162,6 +162,21 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             }
             idInput.value = data.id;
             
+            // If editing a record with file upload, make file input optional
+            const fileInput = form.querySelector('input[type="file"]');
+            if(fileInput) {
+                fileInput.removeAttribute('required');
+                const fileHint = form.querySelector('.partner-file-hint');
+                if(fileHint) fileHint.classList.remove('hidden');
+            }
+
+            if(tabId === 'tab-partners') {
+                const titleEl = document.getElementById('partner-form-title');
+                if(titleEl) titleEl.innerText = 'Edit Partner';
+                const cancelBtn = document.getElementById('cancel-partner-edit');
+                if(cancelBtn) cancelBtn.classList.remove('hidden');
+            }
+            
             // Change submit button text
             const submitBtn = form.querySelector('button[type="submit"]');
             if(submitBtn) {
@@ -170,6 +185,26 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             
             // Scroll to form
             form.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetPartnerForm() {
+            const form = document.querySelector('#tab-partners form.ajax-form');
+            if(!form) return;
+            form.reset();
+            const actionInput = form.querySelector('input[name="action"]');
+            if(actionInput) actionInput.value = 'add_partner';
+            const idInput = form.querySelector('input[name="id"]');
+            if(idInput) idInput.value = '';
+            const fileInput = form.querySelector('input[type="file"]');
+            if(fileInput) fileInput.setAttribute('required', 'required');
+            const fileHint = form.querySelector('.partner-file-hint');
+            if(fileHint) fileHint.classList.add('hidden');
+            const titleEl = document.getElementById('partner-form-title');
+            if(titleEl) titleEl.innerText = 'Add Partner';
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if(submitBtn) submitBtn.innerHTML = 'Add Partner';
+            const cancelBtn = document.getElementById('cancel-partner-edit');
+            if(cancelBtn) cancelBtn.classList.add('hidden');
         }
     </script>
     <script>
@@ -701,26 +736,35 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-1">
                     <div class="bg-white shadow rounded-lg p-6">
-                        <h3 class="text-lg font-bold mb-4">Add Partner</h3>
+                        <h3 class="text-lg font-bold mb-4" id="partner-form-title">Add Partner</h3>
                         <form class="ajax-form" enctype="multipart/form-data">
                             <input type="hidden" name="action" value="add_partner">
+                            <input type="hidden" name="id" value="">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Partner Name</label>
                                 <input type="text" name="name" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Website URL (Optional)</label>
+                                <input type="url" name="website_url" placeholder="https://example.com" class="w-full border-slate-300 rounded-md shadow-sm p-2 border">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Description</label>
                                 <textarea name="description" rows="3" class="w-full border-slate-300 rounded-md shadow-sm p-2 border"></textarea>
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Image URL</label>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Partner Logo</label>
                                 <input type="file" name="image_file" accept="image/*" class="w-full border-slate-300 rounded-md shadow-sm p-2 border" required>
+                                <p class="text-xs text-slate-500 mt-1 partner-file-hint hidden">Leave empty to keep existing logo</p>
                             </div>
                             <div class="mb-4 flex items-center">
                                 <input type="checkbox" name="is_major" id="is_major" class="h-4 w-4 text-green-600 border-slate-300 rounded">
                                 <label for="is_major" class="ml-2 block text-sm text-slate-900">Major Partner (Homepage)</label>
                             </div>
-                            <button type="submit" class="w-full bg-green-700 text-white font-medium py-2 px-4 rounded-md">Add Partner</button>
+                            <div class="flex gap-2">
+                                <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white font-medium py-2 px-4 rounded-md shadow transition">Add Partner</button>
+                                <button type="button" id="cancel-partner-edit" onclick="resetPartnerForm()" class="hidden bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2 px-4 rounded-md transition">Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -737,10 +781,15 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                             <tbody class="bg-white divide-y divide-slate-200">
                                 <?php foreach($partners as $p): ?>
                                 <tr>
-                                    <td class="px-6 py-4"><div class="text-sm font-bold"><?php echo htmlspecialchars($p['name']); ?></div></td>
+                                    <td class="px-6 py-4">
+                                        <div class="text-sm font-bold"><?php echo htmlspecialchars($p['name']); ?></div>
+                                        <?php if(!empty($p['website_url'])): ?>
+                                            <a href="<?php echo htmlspecialchars($p['website_url']); ?>" target="_blank" class="text-xs text-blue-600 hover:underline"><?php echo htmlspecialchars($p['website_url']); ?></a>
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="px-6 py-4"><span class="px-2 inline-flex text-xs leading-5 font-bold rounded-full <?php echo $p['is_major'] ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-800'; ?>"><?php echo $p['is_major'] ? 'Yes' : 'No'; ?></span></td>
                                     <td class="px-6 py-4 text-right">
-                                        <button type="button" onclick="editRecord('tab-partners', '<?php echo base64_encode(json_encode($p)); ?>', 'update_partner')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
+                                        <button type="button" onclick="editRecord('tab-partners', '<?php echo base64_encode(json_encode($p)); ?>', 'edit_partner')" class="text-blue-600 hover:text-blue-900 mr-3"><i class="fa-solid fa-pen"></i> Edit</button>
                                         <button type="button" onclick="ajaxDelete('delete_partner', 'partner_id', <?php echo $p['id']; ?>, this.closest('tr'), 'tab-partners')" class="text-red-600 hover:text-red-900"><i class="fa-solid fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
@@ -1330,11 +1379,12 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                     
                     if (data.success) {
                         showToast(data.message, 'success');
-                        if (!form.classList.contains('no-reset')) {
+                        const tab = form.closest('.tab-content');
+                        if (tab && tab.id === 'tab-partners') {
+                            resetPartnerForm();
+                        } else if (!form.classList.contains('no-reset')) {
                             form.reset();
                         }
-                        // Find which tab we are in
-                        const tab = form.closest('.tab-content');
                         if (tab) {
                             await refreshTable(tab.id);
                         }
