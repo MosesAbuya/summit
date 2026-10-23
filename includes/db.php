@@ -77,6 +77,7 @@ try {
             description TEXT,
             price_usd DECIMAL(10,2) NOT NULL,
             price_kes DECIMAL(10,2) NOT NULL,
+            slots INT NULL DEFAULT NULL,
             is_active TINYINT(1) DEFAULT 1,
             sort_order INT DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -146,6 +147,13 @@ try {
         // Column already exists or alter skipped
     }
 
+    // Ensure slots column exists in ticket_packages on existing databases
+    try {
+        $pdo->exec("ALTER TABLE ticket_packages ADD COLUMN slots INT NULL DEFAULT NULL AFTER price_kes");
+    } catch (Exception $e) {
+        // Column already exists or alter skipped
+    }
+
     // Seed default settings if empty
     $pdo->exec("INSERT IGNORE INTO settings (setting_key, setting_value) VALUES 
         ('paystack_public_key', 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90'),
@@ -161,22 +169,56 @@ try {
         }
     } catch(PDOException $e) {}
 
+    // Auto-migrate to final revised promo packages
+    try {
+        $promo_installed = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'promo_packages_2026_applied'")->fetchColumn();
+        if (!$promo_installed) {
+            // Deactivate existing old packages
+            $pdo->exec("UPDATE ticket_packages SET is_active = 0");
+
+            $revised_packages = [
+                ['name' => 'Students', 'description' => 'Valid student ID required at summit venue', 'usd' => 150.00, 'kes' => 15000.00, 'slots' => 20, 'sort' => 1],
+                ['name' => 'Young Professionals', 'description' => 'Early-career professionals & youth under 30', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 2],
+                ['name' => 'EAC Members', 'description' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 3],
+                ['name' => 'Civil Society', 'description' => 'Non-profit and civil society delegates', 'usd' => 350.00, 'kes' => 35000.00, 'slots' => 50, 'sort' => 4],
+                ['name' => 'Speakers/Moderators', 'description' => 'Approved speakers, panellists, and session moderators', 'usd' => 450.00, 'kes' => 45000.00, 'slots' => 50, 'sort' => 5],
+                ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 20, 'sort' => 6],
+                ['name' => 'Volunteer Organizations', 'description' => 'Leaders & representatives of volunteer-involving organizations', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 50, 'sort' => 7],
+            ];
+
+            foreach ($revised_packages as $rp) {
+                $chk = $pdo->prepare("SELECT id FROM ticket_packages WHERE name = ?");
+                $chk->execute([$rp['name']]);
+                $existingId = $chk->fetchColumn();
+                if ($existingId) {
+                    $upd = $pdo->prepare("UPDATE ticket_packages SET description = ?, price_usd = ?, price_kes = ?, slots = ?, sort_order = ?, is_active = 1 WHERE id = ?");
+                    $upd->execute([$rp['description'], $rp['usd'], $rp['kes'], $rp['slots'], $rp['sort'], $existingId]);
+                } else {
+                    $ins = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?, 1)");
+                    $ins->execute([$rp['name'], $rp['description'], $rp['usd'], $rp['kes'], $rp['slots'], $rp['sort']]);
+                }
+            }
+
+            $pdo->exec("INSERT INTO settings (setting_key, setting_value) VALUES ('promo_packages_2026_applied', '1') ON DUPLICATE KEY UPDATE setting_value = '1'");
+        }
+    } catch (Exception $e) {}
+
     // Seed packages and migrate data if not already done
     $stmt = $pdo->query("SELECT COUNT(*) FROM ticket_packages");
     if ($stmt->fetchColumn() == 0) {
         $packages = [
-            ['name' => 'EAC Members', 'description' => 'East African Community Members', 'usd' => 250, 'kes' => 32500, 'sort' => 1],
-            ['name' => 'GPBN Member', 'description' => 'Global Pro Bono Network Member', 'usd' => 350, 'kes' => 45500, 'sort' => 2],
-            ['name' => 'Non Member', 'description' => 'Standard Delegate Pass', 'usd' => 450, 'kes' => 58500, 'sort' => 3],
-            ['name' => 'Academia/Government/Corporate', 'description' => 'Specialized rate for academia, gov, or corporate', 'usd' => 550, 'kes' => 71500, 'sort' => 4],
-            ['name' => 'Subsidised (Students & Youth below 30yrs)', 'description' => 'Requires valid ID at venue', 'usd' => 250, 'kes' => 32500, 'sort' => 5],
-            ['name' => 'Daily Rate', 'description' => 'Single day pass', 'usd' => 100, 'kes' => 13000, 'sort' => 6],
-            ['name' => 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.', 'description' => 'Sponsor attendance for a grassroots NGO leader', 'usd' => 1650, 'kes' => 214500, 'sort' => 7],
+            ['name' => 'Students', 'description' => 'Valid student ID required at summit venue', 'usd' => 150.00, 'kes' => 15000.00, 'slots' => 20, 'sort' => 1],
+            ['name' => 'Young Professionals', 'description' => 'Early-career professionals & youth under 30', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 2],
+            ['name' => 'EAC Members', 'description' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 3],
+            ['name' => 'Civil Society', 'description' => 'Non-profit and civil society delegates', 'usd' => 350.00, 'kes' => 35000.00, 'slots' => 50, 'sort' => 4],
+            ['name' => 'Speakers/Moderators', 'description' => 'Approved speakers, panellists, and session moderators', 'usd' => 450.00, 'kes' => 45000.00, 'slots' => 50, 'sort' => 5],
+            ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 20, 'sort' => 6],
+            ['name' => 'Volunteer Organizations', 'description' => 'Leaders & representatives of volunteer-involving organizations', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 50, 'sort' => 7],
         ];
 
-        $insertStmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order) VALUES (?, ?, ?, ?, ?)");
+        $insertStmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order) VALUES (?, ?, ?, ?, ?, ?)");
         foreach ($packages as $p) {
-            $insertStmt->execute([$p['name'], $p['description'], $p['usd'], $p['kes'], $p['sort']]);
+            $insertStmt->execute([$p['name'], $p['description'], $p['usd'], $p['kes'], $p['slots'], $p['sort']]);
         }
 
         // Add a sample promo code

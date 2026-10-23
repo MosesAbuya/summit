@@ -47,37 +47,55 @@ include 'includes/header.php';
                     
 
 
-                    <!-- GROUP 1: Main Delegate Passes -->
-                    <h4 style="font-size: 1.1rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 1rem;"><i class="fa-solid fa-id-badge" style="margin-right: 0.5rem;"></i>Main Delegate Passes</h4>
+                    <!-- Delegate Passes Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <h4 style="font-size: 1.15rem; color: #0f172a; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin: 0;">
+                            <i class="fa-solid fa-ticket" style="margin-right: 0.5rem; color: var(--primary-color);"></i>Summit Delegate Passes (Promo Rates)
+                        </h4>
+                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Special Promotional Pricing &bull; Limited Slots Available</span>
+                    </div>
                     
                     <?php
                     $eligibility = [
-                        'EAC Members' => ['tag' => 'Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia', 'color' => '#16a34a', 'bg' => '#dcfce7'],
-                        'GPBN Member' => ['tag' => 'Global Pro Bono Network Members', 'color' => '#2563eb', 'bg' => '#dbeafe'],
-                        'Non Member' => ['tag' => 'Open to all delegates', 'color' => '#64748b', 'bg' => '#f1f5f9'],
-                        'Academia/Government/Corporate' => ['tag' => 'Institutional delegates from academia, government, or corporates', 'color' => '#9333ea', 'bg' => '#f3e8ff'],
-                        'Subsidised (Students & Youth below 30yrs)' => ['tag' => 'Must present valid student/youth ID at venue', 'color' => '#ea580c', 'bg' => '#fff7ed'],
+                        'Students' => ['tag' => 'Valid student ID required at summit venue', 'color' => '#ea580c', 'bg' => '#fff7ed'],
+                        'Young Professionals' => ['tag' => 'Early-career professionals & youth under 30', 'color' => '#0284c7', 'bg' => '#e0f2fe'],
+                        'EAC Members' => ['tag' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'color' => '#16a34a', 'bg' => '#dcfce7'],
+                        'Civil Society' => ['tag' => 'Non-profit and civil society delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
+                        'Speakers/Moderators' => ['tag' => 'Approved speakers, panellists, and session moderators', 'color' => '#d97706', 'bg' => '#fef3c7'],
+                        'Academia' => ['tag' => 'Researchers, university faculty, and educational institutions', 'color' => '#2563eb', 'bg' => '#dbeafe'],
+                        'Volunteer Organizations' => ['tag' => 'Leaders & representatives of volunteer-involving organizations', 'color' => '#059669', 'bg' => '#d1fae5'],
                     ];
                     ?>
                     
                     <div class="ticket-list" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;">
                         <?php foreach($packages as $pkg): ?>
-                        <?php if(!in_array($pkg['name'], ['Daily Rate', 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.'])): ?>
-                        <?php $elig = $eligibility[$pkg['name']] ?? ['tag' => '', 'color' => '#64748b', 'bg' => '#f1f5f9']; ?>
+                        <?php $elig = $eligibility[$pkg['name']] ?? ['tag' => $pkg['description'] ?? '', 'color' => '#64748b', 'bg' => '#f1f5f9']; ?>
                         <div class="ticket-row" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 2px 8px rgba(22,101,52,0.08)';" onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
-                            <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></div>
-                                <div style="margin-top: 0.35rem;">
+                            <div style="flex: 1; margin-right: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+                                    <span style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></span>
+                                    <?php if(!empty($pkg['slots'])): ?>
+                                    <span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 700; color: #b45309; background: #fef3c7; border: 1px solid #fde68a; padding: 0.15rem 0.6rem; border-radius: 999px;">
+                                        <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Limited: <?php echo (int)$pkg['slots']; ?> Slots
+                                    </span>
+                                    <?php endif; ?>
+                                </div>
+                                <div style="margin-top: 0.35rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                                    <?php if(!empty($elig['tag'])): ?>
                                     <span style="display: inline-block; font-size: 0.8rem; font-weight: 600; color: <?php echo $elig['color']; ?>; background: <?php echo $elig['bg']; ?>; padding: 0.15rem 0.6rem; border-radius: 999px;"><?php echo htmlspecialchars($elig['tag']); ?></span>
+                                    <?php endif; ?>
+                                    <?php if(!empty($pkg['description']) && $pkg['description'] !== $elig['tag']): ?>
+                                    <span style="font-size: 0.85rem; color: #64748b;"><?php echo htmlspecialchars($pkg['description']); ?></span>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            <div style="text-align: right; margin-right: 2rem; min-width: 100px;">
-                                <div style="font-weight: 700; font-size: 1.25rem; color: var(--primary-color);">$<?php echo number_format($pkg['price_usd'], 2); ?></div>
-                                <div style="font-size: 0.85rem; color: #64748b;">KES <?php echo number_format($pkg['price_kes'], 2); ?></div>
+                            <div style="text-align: right; margin-right: 2rem; min-width: 120px;">
+                                <div style="font-weight: 800; font-size: 1.35rem; color: var(--primary-color);">$<?php echo number_format($pkg['price_usd'], 0); ?></div>
+                                <div style="font-size: 0.85rem; color: #64748b; font-weight: 600;">KES <?php echo number_format($pkg['price_kes'], 0); ?></div>
                             </div>
                             <div class="ticket-counter" style="display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 4px; overflow: hidden; background: white;">
                                 <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, -1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">-</button>
-                                <input type="number" id="qty_<?php echo $pkg['id']; ?>" name="qty[<?php echo $pkg['id']; ?>]" value="0" min="0" readonly style="width: 50px; text-align: center; border: none; font-weight: 600; pointer-events: none;">
+                                <input type="number" id="qty_<?php echo $pkg['id']; ?>" name="qty[<?php echo $pkg['id']; ?>]" value="0" min="0" max="<?php echo !empty($pkg['slots']) ? (int)$pkg['slots'] : 99; ?>" readonly style="width: 50px; text-align: center; border: none; font-weight: 600; pointer-events: none;">
                                 <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, 1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">+</button>
                                 
                                 <input type="hidden" id="name_<?php echo $pkg['id']; ?>" value="<?php echo htmlspecialchars($pkg['name']); ?>">
@@ -85,35 +103,6 @@ include 'includes/header.php';
                                 <input type="hidden" id="price_kes_<?php echo $pkg['id']; ?>" value="<?php echo $pkg['price_kes']; ?>">
                             </div>
                         </div>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <!-- GROUP 2: Add-Ons & Daily Passes -->
-                    <h4 style="font-size: 1.1rem; color: #64748b; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; margin-bottom: 1rem; border-top: 2px solid #e2e8f0; padding-top: 2rem;"><i class="fa-solid fa-plus-circle" style="margin-right: 0.5rem;"></i>Add-Ons & Daily Passes</h4>
-                    <div class="ticket-list" style="display: flex; flex-direction: column; gap: 1rem;">
-                        <?php foreach($packages as $pkg): ?>
-                        <?php if(in_array($pkg['name'], ['Daily Rate', 'Sponsor a grassroot Pro Bono Subsidiary/StartUp leader from outside Kenya.'])): ?>
-                        <div class="ticket-row" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 2px 8px rgba(22,101,52,0.08)';" onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
-                            <div style="flex: 1;">
-                                <div style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></div>
-                                <div style="color: #64748b; font-size: 0.9rem; margin-top: 0.25rem;"><?php echo htmlspecialchars($pkg['description']); ?></div>
-                            </div>
-                            <div style="text-align: right; margin-right: 2rem; min-width: 100px;">
-                                <div style="font-weight: 700; font-size: 1.25rem; color: var(--primary-color);">$<?php echo number_format($pkg['price_usd'], 2); ?></div>
-                                <div style="font-size: 0.85rem; color: #64748b;">KES <?php echo number_format($pkg['price_kes'], 2); ?></div>
-                            </div>
-                            <div class="ticket-counter" style="display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 4px; overflow: hidden; background: white;">
-                                <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, -1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">-</button>
-                                <input type="number" id="qty_<?php echo $pkg['id']; ?>" name="qty[<?php echo $pkg['id']; ?>]" value="0" min="0" readonly style="width: 50px; text-align: center; border: none; font-weight: 600; pointer-events: none;">
-                                <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, 1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">+</button>
-                                
-                                <input type="hidden" id="name_<?php echo $pkg['id']; ?>" value="<?php echo htmlspecialchars($pkg['name']); ?>">
-                                <input type="hidden" id="price_usd_<?php echo $pkg['id']; ?>" value="<?php echo $pkg['price_usd']; ?>">
-                                <input type="hidden" id="price_kes_<?php echo $pkg['id']; ?>" value="<?php echo $pkg['price_kes']; ?>">
-                            </div>
-                        </div>
-                        <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
 
@@ -467,6 +456,8 @@ include 'includes/header.php';
         const input = document.getElementById('qty_' + id);
         let val = parseInt(input.value) + delta;
         if(val < 0) val = 0;
+        const max = parseInt(input.getAttribute('max')) || 99;
+        if(val > max) val = max;
         input.value = val;
         
         const name = document.getElementById('name_' + id).value;

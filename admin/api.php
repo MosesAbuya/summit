@@ -282,16 +282,17 @@ try {
         $description = $_POST['description'];
         $price_usd = $_POST['price_usd'];
         $price_kes = $_POST['price_kes'];
+        $slots = (isset($_POST['slots']) && $_POST['slots'] !== '') ? (int)$_POST['slots'] : null;
         $sort_order = $_POST['sort_order'];
         $is_active = isset($_POST['is_active']) ? 1 : 0;
         
         if ($id) {
-            $stmt = $pdo->prepare("UPDATE ticket_packages SET name=?, description=?, price_usd=?, price_kes=?, sort_order=?, is_active=? WHERE id=?");
-            $stmt->execute([$name, $description, $price_usd, $price_kes, $sort_order, $is_active, $id]);
+            $stmt = $pdo->prepare("UPDATE ticket_packages SET name=?, description=?, price_usd=?, price_kes=?, slots=?, sort_order=?, is_active=? WHERE id=?");
+            $stmt->execute([$name, $description, $price_usd, $price_kes, $slots, $sort_order, $is_active, $id]);
             echo json_encode(['success' => true, 'message' => "Package updated successfully!"]);
         } else {
-            $stmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $description, $price_usd, $price_kes, $sort_order, $is_active]);
+            $stmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $description, $price_usd, $price_kes, $slots, $sort_order, $is_active]);
             echo json_encode(['success' => true, 'message' => "Package added successfully!"]);
         }
         exit;

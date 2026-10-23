@@ -609,7 +609,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1">Price (USD)</label>
                             <input type="number" step="0.01" name="price_usd" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
@@ -617,6 +617,10 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         <div>
                             <label class="block text-sm font-semibold text-slate-700 mb-1">Price (KES)</label>
                             <input type="number" step="0.01" name="price_kes" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Available Slots (Optional)</label>
+                            <input type="number" name="slots" placeholder="e.g. 20, 50" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                         </div>
                     </div>
                     
@@ -642,6 +646,7 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Package Name</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Prices</th>
+                            <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Slots</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Status</th>
                             <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Actions</th>
                         </tr>
@@ -650,7 +655,10 @@ if(!isset($mailer_settings['registration'])) $mailer_settings['registration'] = 
                         <?php foreach($ticket_packages as $p): ?>
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900"><?php echo htmlspecialchars($p['name']); ?></td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">$<?php echo $p['price_usd']; ?> / KES <?php echo $p['price_kes']; ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">$<?php echo number_format($p['price_usd'], 0); ?> / KES <?php echo number_format($p['price_kes'], 0); ?></td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">
+                                <?php echo !empty($p['slots']) ? '<span class="px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full font-bold text-xs"><i class="fa-solid fa-fire mr-1 text-amber-500"></i>' . (int)$p['slots'] . ' Slots</span>' : '<span class="text-slate-400 text-xs">Unlimited</span>'; ?>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
                                 <?php echo $p['is_active'] ? '<span class="text-green-600 font-bold">Active</span>' : '<span class="text-red-600">Inactive</span>'; ?>
                             </td>

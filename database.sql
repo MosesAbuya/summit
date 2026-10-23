@@ -112,3 +112,85 @@ INSERT INTO speakers (name, title, bio, image_url, is_keynote, video_url, theme)
 INSERT INTO accommodations (hotel_name, description, booking_link, image_url) VALUES
 ('Safari Park Hotel', 'Official Summit Venue and Accommodation Partner', 'https://safaripark-hotel.com', 'assets/venues/venue1.jpg'),
 ('Radisson Blu Upper Hill', 'Premium partner hotel in the business district', 'https://radissonhotels.com', 'assets/venues/venue2.jpg');
+
+CREATE TABLE IF NOT EXISTS ticket_packages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price_usd DECIMAL(10,2) NOT NULL,
+    price_kes DECIMAL(10,2) NOT NULL,
+    slots INT NULL DEFAULT NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS promo_codes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    discount_usd DECIMAL(10,2) DEFAULT 0,
+    discount_kes DECIMAL(10,2) DEFAULT 0,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS ticket_orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_ref VARCHAR(50) UNIQUE NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50),
+    organization VARCHAR(255),
+    country VARCHAR(100),
+    job_title VARCHAR(255),
+    dietary_requirements VARCHAR(100),
+    accessibility_needs TEXT,
+    visa_required TINYINT(1) DEFAULT 0,
+    passport_number VARCHAR(100),
+    emergency_contact_name VARCHAR(255),
+    emergency_contact_phone VARCHAR(50),
+    subtotal_usd DECIMAL(10,2) DEFAULT 0,
+    discount_usd DECIMAL(10,2) DEFAULT 0,
+    total_usd DECIMAL(10,2) DEFAULT 0,
+    subtotal_kes DECIMAL(10,2) DEFAULT 0,
+    discount_kes DECIMAL(10,2) DEFAULT 0,
+    total_kes DECIMAL(10,2) DEFAULT 0,
+    promo_code VARCHAR(50),
+    payment_status VARCHAR(50) DEFAULT 'pending',
+    transaction_code VARCHAR(100),
+    payment_proof_url VARCHAR(255),
+    payment_confirmed_at DATETIME,
+    admin_notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS ticket_order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    package_id INT NOT NULL,
+    package_name VARCHAR(255) NOT NULL,
+    unit_price_usd DECIMAL(10,2) NOT NULL,
+    unit_price_kes DECIMAL(10,2) NOT NULL,
+    quantity INT NOT NULL,
+    subtotal_usd DECIMAL(10,2) NOT NULL,
+    subtotal_kes DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES ticket_orders(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    setting_key VARCHAR(100) UNIQUE NOT NULL,
+    setting_value TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert revised 2026 promo packages
+INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order, is_active) VALUES
+('Students', 'Valid student ID required at summit venue', 150.00, 15000.00, 20, 1, 1),
+('Young Professionals', 'Early-career professionals & youth under 30', 200.00, 20000.00, 20, 2, 1),
+('EAC Members', 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 200.00, 20000.00, 20, 3, 1),
+('Civil Society', 'Non-profit and civil society delegates', 350.00, 35000.00, 50, 4, 1),
+('Speakers/Moderators', 'Approved speakers, panellists, and session moderators', 450.00, 45000.00, 50, 5, 1),
+('Academia', 'Researchers, university faculty, and educational institutions', 500.00, 50000.00, 20, 6, 1),
+('Volunteer Organizations', 'Leaders & representatives of volunteer-involving organizations', 500.00, 50000.00, 50, 7, 1);
