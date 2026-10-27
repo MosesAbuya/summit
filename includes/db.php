@@ -203,6 +203,42 @@ try {
         }
     } catch (Exception $e) {}
 
+    // Auto-migrate to updated promo packages (Nov 2026: Corporates, Speakers 20K, Volunteer Orgs 35K)
+    try {
+        $promo_nov_installed = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'promo_packages_nov2026_applied'")->fetchColumn();
+        if (!$promo_nov_installed) {
+            $updated_packages = [
+                ['name' => 'Students', 'description' => 'Valid student ID required at summit venue', 'usd' => 150.00, 'kes' => 15000.00, 'sort' => 1],
+                ['name' => 'Young Professionals', 'description' => 'Early-career professionals & youth under 30', 'usd' => 200.00, 'kes' => 20000.00, 'sort' => 2],
+                ['name' => 'EAC Members', 'description' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'usd' => 200.00, 'kes' => 20000.00, 'sort' => 3],
+                ['name' => 'Speakers/Moderators/Presenters', 'description' => 'Approved speakers, panellists, moderators, and session presenters', 'usd' => 200.00, 'kes' => 20000.00, 'sort' => 4],
+                ['name' => 'Civil Society', 'description' => 'Non-profit and civil society delegates', 'usd' => 350.00, 'kes' => 35000.00, 'sort' => 5],
+                ['name' => 'Volunteer Organizations', 'description' => 'Leaders & representatives of volunteer-involving organizations', 'usd' => 350.00, 'kes' => 35000.00, 'sort' => 6],
+                ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 500.00, 'kes' => 50000.00, 'sort' => 7],
+                ['name' => 'Corporates', 'description' => 'Corporate sector, business enterprises & ESG leaders', 'usd' => 500.00, 'kes' => 50000.00, 'sort' => 8],
+            ];
+
+            // Rename existing Speakers/Moderators if present
+            $pdo->exec("UPDATE ticket_packages SET name = 'Speakers/Moderators/Presenters', description = 'Approved speakers, panellists, moderators, and session presenters', price_usd = 200.00, price_kes = 20000.00, sort_order = 4 WHERE name = 'Speakers/Moderators'");
+
+            foreach ($updated_packages as $up) {
+                $chk = $pdo->prepare("SELECT id FROM ticket_packages WHERE name = ?");
+                $chk->execute([$up['name']]);
+                $existingId = $chk->fetchColumn();
+                if ($existingId) {
+                    $upd = $pdo->prepare("UPDATE ticket_packages SET description = ?, price_usd = ?, price_kes = ?, sort_order = ?, is_active = 1 WHERE id = ?");
+                    $upd->execute([$up['description'], $up['usd'], $up['kes'], $up['sort'], $existingId]);
+                } else {
+                    $ins = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order, is_active) VALUES (?, ?, ?, ?, ?, 1)");
+                    $ins->execute([$up['name'], $up['description'], $up['usd'], $up['kes'], $up['sort']]);
+                }
+            }
+
+            $pdo->exec("INSERT INTO settings (setting_key, setting_value) VALUES ('promo_packages_nov2026_applied', '1') ON DUPLICATE KEY UPDATE setting_value = '1'");
+        }
+    } catch (Exception $e) {}
+
+
     // Seed packages and migrate data if not already done
     $stmt = $pdo->query("SELECT COUNT(*) FROM ticket_packages");
     if ($stmt->fetchColumn() == 0) {
@@ -210,10 +246,11 @@ try {
             ['name' => 'Students', 'description' => 'Valid student ID required at summit venue', 'usd' => 150.00, 'kes' => 15000.00, 'slots' => 20, 'sort' => 1],
             ['name' => 'Young Professionals', 'description' => 'Early-career professionals & youth under 30', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 2],
             ['name' => 'EAC Members', 'description' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 20, 'sort' => 3],
-            ['name' => 'Civil Society', 'description' => 'Non-profit and civil society delegates', 'usd' => 350.00, 'kes' => 35000.00, 'slots' => 50, 'sort' => 4],
-            ['name' => 'Speakers/Moderators', 'description' => 'Approved speakers, panellists, and session moderators', 'usd' => 450.00, 'kes' => 45000.00, 'slots' => 50, 'sort' => 5],
-            ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 20, 'sort' => 6],
-            ['name' => 'Volunteer Organizations', 'description' => 'Leaders & representatives of volunteer-involving organizations', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 50, 'sort' => 7],
+            ['name' => 'Speakers/Moderators/Presenters', 'description' => 'Approved speakers, panellists, moderators, and session presenters', 'usd' => 200.00, 'kes' => 20000.00, 'slots' => 50, 'sort' => 4],
+            ['name' => 'Civil Society', 'description' => 'Non-profit and civil society delegates', 'usd' => 350.00, 'kes' => 35000.00, 'slots' => 50, 'sort' => 5],
+            ['name' => 'Volunteer Organizations', 'description' => 'Leaders & representatives of volunteer-involving organizations', 'usd' => 350.00, 'kes' => 35000.00, 'slots' => 50, 'sort' => 6],
+            ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 20, 'sort' => 7],
+            ['name' => 'Corporates', 'description' => 'Corporate sector, business enterprises & ESG leaders', 'usd' => 500.00, 'kes' => 50000.00, 'slots' => 50, 'sort' => 8],
         ];
 
         $insertStmt = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order) VALUES (?, ?, ?, ?, ?, ?)");

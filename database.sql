@@ -190,7 +190,8 @@ INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sor
 ('Students', 'Valid student ID required at summit venue', 150.00, 15000.00, 20, 1, 1),
 ('Young Professionals', 'Early-career professionals & youth under 30', 200.00, 20000.00, 20, 2, 1),
 ('EAC Members', 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 200.00, 20000.00, 20, 3, 1),
-('Civil Society', 'Non-profit and civil society delegates', 350.00, 35000.00, 50, 4, 1),
-('Speakers/Moderators', 'Approved speakers, panellists, and session moderators', 450.00, 45000.00, 50, 5, 1),
-('Academia', 'Researchers, university faculty, and educational institutions', 500.00, 50000.00, 20, 6, 1),
-('Volunteer Organizations', 'Leaders & representatives of volunteer-involving organizations', 500.00, 50000.00, 50, 7, 1);
+('Speakers/Moderators/Presenters', 'Approved speakers, panellists, moderators, and session presenters', 200.00, 20000.00, 50, 4, 1),
+('Civil Society', 'Non-profit and civil society delegates', 350.00, 35000.00, 50, 5, 1),
+('Volunteer Organizations', 'Leaders & representatives of volunteer-involving organizations', 350.00, 35000.00, 50, 6, 1),
+('Academia', 'Researchers, university faculty, and educational institutions', 500.00, 50000.00, 20, 7, 1),
+('Corporates', 'Corporate sector, business enterprises & ESG leaders', 500.00, 50000.00, 50, 8, 1);

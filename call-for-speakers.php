@@ -47,6 +47,10 @@ include 'includes/header.php';
                         .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); font-size: 0.95rem; }
                         .form-control { width: 100%; padding: 0.85rem 1rem; border: 1px solid #cbd5e1; border-radius: var(--border-radius-md); font-family: var(--font-body); font-size: 1rem; transition: border-color 0.3s; background: white; }
                         .form-control:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1); }
+                        .speaker-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+                        @media (max-width: 640px) {
+                            .speaker-form-row { grid-template-columns: 1fr !important; }
+                        }
                     </style>
                     <form id="speakerForm" style="background: white; padding: 3rem; border-radius: var(--border-radius-lg); border: 1px solid #e2e8f0; box-shadow: var(--box-shadow); position: relative;">
                         <h3 style="margin-bottom: 1rem; font-size: 1.8rem; color: var(--text-main);">Submit Abstract/Proposal</h3>
@@ -56,24 +60,47 @@ include 'includes/header.php';
                         <!-- Hidden subject to route through the generic contact handler cleanly -->
                         <input type="hidden" name="subject" value="Speaker/Paper Proposal Submission">
                         
-                        <div class="form-group">
-                            <label class="form-label">Full Name <span style="color:red;">*</span></label>
-                            <input type="text" name="full_name" class="form-control" required placeholder="Dr. Jane Doe">
+                        <div class="speaker-form-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">First Name <span style="color:red;">*</span></label>
+                                <input type="text" name="first_name" id="speaker_first_name" class="form-control" required placeholder="Dr. Jane">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Last Name <span style="color:red;">*</span></label>
+                                <input type="text" name="last_name" id="speaker_last_name" class="form-control" required placeholder="Doe">
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label">Email Address <span style="color:red;">*</span></label>
-                            <input type="email" name="email" class="form-control" required placeholder="jane@university.edu">
+                        <div class="speaker-form-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Email Address <span style="color:red;">*</span></label>
+                                <input type="email" name="email" id="speaker_email" class="form-control" required placeholder="jane@university.edu">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Mobile Phone Number <span style="color:red;">*</span></label>
+                                <input type="tel" name="phone" id="speaker_phone" class="form-control" required placeholder="+254 700 000000">
+                            </div>
+                        </div>
+
+                        <div class="speaker-form-row">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Organization / Institution <span style="color:red;">*</span></label>
+                                <input type="text" name="organization" id="speaker_organization" class="form-control" required placeholder="University / Company / NGO">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Job Title / Role</label>
+                                <input type="text" name="job_title" id="speaker_job_title" class="form-control" placeholder="e.g. Associate Professor / Director">
+                            </div>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Presentation Title <span style="color:red;">*</span></label>
-                            <input type="text" name="presentation_title" class="form-control" required placeholder="Title of your paper or talk">
+                            <input type="text" name="presentation_title" id="speaker_presentation_title" class="form-control" required placeholder="Title of your paper or talk">
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Abstract / Overview <span style="color:red;">*</span></label>
-                            <textarea class="form-control" name="message" required rows="6" placeholder="Provide a brief overview of your presentation, thematic area, and key takeaways..."></textarea>
+                            <textarea class="form-control" name="message" id="speaker_message" required rows="6" placeholder="Provide a brief overview of your presentation, thematic area, and key takeaways..."></textarea>
                         </div>
 
                         <div class="form-group" style="margin-top: 2rem;">
@@ -90,14 +117,29 @@ include 'includes/header.php';
                             const btn = document.getElementById('submitBtn');
                             
                             btn.disabled = true;
-                            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+                            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 0.5rem;"></i> Submitting...';
                             
-                            // To map the presentation title into the message for the generic ajax_contact.php
                             const formData = new FormData(form);
-                            const title = formData.get('presentation_title');
-                            const originalMessage = formData.get('message');
+                            const firstName = (formData.get('first_name') || '').trim();
+                            const lastName = (formData.get('last_name') || '').trim();
+                            const fullName = (firstName + ' ' + lastName).trim();
+                            const email = (formData.get('email') || '').trim();
+                            const phone = (formData.get('phone') || '').trim();
+                            const organization = (formData.get('organization') || '').trim();
+                            const jobTitle = (formData.get('job_title') || '').trim();
+                            const title = (formData.get('presentation_title') || '').trim();
+                            const originalMessage = (formData.get('message') || '').trim();
                             
-                            formData.set('message', "Presentation Title: " + title + "\n\nAbstract:\n" + originalMessage);
+                            // Ensure generic ajax_contact.php receives full_name and structured message
+                            formData.set('full_name', fullName);
+                            
+                            let formattedMessage = "Presentation Title: " + title + "\n\n";
+                            if (organization) formattedMessage += "Organization: " + organization + "\n";
+                            if (jobTitle) formattedMessage += "Job Title: " + jobTitle + "\n";
+                            if (phone) formattedMessage += "Phone: " + phone + "\n\n";
+                            formattedMessage += "Abstract / Overview:\n" + originalMessage;
+                            
+                            formData.set('message', formattedMessage);
                             
                             fetch('ajax_contact.php', {
                                 method: 'POST',
@@ -105,18 +147,42 @@ include 'includes/header.php';
                             })
                             .then(response => response.json())
                             .then(data => {
-                                statusDiv.style.display = 'block';
                                 if (data.status === 'success') {
-                                    statusDiv.style.backgroundColor = '#dcfce7';
-                                    statusDiv.style.color = '#166534';
-                                    statusDiv.style.borderColor = '#bbf7d0';
-                                    statusDiv.innerHTML = '<strong><i class="fa-solid fa-check-circle"></i> Success!</strong> Your proposal has been submitted successfully.';
-                                    form.reset();
+                                    // Do not display success confirmation; show redirecting status and redirect
+                                    statusDiv.style.display = 'block';
+                                    statusDiv.style.backgroundColor = '#eff6ff';
+                                    statusDiv.style.color = '#1d4ed8';
+                                    statusDiv.style.borderColor = '#bfdbfe';
+                                    statusDiv.innerHTML = '<div style="display: flex; align-items: center; gap: 0.75rem;"><i class="fa-solid fa-spinner fa-spin" style="font-size: 1.25rem;"></i> <div><strong>Redirecting to Registration...</strong><div style="font-size: 0.9rem; margin-top: 0.2rem; opacity: 0.9;">Please complete your speaker pass registration.</div></div></div>';
+                                    
+                                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 0.5rem;"></i> Redirecting...';
+                                    
+                                    const params = new URLSearchParams({
+                                        ticket: 'Speakers/Moderators/Presenters',
+                                        first_name: firstName,
+                                        last_name: lastName,
+                                        email: email,
+                                        phone: phone,
+                                        organization: organization,
+                                        job_title: jobTitle
+                                    });
+                                    
+                                    for (const [key, value] of [...params.entries()]) {
+                                        if (!value) params.delete(key);
+                                    }
+                                    
+                                    setTimeout(() => {
+                                        const targetPage = window.location.pathname.endsWith('.php') ? 'register.php' : 'register';
+                                        window.location.href = targetPage + '?' + params.toString();
+                                    }, 600);
                                 } else {
+                                    statusDiv.style.display = 'block';
                                     statusDiv.style.backgroundColor = '#fee2e2';
                                     statusDiv.style.color = '#991b1b';
                                     statusDiv.style.borderColor = '#fecaca';
                                     statusDiv.innerHTML = '<strong><i class="fa-solid fa-triangle-exclamation"></i> Error:</strong> ' + data.message;
+                                    btn.disabled = false;
+                                    btn.innerHTML = '<i class="fa-solid fa-paper-plane" style="margin-right: 0.5rem;"></i> Submit Proposal';
                                 }
                             })
                             .catch(error => {
@@ -125,8 +191,6 @@ include 'includes/header.php';
                                 statusDiv.style.color = '#991b1b';
                                 statusDiv.style.borderColor = '#fecaca';
                                 statusDiv.innerHTML = '<strong><i class="fa-solid fa-triangle-exclamation"></i> Error:</strong> Could not connect to server.';
-                            })
-                            .finally(() => {
                                 btn.disabled = false;
                                 btn.innerHTML = '<i class="fa-solid fa-paper-plane" style="margin-right: 0.5rem;"></i> Submit Proposal';
                             });

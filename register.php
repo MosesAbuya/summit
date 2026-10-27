@@ -5,6 +5,15 @@ require 'includes/db.php';
 $stmt = $pdo->query("SELECT * FROM ticket_packages WHERE is_active = 1 ORDER BY sort_order ASC");
 $packages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Captured prefill parameters (e.g. from Call for Speakers redirect)
+$prefill_first_name = trim($_GET['first_name'] ?? '');
+$prefill_last_name = trim($_GET['last_name'] ?? '');
+$prefill_email = trim($_GET['email'] ?? '');
+$prefill_phone = trim($_GET['phone'] ?? '');
+$prefill_organization = trim($_GET['organization'] ?? '');
+$prefill_job_title = trim($_GET['job_title'] ?? '');
+$prefill_country = trim($_GET['country'] ?? '');
+
 include 'includes/header.php'; 
 ?>
 
@@ -52,7 +61,7 @@ include 'includes/header.php';
                         <h4 style="font-size: 1.15rem; color: #0f172a; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin: 0;">
                             <i class="fa-solid fa-ticket" style="margin-right: 0.5rem; color: var(--primary-color);"></i>Summit Delegate Passes (Promo Rates)
                         </h4>
-                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Special Promotional Pricing &bull; Limited Slots Available</span>
+                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">Special Promotional Pricing</span>
                     </div>
                     
                     <?php
@@ -60,10 +69,12 @@ include 'includes/header.php';
                         'Students' => ['tag' => 'Valid student ID required at summit venue', 'color' => '#ea580c', 'bg' => '#fff7ed'],
                         'Young Professionals' => ['tag' => 'Early-career professionals & youth under 30', 'color' => '#0284c7', 'bg' => '#e0f2fe'],
                         'EAC Members' => ['tag' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'color' => '#16a34a', 'bg' => '#dcfce7'],
-                        'Civil Society' => ['tag' => 'Non-profit and civil society delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
+                        'Speakers/Moderators/Presenters' => ['tag' => 'Approved speakers, panellists, moderators, and session presenters', 'color' => '#d97706', 'bg' => '#fef3c7'],
                         'Speakers/Moderators' => ['tag' => 'Approved speakers, panellists, and session moderators', 'color' => '#d97706', 'bg' => '#fef3c7'],
-                        'Academia' => ['tag' => 'Researchers, university faculty, and educational institutions', 'color' => '#2563eb', 'bg' => '#dbeafe'],
+                        'Civil Society' => ['tag' => 'Non-profit and civil society delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
                         'Volunteer Organizations' => ['tag' => 'Leaders & representatives of volunteer-involving organizations', 'color' => '#059669', 'bg' => '#d1fae5'],
+                        'Academia' => ['tag' => 'Researchers, university faculty, and educational institutions', 'color' => '#2563eb', 'bg' => '#dbeafe'],
+                        'Corporates' => ['tag' => 'Corporate sector, business enterprises & ESG leaders', 'color' => '#0f766e', 'bg' => '#ccfbf1'],
                     ];
                     ?>
                     
@@ -74,11 +85,6 @@ include 'includes/header.php';
                             <div style="flex: 1; margin-right: 1.5rem;">
                                 <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
                                     <span style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></span>
-                                    <?php if(!empty($pkg['slots'])): ?>
-                                    <span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 700; color: #b45309; background: #fef3c7; border: 1px solid #fde68a; padding: 0.15rem 0.6rem; border-radius: 999px;">
-                                        <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> Limited: <?php echo (int)$pkg['slots']; ?> Slots
-                                    </span>
-                                    <?php endif; ?>
                                 </div>
                                 <div style="margin-top: 0.35rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                     <?php if(!empty($elig['tag'])): ?>
@@ -95,7 +101,7 @@ include 'includes/header.php';
                             </div>
                             <div class="ticket-counter" style="display: flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 4px; overflow: hidden; background: white;">
                                 <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, -1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">-</button>
-                                <input type="number" id="qty_<?php echo $pkg['id']; ?>" name="qty[<?php echo $pkg['id']; ?>]" value="0" min="0" max="<?php echo !empty($pkg['slots']) ? (int)$pkg['slots'] : 99; ?>" readonly style="width: 50px; text-align: center; border: none; font-weight: 600; pointer-events: none;">
+                                <input type="number" id="qty_<?php echo $pkg['id']; ?>" name="qty[<?php echo $pkg['id']; ?>]" value="0" min="0" max="99" readonly style="width: 50px; text-align: center; border: none; font-weight: 600; pointer-events: none;">
                                 <button type="button" class="qty-btn" onclick="updateQty(<?php echo $pkg['id']; ?>, 1)" style="padding: 0.5rem 1rem; background: #f1f5f9; border: none; cursor: pointer; font-weight: bold; color: #334155;">+</button>
                                 
                                 <input type="hidden" id="name_<?php echo $pkg['id']; ?>" value="<?php echo htmlspecialchars($pkg['name']); ?>">
@@ -126,33 +132,33 @@ include 'includes/header.php';
                             <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                 <div>
                                     <label class="form-label">First Name *</label>
-                                    <input type="text" name="first_name" id="first_name" class="form-control" required>
+                                    <input type="text" name="first_name" id="first_name" class="form-control" value="<?php echo htmlspecialchars($prefill_first_name, ENT_QUOTES, 'UTF-8'); ?>" required>
                                 </div>
                                 <div>
                                     <label class="form-label">Last Name *</label>
-                                    <input type="text" name="last_name" id="last_name" class="form-control" required>
+                                    <input type="text" name="last_name" id="last_name" class="form-control" value="<?php echo htmlspecialchars($prefill_last_name, ENT_QUOTES, 'UTF-8'); ?>" required>
                                 </div>
                             </div>
                             
                             <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                 <div>
                                     <label class="form-label">Email Address *</label>
-                                    <input type="email" name="email" id="email" class="form-control" required>
+                                    <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($prefill_email, ENT_QUOTES, 'UTF-8'); ?>" required>
                                 </div>
                                 <div>
                                     <label class="form-label">Mobile Phone Number *</label>
-                                    <input type="tel" name="phone" id="phone" class="form-control" required>
+                                    <input type="tel" name="phone" id="phone" class="form-control" value="<?php echo htmlspecialchars($prefill_phone, ENT_QUOTES, 'UTF-8'); ?>" required>
                                 </div>
                             </div>
 
                             <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                                 <div>
                                     <label class="form-label">Organization *</label>
-                                    <input type="text" name="organization" id="organization" class="form-control" required>
+                                    <input type="text" name="organization" id="organization" class="form-control" value="<?php echo htmlspecialchars($prefill_organization, ENT_QUOTES, 'UTF-8'); ?>" required>
                                 </div>
                                 <div>
                                     <label class="form-label">Job Title</label>
-                                    <input type="text" name="job_title" id="job_title" class="form-control">
+                                    <input type="text" name="job_title" id="job_title" class="form-control" value="<?php echo htmlspecialchars($prefill_job_title, ENT_QUOTES, 'UTF-8'); ?>">
                                 </div>
                             </div>
 
@@ -160,15 +166,13 @@ include 'includes/header.php';
                                 <label class="form-label">Country *</label>
                                 <select name="country" id="country" class="form-control" required>
                                     <option value="">Select Country...</option>
-                                    <option value="Kenya">Kenya</option>
-                                    <option value="Uganda">Uganda</option>
-                                    <option value="Tanzania">Tanzania</option>
-                                    <option value="Rwanda">Rwanda</option>
-                                    <option value="Burundi">Burundi</option>
-                                    <option value="South Sudan">South Sudan</option>
-                                    <option value="United States">United States</option>
-                                    <option value="United Kingdom">United Kingdom</option>
-                                    <option value="Other">Other...</option>
+                                    <?php
+                                    $countries = ['Kenya', 'Uganda', 'Tanzania', 'Rwanda', 'Burundi', 'South Sudan', 'United States', 'United Kingdom', 'Other'];
+                                    foreach ($countries as $c) {
+                                        $selected = (strcasecmp($prefill_country, $c) === 0) ? 'selected' : '';
+                                        echo "<option value=\"$c\" $selected>$c" . ($c === 'Other' ? '...' : '') . "</option>\n";
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
@@ -723,6 +727,53 @@ include 'includes/header.php';
         });
     });
 
+
+    // Auto-select ticket and prefill stage 2 if redirect parameters are present (e.g. from Call for Speakers)
+    (function handleRedirectPrefill() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ticketParam = urlParams.get('ticket');
+        
+        if (ticketParam) {
+            let targetPkgId = null;
+            const isSpeaker = ticketParam.toLowerCase().includes('speaker') || ticketParam.toLowerCase().includes('presenter') || ticketParam === 'Speakers/Moderators' || ticketParam === 'Speakers/Moderators/Presenters';
+            
+            // Search all ticket package rows
+            document.querySelectorAll('input[id^="name_"]').forEach(el => {
+                const id = el.id.replace('name_', '');
+                const nameVal = el.value.trim().toLowerCase();
+                if (isSpeaker && (nameVal.includes('speaker') || nameVal.includes('presenter'))) {
+                    targetPkgId = id;
+                } else if (!targetPkgId && (nameVal === ticketParam.toLowerCase() || nameVal.includes(ticketParam.toLowerCase()))) {
+                    targetPkgId = id;
+                }
+            });
+
+            if (targetPkgId) {
+                const qtyInput = document.getElementById('qty_' + targetPkgId);
+                if (qtyInput) {
+                    qtyInput.value = 0;
+                    updateQty(targetPkgId, 1);
+                }
+            }
+
+            // Sync field values from URL parameters
+            const fields = ['first_name', 'last_name', 'email', 'phone', 'organization', 'job_title', 'country'];
+            fields.forEach(field => {
+                const val = urlParams.get(field);
+                if (val) {
+                    const input = document.getElementById(field);
+                    if (input && !input.value) {
+                        input.value = val;
+                    }
+                }
+            });
+
+            // Transition straight to Stage 2 with smooth scroll
+            setTimeout(() => {
+                nextStep(2);
+            }, 60);
+        }
+    })();
 </script>
 
 <?php include 'includes/footer.php'; ?>
