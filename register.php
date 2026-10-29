@@ -434,7 +434,7 @@ include 'includes/header.php';
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                             <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px;">Top Tier</span>
-                            <span style="font-size: 1.25rem;">💎</span>
+                            <i class="fa-solid fa-crown" style="color: #38bdf8; font-size: 1.25rem;"></i>
                         </div>
                         <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Platinum Partner</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$20,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 2.5M</span></div>
@@ -444,7 +444,7 @@ include 'includes/header.php';
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                             <span style="font-size: 0.75rem; font-weight: 800; color: var(--kente-gold); text-transform: uppercase; letter-spacing: 1px;">Workshops</span>
-                            <span style="font-size: 1.25rem;">🥇</span>
+                            <i class="fa-solid fa-medal" style="color: var(--kente-gold); font-size: 1.25rem;"></i>
                         </div>
                         <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Gold Partner</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$15,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.9M</span></div>
@@ -454,7 +454,7 @@ include 'includes/header.php';
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                             <span style="font-size: 0.75rem; font-weight: 800; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px;">Exhibitions</span>
-                            <span style="font-size: 1.25rem;">🥈</span>
+                            <i class="fa-solid fa-gem" style="color: #cbd5e1; font-size: 1.25rem;"></i>
                         </div>
                         <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Silver Partner</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$10,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.2M</span></div>
@@ -464,7 +464,7 @@ include 'includes/header.php';
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                             <span style="font-size: 0.75rem; font-weight: 800; color: #f97316; text-transform: uppercase; letter-spacing: 1px;">Registration</span>
-                            <span style="font-size: 1.25rem;">🥉</span>
+                            <i class="fa-solid fa-id-badge" style="color: #fb923c; font-size: 1.25rem;"></i>
                         </div>
                         <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Bronze Partner</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$4,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 500K</span></div>

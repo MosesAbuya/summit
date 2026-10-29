@@ -83,8 +83,10 @@
           }
           .dynamic-col img { height: auto; max-height: 120px; }
           .mobile-mega-btn { display: list-item !important; }
+          .mobile-home-btn { display: list-item !important; }
       }
       .mobile-mega-btn { display: none; }
+      .mobile-home-btn { display: none; }
 
     </style>
 </head>
@@ -124,7 +126,7 @@
             <div class="nav-wrapper">
                 <nav class="main-nav">
                     <ul style="gap: 1rem; position: relative;">
-                        <li><a href="index">Home</a></li>
+                        <li class="mobile-home-btn"><a href="index">Home</a></li>
                         <li class="nav-item-mega" data-mega="about"><a href="about">About</a></li>
                         <li class="nav-item-mega" data-mega="program"><a href="program">Program</a></li>
                         <li class="nav-item-mega" data-mega="projects"><a href="best_practices">Best Practices</a></li>
@@ -159,15 +161,6 @@
                         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
                             <li><a href="projects" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Pro-bono Projects</a></li>
                             <li><a href="partners" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Our Partners</a></li>
-                            <li style="margin: 0.25rem 0;">
-                                <a href="sponsorship" style="display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.85rem; background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(22, 101, 52, 0.35)); border: 1px solid rgba(234, 179, 8, 0.45); border-radius: 8px; color: #fef08a !important; font-weight: 700 !important; text-decoration: none; font-size: 0.95rem !important; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.25);" onmouseover="this.style.background='linear-gradient(135deg, rgba(234, 179, 8, 0.32), rgba(22, 101, 52, 0.55))'; this.style.borderColor='var(--kente-gold)'; this.style.transform='translateX(3px)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(22, 101, 52, 0.35))'; this.style.borderColor='rgba(234, 179, 8, 0.45)'; this.style.transform='none';">
-                                    <span style="display: flex; align-items: center; gap: 0.5rem;">
-                                        <i class="fa-solid fa-crown" style="color: var(--kente-gold); font-size: 0.85rem;"></i>
-                                        <span>Sponsorship Packages</span>
-                                    </span>
-                                    <span style="background: var(--kente-gold); color: #0f172a; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">Featured</span>
-                                </a>
-                            </li>
                             <li><a href="gallery" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Event Gallery</a></li>
                             <li><a href="faq" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Frequently Asked Questions</a></li>
                         </ul>
