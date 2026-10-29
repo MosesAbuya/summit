@@ -1,4 +1,7 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+$requested_level = trim($_GET['level'] ?? '');
+include 'includes/header.php'; 
+?>
 
 <div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), url('assets/past-summit/231201-131346.jpg') center/cover; padding: 6rem 0; text-align: center; color: white;">
     <div class="container">
@@ -48,11 +51,11 @@
                         <label for="partnership_level" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Interested Partnership Level <span style="color: var(--terracotta);">*</span></label>
                         <select id="partnership_level" name="partnership_level" required style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: var(--border-radius-sm);">
                             <option value="">Select Level</option>
-                            <option value="Headline">Headline Partner</option>
-                            <option value="Strategic">Strategic Partner</option>
-                            <option value="Session">Session Sponsor</option>
-                            <option value="Exhibitor">Exhibitor</option>
-                            <option value="In-Kind">In-Kind Contributor</option>
+                            <option value="Platinum" <?php echo (stripos($requested_level, 'platinum') !== false) ? 'selected' : ''; ?>>Platinum Sponsor (KES 2,500,000 / $20,000 USD - Naming Rights)</option>
+                            <option value="Gold" <?php echo (stripos($requested_level, 'gold') !== false) ? 'selected' : ''; ?>>Gold Sponsor (KES 1,900,000 / $15,000 USD - Lead for Workshops)</option>
+                            <option value="Silver" <?php echo (stripos($requested_level, 'silver') !== false) ? 'selected' : ''; ?>>Silver Sponsor (KES 1,200,000 / $10,000 USD - Lead Exhibitions)</option>
+                            <option value="Bronze" <?php echo (stripos($requested_level, 'bronze') !== false) ? 'selected' : ''; ?>>Bronze Sponsor (KES 500,000 / $4,000 USD - Registration Desk)</option>
+                            <option value="In-Kind" <?php echo (stripos($requested_level, 'in-kind') !== false) ? 'selected' : ''; ?>>In-Kind Contributor / Custom Strategic Partner</option>
                         </select>
                     </div>
 

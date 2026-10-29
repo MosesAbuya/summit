@@ -13,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- African Patterns & Theme -->
@@ -21,11 +21,15 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-      /* Override heading font to use Playfair Display for African elegance */
-      :root { --font-heading: 'Playfair Display', 'Outfit', serif; }
-      h1, h2, h3 { font-family: var(--font-heading); }
-      /* Keep nav, buttons, eyebrows in Outfit */
-      .main-nav a, .btn, .section-eyebrow, .badge, .venue-day, .track-header { font-family: 'Outfit', sans-serif; }
+      /* Unified headings and titles to use the logo font (Inter) */
+      :root { 
+        --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6, .section-title, .page-header h1, .serif-heading, .main-title, .logo-title-top, .logo-title-bottom { 
+        font-family: var(--font-heading) !important; 
+      }
+      .main-nav a, .btn, .section-eyebrow, .badge, .venue-day, .track-header { font-family: var(--font-heading); }
       
       /* Dropdown styles */
       .dropdown { position: relative; }
@@ -155,9 +159,34 @@
                         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
                             <li><a href="projects" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Pro-bono Projects</a></li>
                             <li><a href="partners" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Our Partners</a></li>
+                            <li style="margin: 0.25rem 0;">
+                                <a href="sponsorship" style="display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.85rem; background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(22, 101, 52, 0.35)); border: 1px solid rgba(234, 179, 8, 0.45); border-radius: 8px; color: #fef08a !important; font-weight: 700 !important; text-decoration: none; font-size: 0.95rem !important; transition: all 0.25s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.25);" onmouseover="this.style.background='linear-gradient(135deg, rgba(234, 179, 8, 0.32), rgba(22, 101, 52, 0.55))'; this.style.borderColor='var(--kente-gold)'; this.style.transform='translateX(3px)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(22, 101, 52, 0.35))'; this.style.borderColor='rgba(234, 179, 8, 0.45)'; this.style.transform='none';">
+                                    <span style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <i class="fa-solid fa-crown" style="color: var(--kente-gold); font-size: 0.85rem;"></i>
+                                        <span>Sponsorship Packages</span>
+                                    </span>
+                                    <span style="background: var(--kente-gold); color: #0f172a; font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">Featured</span>
+                                </a>
+                            </li>
                             <li><a href="gallery" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Event Gallery</a></li>
                             <li><a href="faq" style="color: white; text-decoration: none; font-size: 0.95rem; font-weight: 400; transition: color 0.2s;">Frequently Asked Questions</a></li>
                         </ul>
+                    </div>
+                    
+                    <!-- Mega Menu Bottom Callout Strip -->
+                    <div style="grid-column: 1 / -1; margin-top: 0.25rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: rgba(234, 179, 8, 0.2); color: var(--kente-gold); font-size: 0.9rem; border: 1px solid rgba(234, 179, 8, 0.35);">
+                                <i class="fa-solid fa-handshake"></i>
+                            </span>
+                            <div>
+                                <span style="color: white; font-weight: 600; font-size: 0.9rem; display: block;">Partner &amp; Sponsor the Summit</span>
+                                <span style="color: rgba(255,255,255,0.65); font-size: 0.8rem;">Platinum, Gold, Silver &amp; Bronze tiers available (KES 500K – 2.5M)</span>
+                            </div>
+                        </div>
+                        <a href="sponsorship" style="display: inline-flex; align-items: center; gap: 0.45rem; color: #0f172a !important; font-weight: 700 !important; font-size: 0.85rem !important; text-decoration: none; padding: 0.4rem 0.95rem; background: var(--kente-gold); border-radius: 6px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(234, 179, 8, 0.35);" onmouseover="this.style.opacity='0.92'; this.style.transform='translateY(-1px)';" onmouseout="this.style.opacity='1'; this.style.transform='none';">
+                            Explore Packages <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem;"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="header-cta">

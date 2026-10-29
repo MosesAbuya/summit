@@ -69,32 +69,43 @@ include 'includes/header.php';
                 <?php endif; ?>
             </div>
             
-            <div style="margin-top: 5rem; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 2rem; background: #f8fafc; border-radius: var(--border-radius-lg); border-left: 4px solid var(--primary-color);">
-                <h3 style="color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1rem;">Sponsorship Packages</h3>
-                <p style="color: var(--text-main); line-height: 1.6; margin-bottom: 2rem;">Every tier delivers unmatched ROI in reputation, talent, and impact.</p>
-                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+            <div style="margin-top: 5rem; text-align: left; max-width: 900px; margin-left: auto; margin-right: auto; padding: 2.5rem; background: #f8fafc; border-radius: var(--border-radius-lg); border-left: 4px solid var(--primary-color); box-shadow: var(--box-shadow);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="color: var(--primary-color); font-size: 1.8rem; margin: 0;">Partner With Us and Sponsor the Summit</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; margin: 0.5rem 0 0;">Every tier delivers unmatched ROI in reputation, executive networking, and pan-African impact.</p>
+                    </div>
+                    <a href="sponsorship" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.95rem;">
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="margin-right: 0.5rem;"></i> View Full Packages
+                    </a>
+                </div>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem;">
                     <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-crown" style="color: #64748b; font-size: 1.25rem; margin-top: 4px;"></i>
+                        <i class="fa-solid fa-crown" style="color: #64748b; font-size: 1.35rem; margin-top: 3px;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.1rem;">Platinum Sponsors (KES 5M)</strong> - Secures Naming Rights.
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Platinum Sponsor (KES 2.5M / $20,000 USD)</strong> &bull; <span style="color: var(--primary-color); font-weight: 700;">Naming Rights</span>
+                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Exclusive Summit Naming Rights, opening keynote address, 10 VIP passes, and prime central exhibition pavilion.</div>
                         </div>
                     </li>
                     <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-medal" style="color: #fbbf24; font-size: 1.25rem; margin-top: 4px;"></i>
+                        <i class="fa-solid fa-medal" style="color: #f59e0b; font-size: 1.35rem; margin-top: 3px;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.1rem;">Gold Sponsors (KES 3M)</strong> - Lead Workshops.
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Gold Sponsor (KES 1.9M / $15,000 USD)</strong> &bull; <span style="color: #b45309; font-weight: 700;">Lead for Workshops</span>
+                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Lead partner for thematic workshops & masterclasses, session hosting & panel moderation, 6 VIP passes, and prominent booth.</div>
                         </div>
                     </li>
                     <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-medal" style="color: #94a3b8; font-size: 1.25rem; margin-top: 4px;"></i>
+                        <i class="fa-solid fa-gem" style="color: #0284c7; font-size: 1.35rem; margin-top: 3px;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.1rem;">Silver Sponsors (KES 1.5M)</strong> - Secures exhibition priority.
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Silver Sponsor (KES 1.2M / $10,000 USD)</strong> &bull; <span style="color: #0284c7; font-weight: 700;">Lead Exhibitions</span>
+                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Designation as Lead Exhibition Partner, dedicated premium exhibition booth space, and 4 summit passes.</div>
                         </div>
                     </li>
                     <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-medal" style="color: #b45309; font-size: 1.25rem; margin-top: 4px;"></i>
+                        <i class="fa-solid fa-id-badge" style="color: #ea580c; font-size: 1.35rem; margin-top: 3px;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.1rem;">Bronze Sponsors (KES 500K)</strong> - Registration Desks.
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Bronze Sponsor (KES 500K / $4,000 USD)</strong> &bull; <span style="color: #ea580c; font-weight: 700;">Registration Desk</span>
+                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Exclusive branding at the Summit Registration Desk, delegate welcome pack insert, and 2 summit passes.</div>
                         </div>
                     </li>
                 </ul>

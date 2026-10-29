@@ -203,6 +203,45 @@ try {
         }
     } catch (Exception $e) {}
 
+    // Auto-migrate to final reviewed packages (Oct/Nov 2026: 13 packages with 1:100 rates)
+    try {
+        $final_promo_installed = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'promo_packages_final_2026_applied'")->fetchColumn();
+        if (!$final_promo_installed) {
+            $pdo->exec("UPDATE ticket_packages SET is_active = 0");
+
+            $final_packages = [
+                ['name' => 'Students', 'description' => 'Valid student ID required at summit venue', 'usd' => 100.00, 'kes' => 10000.00, 'sort' => 1],
+                ['name' => 'EAC Members', 'description' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'usd' => 250.00, 'kes' => 25000.00, 'sort' => 2],
+                ['name' => 'Speakers', 'description' => 'Approved speakers, panellists, moderators, and session presenters', 'usd' => 250.00, 'kes' => 25000.00, 'sort' => 3],
+                ['name' => 'GPBN Members', 'description' => 'Global Pro Bono Network certified members and affiliates', 'usd' => 350.00, 'kes' => 35000.00, 'sort' => 4],
+                ['name' => 'Academia', 'description' => 'Researchers, university faculty, and educational institutions', 'usd' => 350.00, 'kes' => 35000.00, 'sort' => 5],
+                ['name' => 'NGOs/Civil Society/VIOs (Individual)', 'description' => 'Non-profit, civil society & volunteer-involving individual delegate', 'usd' => 250.00, 'kes' => 25000.00, 'sort' => 6],
+                ['name' => 'NGOs/Civil Society/VIOs (Table of 5)', 'description' => 'Delegation pass for 5 representatives from non-profit / civil society / VIOs', 'usd' => 1250.00, 'kes' => 125000.00, 'sort' => 7],
+                ['name' => 'NGOs/Civil Society/VIOs (Table of 10)', 'description' => 'Delegation pass for 10 representatives from non-profit / civil society / VIOs', 'usd' => 2500.00, 'kes' => 250000.00, 'sort' => 8],
+                ['name' => 'Corporate (Individual)', 'description' => 'Corporate sector, business enterprise & ESG leader individual delegate', 'usd' => 300.00, 'kes' => 30000.00, 'sort' => 9],
+                ['name' => 'Corporate (Table of 5)', 'description' => 'Corporate delegation pass for 5 executives / representatives', 'usd' => 1500.00, 'kes' => 150000.00, 'sort' => 10],
+                ['name' => 'Corporate (Table of 10)', 'description' => 'Corporate delegation pass for 10 executives / representatives', 'usd' => 3000.00, 'kes' => 300000.00, 'sort' => 11],
+                ['name' => 'Daily Pass', 'description' => 'Single-day summit access pass (valid for 1 day of conference sessions)', 'usd' => 60.00, 'kes' => 6000.00, 'sort' => 12],
+                ['name' => 'Virtual Pass (Subject to the numbers)', 'description' => 'Full virtual streaming and digital session participation access', 'usd' => 50.00, 'kes' => 5000.00, 'sort' => 13],
+            ];
+
+            foreach ($final_packages as $fp) {
+                $chk = $pdo->prepare("SELECT id FROM ticket_packages WHERE name = ?");
+                $chk->execute([$fp['name']]);
+                $existingId = $chk->fetchColumn();
+                if ($existingId) {
+                    $upd = $pdo->prepare("UPDATE ticket_packages SET description = ?, price_usd = ?, price_kes = ?, sort_order = ?, is_active = 1 WHERE id = ?");
+                    $upd->execute([$fp['description'], $fp['usd'], $fp['kes'], $fp['sort'], $existingId]);
+                } else {
+                    $ins = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order, is_active) VALUES (?, ?, ?, ?, ?, 1)");
+                    $ins->execute([$fp['name'], $fp['description'], $fp['usd'], $fp['kes'], $fp['sort']]);
+                }
+            }
+
+            $pdo->exec("INSERT INTO settings (setting_key, setting_value) VALUES ('promo_packages_final_2026_applied', '1') ON DUPLICATE KEY UPDATE setting_value = '1'");
+        }
+    } catch (Exception $e) {}
+
     // Auto-migrate to updated promo packages (Nov 2026: Corporates, Speakers 20K, Volunteer Orgs 35K)
     try {
         $promo_nov_installed = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'promo_packages_nov2026_applied'")->fetchColumn();

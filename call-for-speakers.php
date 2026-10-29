@@ -158,7 +158,7 @@ include 'includes/header.php';
                                     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="margin-right: 0.5rem;"></i> Redirecting...';
                                     
                                     const params = new URLSearchParams({
-                                        ticket: 'Speakers/Moderators/Presenters',
+                                        ticket: 'Speakers',
                                         first_name: firstName,
                                         last_name: lastName,
                                         email: email,

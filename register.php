@@ -65,26 +65,41 @@ include 'includes/header.php';
                     </div>
                     
                     <?php
-                    $eligibility = [
+                                        $eligibility = [
                         'Students' => ['tag' => 'Valid student ID required at summit venue', 'color' => '#ea580c', 'bg' => '#fff7ed'],
-                        'Young Professionals' => ['tag' => 'Early-career professionals & youth under 30', 'color' => '#0284c7', 'bg' => '#e0f2fe'],
                         'EAC Members' => ['tag' => 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 'color' => '#16a34a', 'bg' => '#dcfce7'],
+                        'Speakers' => ['tag' => 'Approved speakers, panellists, moderators, and session presenters', 'color' => '#d97706', 'bg' => '#fef3c7'],
                         'Speakers/Moderators/Presenters' => ['tag' => 'Approved speakers, panellists, moderators, and session presenters', 'color' => '#d97706', 'bg' => '#fef3c7'],
                         'Speakers/Moderators' => ['tag' => 'Approved speakers, panellists, and session moderators', 'color' => '#d97706', 'bg' => '#fef3c7'],
+                        'GPBN Members' => ['tag' => 'Global Pro Bono Network certified members & affiliates', 'color' => '#2563eb', 'bg' => '#dbeafe'],
+                        'Academia' => ['tag' => 'Researchers, university faculty, and educational institutions', 'color' => '#0284c7', 'bg' => '#e0f2fe'],
+                        'NGOs/Civil Society/VIOs (Individual)' => ['tag' => 'Non-profit, civil society & volunteer-involving individual delegate', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
+                        'NGOs/Civil Society/VIOs (Table of 5)' => ['tag' => 'Group Delegation: Reserved Table of 5 Delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
+                        'NGOs/Civil Society/VIOs (Table of 10)' => ['tag' => 'Group Delegation: Full Reserved Table of 10 Delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
                         'Civil Society' => ['tag' => 'Non-profit and civil society delegates', 'color' => '#7c3aed', 'bg' => '#ede9fe'],
                         'Volunteer Organizations' => ['tag' => 'Leaders & representatives of volunteer-involving organizations', 'color' => '#059669', 'bg' => '#d1fae5'],
-                        'Academia' => ['tag' => 'Researchers, university faculty, and educational institutions', 'color' => '#2563eb', 'bg' => '#dbeafe'],
+                        'Corporate (Individual)' => ['tag' => 'Corporate sector, business enterprise & ESG leader delegate', 'color' => '#0f766e', 'bg' => '#ccfbf1'],
+                        'Corporate (Table of 5)' => ['tag' => 'Corporate Delegation: Reserved Table of 5 Executives', 'color' => '#0f766e', 'bg' => '#ccfbf1'],
+                        'Corporate (Table of 10)' => ['tag' => 'Corporate Delegation: Full Reserved Table of 10 Executives', 'color' => '#0f766e', 'bg' => '#ccfbf1'],
                         'Corporates' => ['tag' => 'Corporate sector, business enterprises & ESG leaders', 'color' => '#0f766e', 'bg' => '#ccfbf1'],
+                        'Daily Pass' => ['tag' => 'Single-day summit pass (valid for 1 conference day)', 'color' => '#b45309', 'bg' => '#fef3c7'],
+                        'Virtual Pass (Subject to the numbers)' => ['tag' => 'Full virtual streaming & interactive digital participation pass', 'color' => '#4338ca', 'bg' => '#e0e7ff'],
                     ];
                     ?>
                     
                     <div class="ticket-list" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem;">
-                        <?php foreach($packages as $pkg): ?>
-                        <?php $elig = $eligibility[$pkg['name']] ?? ['tag' => $pkg['description'] ?? '', 'color' => '#64748b', 'bg' => '#f1f5f9']; ?>
+                        <?php $pkg_idx = 0; foreach($packages as $pkg): $pkg_idx++; ?>
+                        <?php 
+                        $elig = $eligibility[$pkg['name']] ?? ['tag' => $pkg['description'] ?? '', 'color' => '#64748b', 'bg' => '#f1f5f9']; 
+                        $slot_badge_text = ($pkg_idx % 2 === 0) ? 'Few slots to go' : 'Few slots remaining';
+                        ?>
                         <div class="ticket-row" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #e2e8f0; border-radius: var(--border-radius-md); background: #f8fafc; transition: border-color 0.2s, box-shadow 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.boxShadow='0 2px 8px rgba(22,101,52,0.08)';" onmouseout="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none';">
                             <div style="flex: 1; margin-right: 1.5rem;">
                                 <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
                                     <span style="font-weight: 700; font-size: 1.15rem; color: #0f172a;"><?php echo htmlspecialchars($pkg['name']); ?></span>
+                                    <span style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 700; color: #b45309; background: #fef3c7; border: 1px solid #fde68a; padding: 0.15rem 0.6rem; border-radius: 999px;">
+                                        <i class="fa-solid fa-fire" style="color: #f59e0b;"></i> <?php echo $slot_badge_text; ?>
+                                    </span>
                                 </div>
                                 <div style="margin-top: 0.35rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                     <?php if(!empty($elig['tag'])): ?>
@@ -388,6 +403,89 @@ include 'includes/header.php';
                 </div>
 
             </form>
+        </div>
+    </section>
+
+    <!-- Dedicated Sponsorship Packages CTA Section -->
+    <section class="register-sponsorship-cta" style="background: linear-gradient(135deg, #091e14 0%, #0f2e1f 50%, #0f172a 100%); color: white; padding: 4.5rem 1.5rem; position: relative; overflow: hidden; border-top: 1px solid rgba(234, 179, 8, 0.25);">
+        <!-- Background decorative ambient glow & subtle pattern -->
+        <div style="position: absolute; top: -50px; right: -50px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
+        <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(22, 101, 52, 0.3) 0%, transparent 70%); pointer-events: none;"></div>
+
+        <div class="container" style="max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
+                
+                <div style="max-width: 820px;">
+                    <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.35); padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.25rem;">
+                        <i class="fa-solid fa-crown" style="color: var(--kente-gold); font-size: 0.85rem;"></i>
+                        <span style="color: var(--kente-gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;">Corporate &amp; Institutional Partnerships</span>
+                    </div>
+                    <h2 style="font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 800; color: white; line-height: 1.2; margin-bottom: 1rem;">
+                        Partner With Us &amp; Sponsor the Summit
+                    </h2>
+                    <p style="font-size: 1.1rem; color: #cbd5e1; line-height: 1.7; margin: 0 auto;">
+                        Position your organization at the forefront of Africa's pro bono and social impact movement. Gain high-level visibility, naming rights, executive speaking slots, and continent-wide engagement with leaders from government, corporates, academia, and civil society.
+                    </p>
+                </div>
+
+                <!-- Tiers Showcase Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; width: 100%; margin-top: 0.5rem;">
+                    
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px;">Top Tier</span>
+                            <span style="font-size: 1.25rem;">💎</span>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Platinum Partner</h4>
+                        <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$20,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 2.5M</span></div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Exclusive Summit Naming Rights, opening keynote &amp; VIP reception host.</p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: var(--kente-gold); text-transform: uppercase; letter-spacing: 1px;">Workshops</span>
+                            <span style="font-size: 1.25rem;">🥇</span>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Gold Partner</h4>
+                        <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$15,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.9M</span></div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Lead for Masterclass Workshops, premium branding &amp; 10 delegate passes.</p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px;">Exhibitions</span>
+                            <span style="font-size: 1.25rem;">🥈</span>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Silver Partner</h4>
+                        <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$10,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.2M</span></div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Lead for Innovation Exhibitions, dedicated showcase space &amp; 5 delegate passes.</p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.75rem; font-weight: 800; color: #f97316; text-transform: uppercase; letter-spacing: 1px;">Registration</span>
+                            <span style="font-size: 1.25rem;">🥉</span>
+                        </div>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Bronze Partner</h4>
+                        <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$4,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 500K</span></div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Official Delegate Registration Desk sponsor &amp; branded lanyard inclusion.</p>
+                    </div>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem;">
+                    <a href="sponsorship" class="btn btn-secondary" style="font-size: 1.05rem; padding: 0.9rem 2rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);">
+                        <span>Explore Sponsorship Packages</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="partner_application" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.9rem 2rem; font-weight: 600; color: white; border-color: rgba(255, 255, 255, 0.35); display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-file-signature"></i>
+                        <span>Apply as Sponsor</span>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -735,7 +833,7 @@ include 'includes/header.php';
         
         if (ticketParam) {
             let targetPkgId = null;
-            const isSpeaker = ticketParam.toLowerCase().includes('speaker') || ticketParam.toLowerCase().includes('presenter') || ticketParam === 'Speakers/Moderators' || ticketParam === 'Speakers/Moderators/Presenters';
+            const isSpeaker = ticketParam.toLowerCase().includes('speaker') || ticketParam.toLowerCase().includes('presenter') || ticketParam === 'Speakers' || ticketParam === 'Speakers/Moderators' || ticketParam === 'Speakers/Moderators/Presenters';
             
             // Search all ticket package rows
             document.querySelectorAll('input[id^="name_"]').forEach(el => {

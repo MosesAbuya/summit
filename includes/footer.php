@@ -1,7 +1,7 @@
     <footer class="main-footer">
         <!-- Massive Official Phrase Banner -->
         <div style="text-align: center; padding: 4rem 2rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 3rem;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; line-height: 1.2; margin: 0 auto; max-width: 1200px; text-transform: uppercase; letter-spacing: 2px;">
+            <h2 style="font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; line-height: 1.2; margin: 0 auto; max-width: 1200px; text-transform: uppercase; letter-spacing: 2px;">
                 <span style="color: white; display: block;">Leveraging Multidisciplinary Pro Bono</span>
                 <span style="color: var(--terracotta); display: block; margin-top: 0.5rem;">For SDGs & Agenda 2063</span>
             </h2>
@@ -54,6 +54,7 @@
                         <li><a href="logistics">Delegate Logistics</a></li>
                         <li><a href="resources">Resource Library</a></li>
                         <li><a href="partners">Our Partners</a></li>
+                        <li><a href="sponsorship">Sponsorship Packages</a></li>
                         <li><a href="gallery">Event Gallery</a></li>
                         <li><a href="faq">FAQs</a></li>
                     </ul>

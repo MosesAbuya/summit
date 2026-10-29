@@ -187,11 +187,16 @@ CREATE TABLE IF NOT EXISTS settings (
 
 -- Insert revised 2026 promo packages
 INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order, is_active) VALUES
-('Students', 'Valid student ID required at summit venue', 150.00, 15000.00, 20, 1, 1),
-('Young Professionals', 'Early-career professionals & youth under 30', 200.00, 20000.00, 20, 2, 1),
-('EAC Members', 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 200.00, 20000.00, 20, 3, 1),
-('Speakers/Moderators/Presenters', 'Approved speakers, panellists, moderators, and session presenters', 200.00, 20000.00, 50, 4, 1),
-('Civil Society', 'Non-profit and civil society delegates', 350.00, 35000.00, 50, 5, 1),
-('Volunteer Organizations', 'Leaders & representatives of volunteer-involving organizations', 350.00, 35000.00, 50, 6, 1),
-('Academia', 'Researchers, university faculty, and educational institutions', 500.00, 50000.00, 20, 7, 1),
-('Corporates', 'Corporate sector, business enterprises & ESG leaders', 500.00, 50000.00, 50, 8, 1);
+('Students', 'Valid student ID required at summit venue', 100.00, 10000.00, 20, 1, 1),
+('EAC Members', 'East African Community (Kenya, Uganda, Tanzania, Rwanda, Burundi, South Sudan, DRC, Somalia)', 250.00, 25000.00, 20, 2, 1),
+('Speakers', 'Approved speakers, panellists, moderators, and session presenters', 250.00, 25000.00, 50, 3, 1),
+('GPBN Members', 'Global Pro Bono Network certified members and affiliates', 350.00, 35000.00, 50, 4, 1),
+('Academia', 'Researchers, university faculty, and educational institutions', 350.00, 35000.00, 20, 5, 1),
+('NGOs/Civil Society/VIOs (Individual)', 'Non-profit, civil society & volunteer-involving individual delegate', 250.00, 25000.00, 50, 6, 1),
+('NGOs/Civil Society/VIOs (Table of 5)', 'Delegation pass for 5 representatives from non-profit / civil society / VIOs', 1250.00, 125000.00, 10, 7, 1),
+('NGOs/Civil Society/VIOs (Table of 10)', 'Delegation pass for 10 representatives from non-profit / civil society / VIOs', 2500.00, 250000.00, 5, 8, 1),
+('Corporate (Individual)', 'Corporate sector, business enterprise & ESG leader individual delegate', 300.00, 30000.00, 50, 9, 1),
+('Corporate (Table of 5)', 'Corporate delegation pass for 5 executives / representatives', 1500.00, 150000.00, 10, 10, 1),
+('Corporate (Table of 10)', 'Corporate delegation pass for 10 executives / representatives', 3000.00, 300000.00, 5, 11, 1),
+('Daily Pass', 'Single-day summit access pass (valid for 1 day of conference sessions)', 60.00, 6000.00, 50, 12, 1),
+('Virtual Pass (Subject to the numbers)', 'Full virtual streaming and digital session participation access', 50.00, 5000.00, 100, 13, 1);
