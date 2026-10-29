@@ -433,12 +433,12 @@ include 'includes/header.php';
                     
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(234, 179, 8, 0.4); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                            <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px;">Top Tier</span>
+                            <span style="font-size: 0.75rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1px;">Naming Rights</span>
                             <i class="fa-solid fa-crown" style="color: #38bdf8; font-size: 1.25rem;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Platinum Partner</h4>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Platinum</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$20,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 2.5M</span></div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Exclusive Summit Naming Rights, opening keynote &amp; VIP reception host.</p>
+                        <div style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem; font-weight: 600;"><i class="fa-solid fa-check" style="color: var(--kente-gold); margin-right: 0.4rem;"></i> Naming Rights</div>
                     </div>
 
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
@@ -446,9 +446,9 @@ include 'includes/header.php';
                             <span style="font-size: 0.75rem; font-weight: 800; color: var(--kente-gold); text-transform: uppercase; letter-spacing: 1px;">Workshops</span>
                             <i class="fa-solid fa-medal" style="color: var(--kente-gold); font-size: 1.25rem;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Gold Partner</h4>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Gold</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$15,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.9M</span></div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Lead for Masterclass Workshops, premium branding &amp; 10 delegate passes.</p>
+                        <div style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem; font-weight: 600;"><i class="fa-solid fa-check" style="color: var(--kente-gold); margin-right: 0.4rem;"></i> Lead for Workshops</div>
                     </div>
 
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
@@ -456,9 +456,9 @@ include 'includes/header.php';
                             <span style="font-size: 0.75rem; font-weight: 800; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px;">Exhibitions</span>
                             <i class="fa-solid fa-gem" style="color: #cbd5e1; font-size: 1.25rem;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Silver Partner</h4>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Silver</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$10,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 1.2M</span></div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Lead for Innovation Exhibitions, dedicated showcase space &amp; 5 delegate passes.</p>
+                        <div style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem; font-weight: 600;"><i class="fa-solid fa-check" style="color: var(--kente-gold); margin-right: 0.4rem;"></i> Lead Exhibitions</div>
                     </div>
 
                     <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 1.5rem 1.25rem; text-align: left; backdrop-filter: blur(8px); transition: transform 0.2s, border-color 0.2s;">
@@ -466,9 +466,9 @@ include 'includes/header.php';
                             <span style="font-size: 0.75rem; font-weight: 800; color: #f97316; text-transform: uppercase; letter-spacing: 1px;">Registration</span>
                             <i class="fa-solid fa-id-badge" style="color: #fb923c; font-size: 1.25rem;"></i>
                         </div>
-                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Bronze Partner</h4>
+                        <h4 style="font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 0.25rem;">Bronze</h4>
                         <div style="font-size: 1.35rem; font-weight: 800; color: var(--kente-gold); margin-bottom: 0.5rem;">$4,000 <span style="font-size: 0.85rem; font-weight: 600; color: #94a3b8;">/ KES 500K</span></div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0; line-height: 1.4;">Official Delegate Registration Desk sponsor &amp; branded lanyard inclusion.</p>
+                        <div style="font-size: 0.95rem; color: #cbd5e1; margin-top: 0.5rem; font-weight: 600;"><i class="fa-solid fa-check" style="color: var(--kente-gold); margin-right: 0.4rem;"></i> Registration Desk</div>
                     </div>
 
                 </div>

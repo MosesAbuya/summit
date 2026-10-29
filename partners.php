@@ -80,32 +80,28 @@ include 'includes/header.php';
                     </a>
                 </div>
                 <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.25rem;">
-                    <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-crown" style="color: #64748b; font-size: 1.35rem; margin-top: 3px;"></i>
+                    <li style="display: flex; gap: 1rem; align-items: center;">
+                        <i class="fa-solid fa-crown" style="color: #64748b; font-size: 1.35rem;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.15rem;">Platinum Sponsor (KES 2.5M / $20,000 USD)</strong> &bull; <span style="color: var(--primary-color); font-weight: 700;">Naming Rights</span>
-                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Exclusive Summit Naming Rights, opening keynote address, 10 VIP passes, and prime central exhibition pavilion.</div>
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Platinum (KES 2.5M / $20,000 USD)</strong> &bull; <span style="color: var(--primary-color); font-weight: 700;">Naming Rights</span>
                         </div>
                     </li>
-                    <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-medal" style="color: #f59e0b; font-size: 1.35rem; margin-top: 3px;"></i>
+                    <li style="display: flex; gap: 1rem; align-items: center;">
+                        <i class="fa-solid fa-medal" style="color: #f59e0b; font-size: 1.35rem;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.15rem;">Gold Sponsor (KES 1.9M / $15,000 USD)</strong> &bull; <span style="color: #b45309; font-weight: 700;">Lead for Workshops</span>
-                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Lead partner for thematic workshops & masterclasses, session hosting & panel moderation, 6 VIP passes, and prominent booth.</div>
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Gold (KES 1.9M / $15,000 USD)</strong> &bull; <span style="color: #b45309; font-weight: 700;">Lead for Workshops</span>
                         </div>
                     </li>
-                    <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-gem" style="color: #0284c7; font-size: 1.35rem; margin-top: 3px;"></i>
+                    <li style="display: flex; gap: 1rem; align-items: center;">
+                        <i class="fa-solid fa-gem" style="color: #0284c7; font-size: 1.35rem;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.15rem;">Silver Sponsor (KES 1.2M / $10,000 USD)</strong> &bull; <span style="color: #0284c7; font-weight: 700;">Lead Exhibitions</span>
-                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Designation as Lead Exhibition Partner, dedicated premium exhibition booth space, and 4 summit passes.</div>
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Silver (KES 1.2M / $10,000 USD)</strong> &bull; <span style="color: #0284c7; font-weight: 700;">Lead Exhibitions</span>
                         </div>
                     </li>
-                    <li style="display: flex; gap: 1rem; align-items: flex-start;">
-                        <i class="fa-solid fa-id-badge" style="color: #ea580c; font-size: 1.35rem; margin-top: 3px;"></i>
+                    <li style="display: flex; gap: 1rem; align-items: center;">
+                        <i class="fa-solid fa-id-badge" style="color: #ea580c; font-size: 1.35rem;"></i>
                         <div>
-                            <strong style="color: #0f172a; font-size: 1.15rem;">Bronze Sponsor (KES 500K / $4,000 USD)</strong> &bull; <span style="color: #ea580c; font-weight: 700;">Registration Desk</span>
-                            <div style="color: #475569; font-size: 0.95rem; margin-top: 0.25rem;">Exclusive branding at the Summit Registration Desk, delegate welcome pack insert, and 2 summit passes.</div>
+                            <strong style="color: #0f172a; font-size: 1.15rem;">Bronze (KES 500K / $4,000 USD)</strong> &bull; <span style="color: #ea580c; font-weight: 700;">Registration Desk</span>
                         </div>
                     </li>
                 </ul>
