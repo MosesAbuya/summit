@@ -154,6 +154,17 @@ try {
         // Column already exists or alter skipped
     }
 
+    // Ensure student verification columns exist in ticket_orders
+    try {
+        $pdo->exec("ALTER TABLE ticket_orders ADD COLUMN student_id_number VARCHAR(100) NULL AFTER job_title");
+    } catch (Exception $e) {}
+    try {
+        $pdo->exec("ALTER TABLE ticket_orders ADD COLUMN student_institution VARCHAR(255) NULL AFTER student_id_number");
+    } catch (Exception $e) {}
+    try {
+        $pdo->exec("ALTER TABLE ticket_orders ADD COLUMN student_id_proof_url VARCHAR(255) NULL AFTER payment_proof_url");
+    } catch (Exception $e) {}
+
     // Seed default settings if empty
     $pdo->exec("INSERT IGNORE INTO settings (setting_key, setting_value) VALUES 
         ('paystack_public_key', 'pk_test_6578aa473fa44adafd06040f9ce9507ed9c9fd90'),
@@ -277,6 +288,30 @@ try {
         }
     } catch (Exception $e) {}
 
+
+    // Auto-migrate Final Call Discount packages (Regular $100 / KES 10,000; Students $50 / KES 5,000)
+    try {
+        $final_call_installed = $pdo->query("SELECT setting_value FROM settings WHERE setting_key = 'final_call_packages_applied'")->fetchColumn();
+        if (!$final_call_installed) {
+            $final_call_packages = [
+                ['name' => 'Final Call - Regular Delegate', 'description' => 'Final Call Special Rate: Full summit access, masterclasses, networking, materials & lunch.', 'usd' => 100.00, 'kes' => 10000.00, 'sort' => 101, 'is_active' => 1],
+                ['name' => 'Final Call - Student Pass', 'description' => 'Final Call Special Rate: Valid student ID required at summit venue. Full conference access.', 'usd' => 50.00, 'kes' => 5000.00, 'sort' => 102, 'is_active' => 1],
+            ];
+            foreach ($final_call_packages as $fcp) {
+                $chk = $pdo->prepare("SELECT id FROM ticket_packages WHERE name = ?");
+                $chk->execute([$fcp['name']]);
+                $existingId = $chk->fetchColumn();
+                if ($existingId) {
+                    $upd = $pdo->prepare("UPDATE ticket_packages SET description = ?, price_usd = ?, price_kes = ?, sort_order = ?, is_active = ? WHERE id = ?");
+                    $upd->execute([$fcp['description'], $fcp['usd'], $fcp['kes'], $fcp['sort'], $fcp['is_active'], $existingId]);
+                } else {
+                    $ins = $pdo->prepare("INSERT INTO ticket_packages (name, description, price_usd, price_kes, sort_order, is_active) VALUES (?, ?, ?, ?, ?, ?)");
+                    $ins->execute([$fcp['name'], $fcp['description'], $fcp['usd'], $fcp['kes'], $fcp['sort'], $fcp['is_active']]);
+                }
+            }
+            $pdo->exec("INSERT INTO settings (setting_key, setting_value) VALUES ('final_call_packages_applied', '1') ON DUPLICATE KEY UPDATE setting_value = '1'");
+        }
+    } catch (Exception $e) {}
 
     // Seed packages and migrate data if not already done
     $stmt = $pdo->query("SELECT COUNT(*) FROM ticket_packages");

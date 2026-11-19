@@ -144,6 +144,8 @@ CREATE TABLE IF NOT EXISTS ticket_orders (
     organization VARCHAR(255),
     country VARCHAR(100),
     job_title VARCHAR(255),
+    student_id_number VARCHAR(100),
+    student_institution VARCHAR(255),
     dietary_requirements VARCHAR(100),
     accessibility_needs TEXT,
     visa_required TINYINT(1) DEFAULT 0,
@@ -160,6 +162,7 @@ CREATE TABLE IF NOT EXISTS ticket_orders (
     payment_status VARCHAR(50) DEFAULT 'pending',
     transaction_code VARCHAR(100),
     payment_proof_url VARCHAR(255),
+    student_id_proof_url VARCHAR(255),
     payment_confirmed_at DATETIME,
     admin_notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -200,3 +203,11 @@ INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sor
 ('Corporate (Table of 10)', 'Corporate delegation pass for 10 executives / representatives', 3000.00, 300000.00, 5, 11, 1),
 ('Daily Pass', 'Single-day summit access pass (valid for 1 day of conference sessions)', 60.00, 6000.00, 50, 12, 1),
 ('Virtual Pass (Subject to the numbers)', 'Full virtual streaming and digital session participation access', 50.00, 5000.00, 100, 13, 1);
+
+
+-- Final Call Discount Packages (Runs until Nov 25th 2026)
+INSERT INTO ticket_packages (name, description, price_usd, price_kes, slots, sort_order, is_active) VALUES
+('Final Call - Regular Delegate', 'Final Call Special Rate: Full summit access, masterclasses, networking, materials & lunch.', 100.00, 10000.00, 50, 101, 1),
+('Final Call - Student Pass', 'Final Call Special Rate: Valid student ID required at summit venue. Full conference access.', 50.00, 5000.00, 30, 102, 1);
+
+INSERT IGNORE INTO settings (setting_key, setting_value) VALUES ('final_call_packages_applied', '1');

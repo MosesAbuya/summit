@@ -93,6 +93,8 @@ if ($result && $result['status'] === true && $result['data']['status'] === 'succ
                     $mail->addAddress($email, "$firstName $lastName");
                     $mail->addReplyTo($recipient, $settings['from_name']);
 
+                    $isStudent = !empty($order['student_id_number']) || !empty($order['student_institution']);
+                    $studentTicketNotice = $isStudent ? "<div style='background:#fff7ed;border:2px solid #fdba74;padding:15px;margin-bottom:20px;border-radius:8px;'><strong style='color:#9a3412;'>STUDENT PASS — ACCREDITATION REQUIRED</strong><p style='margin:8px 0 0;color:#7c2d12;'>Present your original student ID and proof of enrollment at the summit accreditation desk.</p></div>" : '';
                     $mail->Subject = 'Payment Confirmed! Your E-Tickets - Global Pro Bono Summit';
                     $mail->Body    = "
                     <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;'>
@@ -110,6 +112,8 @@ if ($result && $result['status'] === true && $result['data']['status'] === 'succ
                                 </ul>
                                 <strong>Total Paid: $" . number_format($order['total_usd'], 2) . " / KES " . number_format($order['total_kes'], 2) . "</strong>
                             </div>
+
+                            $studentTicketNotice
 
                             <div style='background: #dcfce7; border-left: 4px solid #16a34a; padding: 15px; margin-bottom: 20px;'>
                                 <strong>Your Registration is Complete!</strong>

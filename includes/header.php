@@ -127,7 +127,7 @@
                 <nav class="main-nav">
                     <ul style="gap: 1rem; position: relative;">
                         <li class="mobile-home-btn"><a href="index">Home</a></li>
-                        <li class="nav-item-mega" data-mega="about"><a href="about">About</a></li>
+                                                <li class="nav-item-mega" data-mega="about"><a href="about">About</a></li>
                         <li class="nav-item-mega" data-mega="program"><a href="program">Program</a></li>
                         <li class="nav-item-mega" data-mega="projects"><a href="best_practices">Best Practices</a></li>
                         <li class="nav-item-mega" data-mega="resources"><a href="resources">Resources</a></li>

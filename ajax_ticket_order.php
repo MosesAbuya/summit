@@ -42,6 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = $_POST['phone'] ?? '';
         $organization = $_POST['organization'] ?? '';
         $jobTitle = $_POST['job_title'] ?? '';
+        $studentIdNumber = trim($_POST['student_id_number'] ?? '');
+        $studentInstitution = trim($_POST['student_institution'] ?? '');
         $country = $_POST['country'] ?? '';
         $dietary = $_POST['dietary_requirements'] ?? 'None';
         $accessibility = $_POST['accessibility_needs'] ?? '';
@@ -61,6 +63,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $paymentStatus = 'pending';
         $paymentProofUrl = '';
+        $studentIdProofUrl = '';
+        
+        // Handle Student ID card upload
+        if (isset($_FILES['student_id_proof']) && $_FILES['student_id_proof']['error'] == UPLOAD_ERR_OK) {
+            if ($_FILES['student_id_proof']['size'] > 5 * 1024 * 1024) {
+                echo json_encode(['success' => false, 'message' => 'Student proof must be 5 MB or smaller.']);
+                exit;
+            }
+            $allowedStudentTypes = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf'];
+            $studentMime = mime_content_type($_FILES['student_id_proof']['tmp_name']);
+            if (!in_array($studentMime, $allowedStudentTypes, true)) {
+                echo json_encode(['success' => false, 'message' => 'Student proof must be a JPG, PNG, WEBP, or PDF document.']);
+                exit;
+            }
+            $studentUploadDir = 'uploads/student_ids/';
+            if (!is_dir($studentUploadDir)) {
+                mkdir($studentUploadDir, 0755, true);
+            }
+            $sFileName = time() . '_std_' . preg_replace('/[^a-zA-Z0-9_\.-]/', '_', basename($_FILES['student_id_proof']['name']));
+            $sTargetPath = $studentUploadDir . $sFileName;
+            if (move_uploaded_file($_FILES['student_id_proof']['tmp_name'], $sTargetPath)) {
+                $studentIdProofUrl = $sTargetPath;
+            }
+        }
         
         // Handle manual payment file upload
         if ($paymentMethod === 'manual') {
@@ -102,6 +128,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt = $pdo->prepare("SELECT * FROM ticket_packages WHERE id = ?");
                     $stmt->execute([$pkgId]);
                     $pkg = $stmt->fetch();
+                    if (!$pkg) {
+                        // Failsafe fallback for Final Call promo packages
+                        if ($pkgId == 101 || (isset($_POST['pkg_name_' . $pkgId]) && strpos($_POST['pkg_name_' . $pkgId], 'Regular') !== false)) {
+                            $pkg = ['id' => 101, 'name' => 'Final Call - Regular Delegate', 'price_usd' => 100.00, 'price_kes' => 10000.00];
+                        } else if ($pkgId == 102 || (isset($_POST['pkg_name_' . $pkgId]) && strpos($_POST['pkg_name_' . $pkgId], 'Student') !== false)) {
+                            $pkg = ['id' => 102, 'name' => 'Final Call - Student Pass', 'price_usd' => 50.00, 'price_kes' => 5000.00];
+                        }
+                    }
                     if ($pkg) {
                         $itemTotalUsd = $pkg['price_usd'] * $qty;
                         $itemTotalKes = $pkg['price_kes'] * $qty;
@@ -118,6 +152,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             'subtotal_kes' => $itemTotalKes
                         ];
                     }
+                }
+            }
+
+            // Validate Student Pass Requirements
+            $hasStudentPass = false;
+            foreach ($orderItems as $item) {
+                if (stripos($item['package_name'], 'student') !== false) {
+                    $hasStudentPass = true;
+                    break;
+                }
+            }
+            
+            if ($hasStudentPass) {
+                $emailClean = strtolower(trim($email));
+                $parts = explode('@', $emailClean);
+                if (count($parts) !== 2) {
+                    echo json_encode(['success' => false, 'message' => 'Please provide a valid email address.']);
+                    exit;
+                }
+                $domain = $parts[1];
+                
+                $freemail_domains = [
+                    'gmail.com', 'googlemail.com', 'yahoo.com', 'yahoo.co.uk', 'yahoo.fr', 'yahoo.co.in',
+                    'ymail.com', 'rocketmail.com', 'hotmail.com', 'hotmail.co.uk', 'outlook.com',
+                    'outlook.co.uk', 'live.com', 'live.co.uk', 'msn.com', 'icloud.com', 'me.com',
+                    'mac.com', 'aol.com', 'protonmail.com', 'proton.me', 'zoho.com', 'mail.com',
+                    'gmx.com', 'gmx.net', 'yandex.com', 'yandex.ru', 'fastmail.com', 'inbox.com',
+                    'qq.com', '163.com'
+                ];
+                
+                $isFreemail = in_array($domain, $freemail_domains);
+                $isAcademic = (
+                    str_ends_with($domain, '.edu') || 
+                    str_contains($domain, '.edu.') || 
+                    str_ends_with($domain, '.ac.ke') || 
+                    str_ends_with($domain, '.ac.ug') || 
+                    str_ends_with($domain, '.ac.tz') || 
+                    str_ends_with($domain, '.ac.rw') || 
+                    str_ends_with($domain, '.ac.za') || 
+                    str_ends_with($domain, '.ac.uk') || 
+                    str_contains($domain, '.ac.')
+                );
+                
+                if ($isFreemail || !$isAcademic) {
+                    echo json_encode([
+                        'success' => false, 
+                        'message' => 'Student verification error: Personal email domains (Gmail, Yahoo, Outlook, etc.) are strictly not allowed for student passes. Please use your official university or student email (e.g. .edu or .ac.ke).'
+                    ]);
+                    exit;
+                }
+                
+                if (empty($studentIdNumber) || empty($studentInstitution) || empty($studentIdProofUrl)) {
+                    echo json_encode([
+                        'success' => false, 
+                        'message' => 'Student registration requires your institution, Student Registration / ID Number, and proof-of-enrollment or student ID document.'
+                    ]);
+                    exit;
                 }
             }
 
@@ -139,8 +230,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $pdo->beginTransaction();
             
-            $stmt = $pdo->prepare("INSERT INTO ticket_orders (order_ref, first_name, last_name, email, phone, organization, job_title, country, dietary_requirements, accessibility_needs, visa_required, passport_number, emergency_contact_name, emergency_contact_phone, subtotal_usd, discount_usd, total_usd, subtotal_kes, discount_kes, total_kes, promo_code, payment_status, transaction_code, payment_proof_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$orderRef, $firstName, $lastName, $email, $phone, $organization, $jobTitle, $country, $dietary, $accessibility, $visaRequired, $passport, $emergName, $emergPhone, $subtotalUsd, $discountUsd, $totalUsd, $subtotalKes, $discountKes, $totalKes, $promoCode, $paymentStatus, $transactionCode, $paymentProofUrl]);
+            $stmt = $pdo->prepare("INSERT INTO ticket_orders (order_ref, first_name, last_name, email, phone, organization, job_title, student_id_number, student_institution, country, dietary_requirements, accessibility_needs, visa_required, passport_number, emergency_contact_name, emergency_contact_phone, subtotal_usd, discount_usd, total_usd, subtotal_kes, discount_kes, total_kes, promo_code, payment_status, transaction_code, payment_proof_url, student_id_proof_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$orderRef, $firstName, $lastName, $email, $phone, $organization, $jobTitle, $studentIdNumber, $studentInstitution, $country, $dietary, $accessibility, $visaRequired, $passport, $emergName, $emergPhone, $subtotalUsd, $discountUsd, $totalUsd, $subtotalKes, $discountKes, $totalKes, $promoCode, $paymentStatus, $transactionCode, $paymentProofUrl, $studentIdProofUrl]);
             
             $orderId = $pdo->lastInsertId();
 
@@ -181,6 +272,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                         $uploadLink = "https://globalsummitafrica.org/upload_proof.php?ref=" . $orderRef;
                         
+                        $studentEmailNotice = $hasStudentPass ? "<div style='background:#fff7ed;border:2px solid #fdba74;padding:18px;margin:20px 0;border-radius:8px;'><strong style='color:#9a3412;'>Student Ticket — Accreditation Required</strong><p style='color:#7c2d12;margin-bottom:0;'>Bring the original physical student ID matching your registration ID ({$studentIdNumber}) and proof-of-enrollment document to the venue accreditation desk.</p></div>" : '';
                         if ($paymentStatus === 'proof_uploaded') {
                             $emailContent = "
                                 <p>Thank you for your ticket order (<strong>{$orderRef}</strong>).</p>
@@ -191,6 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <p style='margin: 0; color: #475569;'>Our team is currently reviewing your payment evidence. Once verified, your official e-ticket will be issued.</p>
                                 </div>
                                 <p style='font-size: 0.9em; color: #64748b;'><em>Failsafe: If for any reason you need to re-upload your proof of payment or provide a different transaction code, you can do so here: <a href='{$uploadLink}' style='color: #c1440e;'>Upload Proof</a>. If you have already provided it successfully, please ignore this link.</em></p>
+                                {$studentEmailNotice}
                             ";
                         } else {
                             $emailContent = "
@@ -205,6 +298,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </ol>
                                 </div>
                                 <p>Once we verify the payment, your e-ticket will be issued.</p>
+                                {$studentEmailNotice}
                             ";
                         }
 
@@ -232,13 +326,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'success' => true,
                     'order_ref' => $orderRef,
                     'total_kes' => $totalKes,
-                    'email' => $email
+                    'email' => $email,
+                    'is_student' => $hasStudentPass
                 ]);
             } else {
                 // Free order (e.g. 100% discount promo code)
                 $stmt = $pdo->prepare("UPDATE ticket_orders SET payment_status = 'confirmed' WHERE order_ref = ?");
                 $stmt->execute([$orderRef]);
-                echo json_encode(['success' => true, 'order_ref' => $orderRef, 'total_kes' => 0]);
+                echo json_encode(['success' => true, 'order_ref' => $orderRef, 'total_kes' => 0, 'is_student' => $hasStudentPass]);
             }
         } catch(PDOException $e) {
             if ($pdo->inTransaction()) {

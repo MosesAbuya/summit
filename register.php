@@ -2,7 +2,7 @@
 require 'includes/db.php';
 
 // Fetch active ticket packages
-$stmt = $pdo->query("SELECT * FROM ticket_packages WHERE is_active = 1 ORDER BY sort_order ASC");
+$stmt = $pdo->query("SELECT * FROM ticket_packages WHERE is_active = 1 AND name NOT LIKE 'Final Call%' ORDER BY sort_order ASC");
 $packages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Captured prefill parameters (e.g. from Call for Speakers redirect)
@@ -127,7 +127,7 @@ include 'includes/header.php';
                         <?php endforeach; ?>
                     </div>
 
-                    <div style="margin-top: 2rem; background: white; padding: 1.5rem; border-top: 2px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                    <div class="subtotal-bar" style="margin-top: 2rem; background: white; padding: 1.5rem; border-top: 2px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
                         <div>
                             <div style="font-size: 0.9rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Order Subtotal</div>
                             <div style="font-size: 1.5rem; font-weight: 800; color: #0f172a;">$<span id="step1_total_usd">0.00</span> <span style="font-size: 1rem; color: #64748b; font-weight: 400;">(KES <span id="step1_total_kes">0.00</span>)</span></div>
@@ -138,13 +138,13 @@ include 'includes/header.php';
 
                 <!-- STEP 2: DETAILS -->
                 <div id="step-2" class="stepper-panel hidden" style="display: none;">
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                    <div class="checkout-layout-grid">
                         
                         <!-- Form -->
-                        <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 2rem;">
+                        <div class="checkout-main-card" style="background: white; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 2rem;">
                             <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Attendee Details</h3>
                             
-                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="form-row form-grid-2">
                                 <div>
                                     <label class="form-label">First Name *</label>
                                     <input type="text" name="first_name" id="first_name" class="form-control" value="<?php echo htmlspecialchars($prefill_first_name, ENT_QUOTES, 'UTF-8'); ?>" required>
@@ -155,7 +155,7 @@ include 'includes/header.php';
                                 </div>
                             </div>
                             
-                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="form-row form-grid-2">
                                 <div>
                                     <label class="form-label">Email Address *</label>
                                     <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($prefill_email, ENT_QUOTES, 'UTF-8'); ?>" required>
@@ -166,7 +166,7 @@ include 'includes/header.php';
                                 </div>
                             </div>
 
-                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="form-row form-grid-2">
                                 <div>
                                     <label class="form-label">Organization *</label>
                                     <input type="text" name="organization" id="organization" class="form-control" value="<?php echo htmlspecialchars($prefill_organization, ENT_QUOTES, 'UTF-8'); ?>" required>
@@ -193,7 +193,7 @@ include 'includes/header.php';
 
                             <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 1rem; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Logistics & Requirements</h3>
                             
-                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div class="form-row form-grid-2">
                                 <div>
                                     <label class="form-label">Dietary Requirements</label>
                                     <select name="dietary_requirements" class="form-control">
@@ -226,7 +226,7 @@ include 'includes/header.php';
                             </div>
 
                             <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 1rem; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem;">Emergency Contact</h3>
-                            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div class="form-row form-grid-2" style="margin-bottom: 1.5rem;">
                                 <div>
                                     <label class="form-label">Name</label>
                                     <input type="text" name="emergency_contact_name" class="form-control">
@@ -241,7 +241,7 @@ include 'includes/header.php';
 
                         <!-- Sidebar -->
                         <div>
-                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 1.5rem; position: sticky; top: 100px;">
+                            <div class="sidebar-sticky-box" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 1.5rem;">
                                 <h4 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; border-bottom: 1px solid #cbd5e1; padding-bottom: 0.5rem;">Order Summary</h4>
                                 <div id="sidebar_cart_items" style="margin-bottom: 1rem;">
                                     <!-- Populated by JS -->
@@ -289,14 +289,14 @@ include 'includes/header.php';
 
                 <!-- STEP 3: PAYMENT -->
                 <div id="step-3" class="stepper-panel hidden" style="display: none;">
-                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+                    <div class="checkout-layout-grid">
                         
-                        <div style="background: white; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 2rem;">
+                        <div class="checkout-main-card" style="background: white; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 2rem;">
                             <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: #0f172a;">Select Payment Method</h3>
                             
                             <!-- Payment Toggle Options -->
                             <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; background: #f8fafc;" id="label_paystack" onclick="togglePaymentMethod('paystack')">
+                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 2px solid var(--primary-color); border-radius: 8px; cursor: pointer; background: #f8fafc;" id="label_paystack" class="payment-label-card" onclick="togglePaymentMethod('paystack')">
                                     <input type="radio" name="payment_method" value="paystack" checked style="margin-top: 0.25rem;">
                                     <div>
                                         <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 0.5rem;">Pay Online via Paystack</div>
@@ -304,7 +304,7 @@ include 'includes/header.php';
                                     </div>
                                 </label>
                                 
-                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; background: white;" id="label_manual" onclick="togglePaymentMethod('manual')">
+                                <label style="display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; background: white;" id="label_manual" class="payment-label-card" onclick="togglePaymentMethod('manual')">
                                     <input type="radio" name="payment_method" value="manual" style="margin-top: 0.25rem;">
                                     <div>
                                         <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 0.5rem;">Direct Bank Transfer / Manual M-PESA</div>
@@ -331,7 +331,7 @@ include 'includes/header.php';
                                 <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
                                     <li><strong>Bank Name:</strong> KCB Bank Kenya Ltd</li>
                                     <li><strong>Account Title:</strong> JITOLEE GOOD FRIENDS</li>
-                                    <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES)</li>
+                                    <li><strong>Account Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: var(--primary-color);">1325956678</span> (KES) <button type="button" class="copy-chip" onclick="copyText('1325956678', this)"><i class="fa-regular fa-copy"></i> Copy</button></li>
                                     <li><strong>Branch:</strong> KCB Mortgage Center, Salama House</li>
                                     <li><strong>SWIFT Code:</strong> KCBLKENX</li>
                                     <li><strong>Bank Code / Branch Code:</strong> 01 / 289</li>
@@ -339,8 +339,8 @@ include 'includes/header.php';
                                 
                                 <h4 style="font-size: 1.1rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700;">M-PESA Details</h4>
                                 <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem;">
-                                    <li><strong>Paybill Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: #10b981;">522522</span></li>
-                                    <li><strong>Account Number:</strong> 1325956678</li>
+                                    <li><strong>Paybill Number:</strong> <span style="font-size: 1.1rem; font-family: monospace; font-weight: bold; color: #10b981;">522522</span> <button type="button" class="copy-chip" onclick="copyText('522522', this)"><i class="fa-regular fa-copy"></i> Copy</button></li>
+                                    <li><strong>Account Number:</strong> 1325956678 <button type="button" class="copy-chip" onclick="copyText('1325956678', this)"><i class="fa-regular fa-copy"></i> Copy</button></li>
                                 </ul>
 
                                 <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem;">
@@ -360,7 +360,7 @@ include 'includes/header.php';
 
                         <!-- Sidebar copy -->
                         <div>
-                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 1.5rem; position: sticky; top: 100px;">
+                            <div class="sidebar-sticky-box" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--border-radius-lg); padding: 1.5rem;">
                                 <h4 style="font-size: 1.2rem; margin-bottom: 1rem; color: #0f172a; border-bottom: 1px solid #cbd5e1; padding-bottom: 0.5rem;">Amount Due</h4>
                                 <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary-color); margin-bottom: 0.5rem;">$<span id="final_total_usd">0.00</span></div>
                                 <div style="font-size: 1.1rem; color: #64748b; margin-bottom: 1.5rem;">KES <span id="final_total_kes">0.00</span></div>
@@ -499,35 +499,157 @@ include 'includes/header.php';
 
 <style>
     .form-label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #334155; font-size: 0.95rem; }
-    .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; transition: all 0.2s; background: white; }
+    .form-control { width: 100%; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: var(--font-body); font-size: 16px; transition: all 0.2s; background: white; }
     .form-control:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(22, 101, 52, 0.1); }
+    
+    .checkout-layout-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+    
+    .form-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .sidebar-sticky-box {
+        position: sticky;
+        top: 100px;
+    }
+
+    .copy-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.15rem 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 4px;
+        background: #e2e8f0;
+        color: #334155;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid #cbd5e1;
+        margin-left: 0.5rem;
+    }
+    .copy-chip:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+    
+    @media (max-width: 991px) {
+        .checkout-layout-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+        }
+        .sidebar-sticky-box {
+            position: static !important;
+            top: auto !important;
+            margin-top: 1.5rem !important;
+        }
+    }
     
     @media (max-width: 768px) {
         .ticket-row {
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 1.5rem !important;
+            gap: 1rem !important;
+            padding: 1.25rem 1rem !important;
+        }
+        .ticket-row > div:first-child {
+            margin-right: 0 !important;
+            width: 100% !important;
         }
         .ticket-row > div:nth-child(2) {
             text-align: left !important;
             margin-right: 0 !important;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
         }
         .ticket-row .ticket-counter {
             align-self: flex-start !important;
-            width: 100% !important;
-            justify-content: space-between !important;
+            width: 150px !important;
+            max-width: 100% !important;
+            height: 42px !important;
         }
         .ticket-row .qty-btn {
-            flex: 1 !important;
+            width: 44px !important;
+            height: 42px !important;
+            flex: none !important;
+            font-size: 1.25rem !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
         .ticket-row input[type="number"] {
             flex: 1 !important;
+            height: 42px !important;
+            font-size: 1.05rem !important;
+        }
+        .subtotal-bar {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            padding: 1.25rem 1rem !important;
+            gap: 1rem !important;
+        }
+        .subtotal-bar button {
+            width: 100% !important;
+            padding: 0.9rem !important;
+            text-align: center !important;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .form-grid-2 {
+            grid-template-columns: 1fr !important;
+            gap: 0.85rem !important;
+            margin-bottom: 0.85rem !important;
+        }
+        .stepper-header {
+            margin-bottom: 1.5rem !important;
+            padding-bottom: 0.75rem !important;
+        }
+        .stepper-step {
+            font-size: 0.72rem !important;
+        }
+        .stepper-step > div:first-child {
+            width: 26px !important;
+            height: 26px !important;
+            font-size: 0.8rem !important;
+            margin-bottom: 0.25rem !important;
+        }
+        .checkout-main-card {
+            padding: 1.25rem 1rem !important;
+        }
+        .payment-label-card {
+            padding: 1rem !important;
+        }
+        .page-header h1 {
+            font-size: 2.2rem !important;
         }
     }
 </style>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
+    function copyText(text, btn) {
+        navigator.clipboard.writeText(text).then(() => {
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+            btn.style.background = '#166534';
+            btn.style.color = '#ffffff';
+            setTimeout(() => {
+                btn.innerHTML = orig;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 2000);
+        });
+    }
     let cart = {};
     let subtotalUsd = 0;
     let subtotalKes = 0;

@@ -200,7 +200,8 @@ include 'includes/header.php';
                 PRACTICE<br>AFRICA</h1>
             <p class="carousel-subtitle">"Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063"</p>
             <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="register" class="btn btn-primary btn-lg">Secure Your Pass</a>
+                <a href="final-call" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #b45309, #d97706); border-color: #b45309; box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);"><i class="fa-solid fa-bolt" style="color: #fef08a; margin-right: 0.35rem;"></i> Final Call Pass ($100 / KES 10K)</a>
+                <a href="register" class="btn btn-secondary btn-lg">All Packages</a>
                 <a href="program" class="btn btn-outline btn-lg"
                     style="color: white; border-color: rgba(255,255,255,0.5);">View Itinerary</a>
             </div>
@@ -331,6 +332,33 @@ include 'includes/header.php';
         startTimer();
     });
 </script>
+
+<!-- Final Call Campaign Banner Section -->
+<section style="background: linear-gradient(135deg, #0f172a 0%, #1e3a1f 50%, #0f172a 100%); color: white; padding: 2.25rem 1.5rem; border-top: 3px solid var(--kente-gold); border-bottom: 1px solid rgba(234, 179, 8, 0.3); position: relative; overflow: hidden;">
+    <div class="container" style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 280px;">
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); padding: 0.25rem 0.75rem; border-radius: 999px; margin-bottom: 0.6rem;">
+                <i class="fa-solid fa-bolt" style="color: #f87171; font-size: 0.8rem;"></i>
+                <span style="color: #fecaca; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Limited Subsidy Alert</span>
+            </div>
+            <h2 style="font-size: clamp(1.35rem, 2.5vw, 1.85rem); font-weight: 800; color: white; margin-bottom: 0.4rem; line-height: 1.2;">
+                Final Call Registration — Subsidized Summit Passes
+            </h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; margin-bottom: 0; max-width: 650px;">
+                Special rates available until <strong>November 25, 2026</strong>. Regular Delegate: <strong>KES 10,000 / $100</strong> (67% off) &bull; Student Pass: <strong>KES 5,000 / $50</strong> (50% off). Full 4-day summit access, lunches, materials &amp; certificate.
+            </p>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.35rem 0.75rem; border-radius: 8px; font-size: 0.82rem; font-weight: 700; color: #fef08a; white-space: nowrap;">
+                <i class="fa-regular fa-clock"></i> Closes Nov 25th (<?php echo max(0, ceil((strtotime('2026-11-25 23:59:59') - time()) / 86400)); ?> Days Left)
+            </span>
+            <a href="final-call" class="btn btn-secondary" style="font-size: 0.95rem; padding: 0.75rem 1.75rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(234, 179, 8, 0.35); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap;">
+                <span>Claim Discount Pass</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
 <!-- 2. Founder's Welcome -->
 <!-- Full Width Banner 1 -->
