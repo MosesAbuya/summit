@@ -253,7 +253,7 @@ include 'includes/header.php';
             <p class="carousel-subtitle">Join us for a night of elegance, celebrating the pioneers of Pan-African
                 volunteerism.</p>
             <div class="carousel-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="program#day4" class="btn btn-secondary btn-lg" style="color: #000;">View Gala Details</a>
+                <a href="program#day27" class="btn btn-secondary btn-lg" style="color: #000;">View Gala Details</a>
             </div>
         </div>
     </div>
@@ -345,7 +345,7 @@ include 'includes/header.php';
                 Final Call Registration — Subsidized Summit Passes
             </h2>
             <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; margin-bottom: 0; max-width: 650px;">
-                Special rates available until <strong>November 25, 2026</strong>. Regular Delegate: <strong>KES 10,000 / $100</strong> (67% off) &bull; Student Pass: <strong>KES 5,000 / $50</strong> (50% off). Full 4-day summit access, lunches, materials &amp; certificate.
+                Special rates available until <strong>November 25, 2026</strong>. Regular Delegate: <strong>KES 10,000 / $100</strong> (67% off) &bull; Student Pass: <strong>KES 5,000 / $50</strong> (50% off). Full 3-day summit access, lunches, materials &amp; certificate.
             </p>
         </div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
@@ -381,8 +381,7 @@ include 'includes/header.php';
                 
                 <p>Convened in explicit recognition of the United Nations International Year of Volunteers for Sustainable Development (IVY 2026) under Resolution 78/127, the Summit serves as Africa's premier continental platform to translate global volunteer momentum into practical African action.</p>
 
-                <p>The Conference is set to take place from <strong>November 24th to 27th, 2026 in Nairobi,
-                        Kenya</strong>. This year's core focus:</p>
+                <p>The Conference will take place from <strong>25th to 27th November 2026 in Nairobi, Kenya</strong>: 25th and 26th at <strong>Strathmore University Business School</strong>, and 27th at <strong>Kenyatta International Convention Centre (KICC)</strong>. This year's core focus:</p>
 
                 <div class="blockquote-highlight mt-2">
                     <p class="quote-text">"Leveraging Multidisciplinary Pro Bono for SDGs and Agenda 2063."</p>
@@ -535,51 +534,42 @@ include 'includes/header.php';
     </div>
 </section>
 
-<!-- 6. 4 Days, 4 Venues -->
+<!-- 6. Three Summit Event Days -->
 <section id="venues" class="section bg-white border-y">
     <div class="container">
         <div class="section-header text-center">
             <span class="section-eyebrow">The Summit Experience</span>
-            <h2>4-Day Summit Agenda</h2>
+            <h2>3-Day Summit Agenda</h2>
             <span class="african-divider-sm center"></span>
             <p class="subtitle mt-1">An immersive journey of multidisciplinary impact, policy dialogue, and celebration in Nairobi, Kenya.</p>
         </div>
         
-        <div class="venue-grid mt-4">
-            <div class="venue-card" style="background-image: url('assets/experiences/nairobi_skyline_upperhill_opt.jpg');">
-                <div class="venue-overlay"></div>
-                <div class="venue-content">
-                    <span class="venue-day">Day 1</span>
-                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Future Leaders & Academia</h3>
-                    <p class="venue-desc">Kicking off the summit, bridging the gap between student innovation and corporate pro-bono architectures.</p>
-                    <a href="program#day1" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
-                </div>
-            </div>
+        <div class="venue-grid mt-4" style="grid-template-columns: repeat(3, 1fr);">
             <div class="venue-card" style="background-image: url('assets/experiences/lion.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
-                    <span class="venue-day">Day 2</span>
-                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Policy, Compliance & ESG</h3>
-                    <p class="venue-desc">25th November — Strathmore University Business School. A deep dive into regulatory frameworks, corporate governance, and pan-African policy alignments.</p>
-                    <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
+                    <span class="venue-day">25th November 2026</span>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Policy, Practice &amp; Institution</h3>
+                    <p class="venue-desc"><strong>Strathmore University Business School</strong><br>Deep dives into policy, governance, ESG, and institutional pro-bono practice.</p>
+                    <a href="program#day25" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
             <div class="venue-card" style="background-image: url('assets/experiences/elephant.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
-                    <span class="venue-day">Day 3</span>
-                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Global Networking & Main Summit</h3>
-                    <p class="venue-desc">26th November — Strathmore University Business School. The primary institutional gathering featuring global keynotes, break-out labs, and strategic MoUs.</p>
-                    <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
+                    <span class="venue-day">26th November 2026</span>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Youth, Climate &amp; Partnerships</h3>
+                    <p class="venue-desc"><strong>Strathmore University Business School</strong><br>Breakouts, masterclasses, networking, and cross-sector partnerships.</p>
+                    <a href="program#day26" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
             <div class="venue-card" style="background-image: url('assets/experiences/nairobi_skyline_west.jpg');">
                 <div class="venue-overlay"></div>
                 <div class="venue-content">
-                    <span class="venue-day">Day 4</span>
-                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Gala Dinner & Impact Awards</h3>
-                    <p class="venue-desc">Closing the summit with an elegant evening of celebration, recognizing outstanding pro-bono contributions across Africa.</p>
-                    <a href="program#day4" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
+                    <span class="venue-day">27th November 2026</span>
+                    <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Global Forum &amp; Gala</h3>
+                    <p class="venue-desc"><strong>Kenyatta International Convention Centre (KICC)</strong><br>Accord ratification, keynote sessions, awards, and gala celebration.</p>
+                    <a href="program#day27" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
         </div>

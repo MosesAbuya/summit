@@ -109,7 +109,7 @@
         </style>
         <div class="top-bar bg-dark text-light py-1" style="background-color: transparent; color: white; padding: 0.5rem 0; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
             <div class="container" style="display: flex; justify-content: space-between;">
-                <span>Nairobi, Kenya | November 24-27, 2026</span>
+                <span>Nairobi, Kenya | November 25-27, 2026</span>
                 <span style="opacity: 0.8;">Hosted by Global Pro Bono Network & Jitolee Foundation</span>
             </div>
         </div>

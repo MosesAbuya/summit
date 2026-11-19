@@ -37,7 +37,7 @@
 <div class="page-header" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/hero-bg.png') center/cover; padding: 6rem 0; text-align: center; color: white;">
     <div class="container">
         <h1 style="color: white; font-size: 3rem; margin-bottom: 0.5rem;">Summit Program & Itinerary</h1>
-        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Four Days. Four Landmarks. One Pan-African Vision.</p>
+        <p class="lead-text" style="color: rgba(255,255,255,0.8);">Three Event Days. Two Landmark Venues. One Pan-African Vision.</p>
     </div>
 </div>
 
@@ -48,82 +48,59 @@
             <p style="text-align: center; font-size: 1.1rem; color: var(--text-main); margin-bottom: 2rem;">Explore the completely interactive schedule. Click on any day to expand its full itinerary, sessions, and keynote speaker details.</p>
 
                         <div class="program-accordion">
-                <!-- Day 1 -->
-                <div class="accordion-item active" id="day1">
+                <!-- Day 25 -->
+                <div class="accordion-item active" id="day25">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">DAY ONE: 24th Nov 2026</div>
-                            <h3 class="accordion-title">Vision Setting & Thematic Alignments</h3>
-                            <div class="accordion-venue">Africa's Strategic Framework for the International Year of Volunteers (IVY 2026)</div>
+                            <div class="accordion-day">25th Nov 2026</div>
+                            <h3 class="accordion-title">Policy, Practice &amp; Institutional Impact</h3>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Strathmore University Business School</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The opening day will feature high-level keynotes, official addresses, and networking sessions designed to align corporate and academic volunteer structures around SDGs 1 & 4.</p>
+                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">Keynotes, policy dialogue, institutional practice, governance, and ESG sessions take place at Strathmore University Business School.</p>
                         <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
                             <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
                             <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Detailed schedule, speakers, and session timings will be announced soon!</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Day 2 -->
-                <div class="accordion-item" id="day2">
+                <!-- Day 26 -->
+                <div class="accordion-item" id="day26">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">DAY TWO: 25th Nov 2026</div>
-                            <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 1 & 4)</h3>
+                            <div class="accordion-day">26th Nov 2026</div>
+                            <h3 class="accordion-title">Youth, Climate &amp; Cross-Sector Partnerships</h3>
                             <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Strathmore University Business School</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">Delegates will break into focused workgroups and experiential field visits across Nairobi, exploring tangible blueprints for poverty eradication and quality education.</p>
+                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">Delegates explore youth employability, climate action, cross-sector partnerships, masterclasses, and institutional collaboration at Strathmore University Business School.</p>
                         <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
                             <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Detailed schedule, site visit options, and session timings will be announced soon!</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
+                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Detailed schedule, speakers, and session timings will be announced soon!</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Day 3 -->
-                <div class="accordion-item" id="day3">
+                <!-- Day 27 -->
+                <div class="accordion-item" id="day27">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <div class="accordion-day">DAY THREE: 26th Nov 2026</div>
-                            <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 8 & 13)</h3>
-                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Strathmore University Business School</div>
+                            <div class="accordion-day">27th Nov 2026</div>
+                            <h3 class="accordion-title">Global Forum, Accord Ratification &amp; Gala</h3>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Kenyatta International Convention Centre (KICC)</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">We pivot our focus toward youth employability (SDG 8) and climate action (SDG 13). Expect dynamic parallel blueprints, expert panels, and hands-on community adaptation site visits.</p>
-                        <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
-                            <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                            <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Detailed schedule, site visit options, and session timings will be announced soon!</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Day 4 -->
-                <div class="accordion-item" id="day4">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div>
-                            <div class="accordion-day">DAY FOUR: 27th Nov 2026</div>
-                            <h3 class="accordion-title">Ecological Stewardship, Accord Ratification & Gala Celebration</h3>
-                            <div class="accordion-venue">Locking Continental Commitments and Carrying IVY 2026 Legacy Forward</div>
-                        </div>
-                        <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                    <div class="accordion-content">
-                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The Summit concludes with an immersive ecological experience, the ratification of the Nairobi Pro Bono Accord, and an elegant evening gala honoring Africa's pro bono pioneers.</p>
+                        <p style="margin-bottom: 2.5rem; color: var(--text-main); font-size: 1.05rem; line-height: 1.6;">The final summit day takes place at KICC, concluding with the Nairobi Pro Bono Accord ratification, global keynotes, awards, and gala celebration.</p>
                         <div style="padding: 2rem; background: var(--bg-alt); border-radius: var(--border-radius-md); text-align: center; border: 1px dashed #cbd5e1; margin-top: 1rem;">
                             <i class="fa-solid fa-calendar-days" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
                             <p style="color: var(--text-main); font-size: 1.1rem; font-weight: 500;">Detailed schedule and gala specifics will be announced soon!</p>
-                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Check back soon for the full itinerary updates.</p>
                         </div>
                     </div>
                 </div>

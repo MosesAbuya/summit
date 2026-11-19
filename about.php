@@ -398,7 +398,7 @@
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
                             <td style="padding: 1rem 1.5rem; font-weight: 700; color: var(--primary-color);">Execution</td>
-                            <td style="padding: 1rem 1.5rem; color: var(--text-main);">4-day event delivery, live field visits, blueprint workshops</td>
+                            <td style="padding: 1rem 1.5rem; color: var(--text-main);">3-day event delivery, field visits, blueprint workshops</td>
                             <td style="padding: 1rem 1.5rem; color: var(--text-muted);">Full Summit Team</td>
                             <td style="padding: 1rem 1.5rem; color: var(--text-muted);">Nov 2026</td>
                             <td style="padding: 1rem 1.5rem; color: var(--text-muted);">90% attendance; 15 partnerships forged</td>

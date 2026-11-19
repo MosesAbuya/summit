@@ -38,7 +38,7 @@
                     <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    The Summit is scheduled for <strong>November 24th to 27th, 2026</strong> in <strong>Nairobi, Kenya</strong>. The 25th and 26th November sessions will be held at <strong>Strathmore University Business School</strong>. It features four days of immersive experiences, workshops, and high-level panels across iconic venues.
+                    The Summit is scheduled for <strong>November 25th to 27th, 2026</strong> in <strong>Nairobi, Kenya</strong>. The 25th and 26th sessions will be held at <strong>Strathmore University Business School</strong>, while the 27th will take place at <strong>Kenyatta International Convention Centre (KICC)</strong>. It features three immersive event days of workshops, panels, and high-level dialogue.
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
                     <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    Yes! Day 4 includes an ecological immersive experience with an early morning game ride at the Nairobi National Park. Additionally, we coordinate bespoke safari extensions to destinations like the Maasai Mara for delegates who wish to extend their stay. Visit our <a href="logistics" style="color: var(--primary-color);">Logistics Page</a> for more details.
+                    Yes! After the 27th November closing forum and gala at KICC, you can join an ecological experience or early morning game ride at Nairobi National Park. We also coordinate bespoke safari extensions to destinations such as the Maasai Mara. Visit our <a href="logistics" style="color: var(--primary-color);">Logistics Page</a> for more details.
                 </div>
             </div>
             

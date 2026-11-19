@@ -51,12 +51,12 @@
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-van-shuttle"></i></div>
                         <h3>Inter-Venue Shuttles</h3>
-                        <p>Dedicated VIP shuttles are explicitly scheduled for afternoon experiential field visits on Days 2 and 3, as well as round-trip transit to the hotel lobby for the Nairobi National Park excursion on Day 4.</p>
+                        <p>Dedicated shuttles operate between the delegate hotels and Strathmore University Business School on 25th and 26th November, and to KICC on 27th November.</p>
                     </div>
                     <div class="value-card" style="box-shadow: none; border: 1px solid #e2e8f0; text-align: left;">
                         <div class="icon-wrapper" style="width: 50px; height: 50px; margin-bottom: 1rem; font-size: 1.5rem;"><i class="fa-solid fa-taxi"></i></div>
                         <h3>Private Taxi Integrations</h3>
-                        <p>Nairobi is highly integrated with ride-share apps. Uber and Bolt operate reliably across the city. Dedicated safe drop-off zones have been established at all 4 venues for private vehicles.</p>
+                        <p>Nairobi is highly integrated with ride-share apps. Uber and Bolt operate reliably across the city. Use Strathmore University Business School for 25th–26th November and KICC for 27th November.</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
             <!-- 4. Post-Summit Tourism (NEW Section) -->
             <div id="tourism" class="logistics-block" style="margin-bottom: 4rem; scroll-margin-top: 5rem;">
                 <h2 style="color: var(--primary-color); border-bottom: 2px solid #f1f5f9; padding-bottom: 1rem; margin-bottom: 2rem;">4. Post-Summit Tourism & Safaris</h2>
-                <p style="margin-bottom: 2rem;">After the Global Pro Bono Summit Africa concludes, we highly encourage delegates to experience the breathtaking beauty of Kenya. Our concierge team assists interested parties in facilitating bespoke tours, starting with an integrated experience on Day 4.</p>
+                <p style="margin-bottom: 2rem;">After the 27th November closing forum and gala at KICC, delegates can extend their stay and experience curated Kenya safari and tourism packages through our concierge team.</p>
                 <a href="tour_packages" class="btn btn-primary">View Curated Tour Packages</a>
             </div>
 
