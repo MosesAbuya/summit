@@ -327,7 +327,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     'order_ref' => $orderRef,
                     'total_kes' => $totalKes,
                     'email' => $email,
-                    'is_student' => $hasStudentPass
+                    'is_student' => $hasStudentPass,
+                    'payment_method' => $paymentMethod,
+                    'payment_status' => $paymentStatus
                 ]);
             } else {
                 // Free order (e.g. 100% discount promo code)

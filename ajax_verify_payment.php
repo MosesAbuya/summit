@@ -115,6 +115,7 @@ if ($result && $result['status'] === true && $result['data']['status'] === 'succ
 
                             $studentTicketNotice
 
+                            <p style='text-align:center;margin:20px 0;'><a href='https://globalsummitafrica.org/download_ticket.php?ref={$reference}' style='display:inline-block;background:#166534;color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:6px;'>Download / Print E-Ticket</a></p>
                             <div style='background: #dcfce7; border-left: 4px solid #16a34a; padding: 15px; margin-bottom: 20px;'>
                                 <strong>Your Registration is Complete!</strong>
                                 <p style='margin-bottom: 0;'>We look forward to seeing you at the summit. Please keep this email for your records.</p>

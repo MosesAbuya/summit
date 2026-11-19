@@ -38,7 +38,7 @@
                     <span class="faq-icon"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <div class="faq-answer">
-                    The Summit is scheduled for <strong>November 24th to 27th, 2026</strong> and will be held in <strong>Nairobi, Kenya</strong>. It features four days of immersive experiences, workshops, and high-level panels across iconic venues.
+                    The Summit is scheduled for <strong>November 24th to 27th, 2026</strong> in <strong>Nairobi, Kenya</strong>. The 25th and 26th November sessions will be held at <strong>Strathmore University Business School</strong>. It features four days of immersive experiences, workshops, and high-level panels across iconic venues.
                 </div>
             </div>
 

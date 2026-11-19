@@ -380,7 +380,8 @@ try {
                             <div style='font-size: 28px; font-weight: 900; color: #166534; letter-spacing: 2px;'>{$order['order_ref']}</div>
                         </div>
 
-                        <p>Please present this reference number or this email at the registration desk when you arrive at the summit.</p>
+                        <p><a href='https://globalsummitafrica.org/download_ticket.php?ref={$order['order_ref']}' style='display:inline-block;background:#166534;color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 18px;border-radius:6px;'>Download / Print E-Ticket</a></p>
+                        <p>Please present this reference number or your e-ticket at the registration desk when you arrive at the summit.</p>
                         <p>We look forward to welcoming you.</p>
                         <br>
                         <p>Warm regards,<br><strong>The Organizing Committee</strong></p>

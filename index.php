@@ -560,7 +560,7 @@ include 'includes/header.php';
                 <div class="venue-content">
                     <span class="venue-day">Day 2</span>
                     <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Policy, Compliance & ESG</h3>
-                    <p class="venue-desc">A deep dive into regulatory frameworks, corporate governance, and pan-African policy alignments.</p>
+                    <p class="venue-desc">25th November — Strathmore University Business School. A deep dive into regulatory frameworks, corporate governance, and pan-African policy alignments.</p>
                     <a href="program#day2" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>
@@ -569,7 +569,7 @@ include 'includes/header.php';
                 <div class="venue-content">
                     <span class="venue-day">Day 3</span>
                     <h3 style="font-size: clamp(1.4rem, 2.5vw, 1.85rem); margin-bottom: 0.75rem; color: white;">Global Networking & Main Summit</h3>
-                    <p class="venue-desc">The primary institutional gathering featuring global keynotes, break-out labs, and strategic MoUs.</p>
+                    <p class="venue-desc">26th November — Strathmore University Business School. The primary institutional gathering featuring global keynotes, break-out labs, and strategic MoUs.</p>
                     <a href="program#day3" style="display: inline-block; margin-top: 1rem; color: var(--secondary-color); font-weight: 600; text-decoration: none; position: relative; z-index: 3;">View Itinerary &rarr;</a>
                 </div>
             </div>

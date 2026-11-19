@@ -629,7 +629,7 @@ include 'includes/header.php';
                             <i class="fa-solid fa-graduation-cap"></i> Student Accreditation Requirement
                         </div>
                         <div style="color: #7c2d12; font-size: 0.88rem; line-height: 1.5;">
-                            You have registered under the subsidized student rate. <strong>Please remember to bring your physical Student ID card matching your registered student ID number to the summit check-in desk at Safari Park Hotel, Nairobi.</strong>
+                            You have registered under the subsidized student rate. <strong>Please remember to bring your physical Student ID card matching your registered student ID number to the summit check-in desk at Strathmore University Business School on 25th and 26th November 2026.</strong>
                         </div>
                     </div>
 
@@ -1606,10 +1606,24 @@ include 'includes/header.php';
                 // Direct Bank Transfer or Manual M-PESA
                 document.getElementById('success_order_ref').innerText = data.order_ref;
                 if (data.is_student) document.getElementById('student_success_box').style.display = 'block';
-                if (data.total_kes <= 0)
-                document.getElementById('success_subtitle').innerText = "Your booking has been received. Please complete the bank transfer or M-PESA payment using your order reference as the transaction description.";
-                document.getElementById('success_next_steps_title').innerText = "Next Steps:";
-                document.getElementById('success_next_steps_list').innerHTML = "<li>Check your email for bank and M-PESA payment instructions.</li><li>Send funds using order reference " + data.order_ref + " as narration.</li><li>Upload your proof of payment via the link in your email.</li><li>Your e-ticket will be verified and issued by our secretariat.</li>";
+
+                const proofSubmitted = data.payment_status === 'proof_uploaded';
+                const ticketButton = document.getElementById('btn_view_ticket');
+                ticketButton.style.display = 'none';
+
+                if (data.total_kes <= 0) {
+                    document.getElementById('success_subtitle').innerText = "Your order has been successfully received.";
+                    document.getElementById('success_next_steps_title').innerText = "Next Steps:";
+                    document.getElementById('success_next_steps_list').innerHTML = "<li>Check your email for the final confirmation.</li><li>Present your order reference at the summit registration desk.</li>";
+                } else if (proofSubmitted) {
+                    document.getElementById('success_subtitle').innerText = "Order successfully received. We’ll get back to you after confirming your payment by email.";
+                    document.getElementById('success_next_steps_title').innerText = "What Happens Next:";
+                    document.getElementById('success_next_steps_list').innerHTML = "<li>Your receipt or transaction code is now under verification.</li><li>Once confirmed, we will email you the link to download your e-ticket.</li><li>Please keep order reference " + data.order_ref + " for your records.</li>";
+                } else {
+                    document.getElementById('success_subtitle').innerText = "Your booking has been received, but payment verification is still outstanding.";
+                    document.getElementById('success_next_steps_title').innerText = "Next Steps:";
+                    document.getElementById('success_next_steps_list').innerHTML = "<li>Complete your bank transfer or M-PESA payment using order reference " + data.order_ref + " as the narration.</li><li>Use the payment verification link provided in your email to upload your receipt or transaction code.</li><li>After verification, we will email you the link to download your e-ticket.</li>";
+                }
                 nextStep(4);
             } else {
                 openCheckoutNotice('Notice', data.message, 'fa-circle-exclamation', true);

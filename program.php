@@ -74,7 +74,7 @@
                         <div>
                             <div class="accordion-day">DAY TWO: 25th Nov 2026</div>
                             <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 1 & 4)</h3>
-                            <div class="accordion-venue">Translating Global Volunteer Momentum into Practical African Action</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Strathmore University Business School</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
@@ -94,7 +94,7 @@
                         <div>
                             <div class="accordion-day">DAY THREE: 26th Nov 2026</div>
                             <h3 class="accordion-title">Deep Dives, Breakouts & Institutional Practice (SDGs 8 & 13)</h3>
-                            <div class="accordion-venue">Building Institutional Resilience and Strategic Cross-Sector Synergy</div>
+                            <div class="accordion-venue"><i class="fa-solid fa-location-dot"></i> Strathmore University Business School</div>
                         </div>
                         <svg class="accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
